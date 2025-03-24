@@ -4,14 +4,14 @@
 must exit properly and return "Error\n" followed by an explicit error message
 of your choice*/
 
-void	error_per(char *str, int flag)
+void	error_per(char *str, t_game *game, int flag)
 {
 	if(flag == 0)
 		perror(str);
 	exit(1);
 }
 
-void	error_msg(char *str, int flag)
+void	error_msg(char *str, t_game *game, int flag)
 {
 	if(flag == 0)
 		ft_putendl(str, 2);

@@ -1,6 +1,6 @@
 NAME= cub3D
 
-SRCS= main.c
+SRCS= cub3d.c close_game.c keybind.c init_game.c
 OBJS_PATH= objs/
 OBJS= $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 CFLAGS= -Wall -Werror -Wextra -g
@@ -19,7 +19,7 @@ RESET= \e[0m
 all: $(OBJS_PATH) $(MLX_DIR) $(NAME)
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
-	@cc $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
+	@cc $(CFLAGS) $(OBJS) $(MLX) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT) -o $(NAME)
 
 objs/%.o: %.c
 	@tput cuu1 && tput el
