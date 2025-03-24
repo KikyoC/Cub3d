@@ -27,34 +27,22 @@ int	ft_isitcub(char *str)
 		return (1);
 }
 
-int	flood_fill(char **tmp, int x, int y, char c)
+int	ft_rendermap(t_game *game)
 {
-	int	up;
-	int	down;
-	int	right;
-	int	left;
-
-	if (tmp[x][y] == 'X' || tmp[x][y] == '1')
-		return (0);
-	if (tmp[x][y] != '1')
-		tmp[x][y] = 'X';
-	right = flood_fill(tmp, x, y + 1, c);
-	up = flood_fill(tmp, x - 1, y, c);
-	down = flood_fill(tmp, x + 1, y, c);
-	left = flood_fill(tmp, x, y - 1, c);
-	if (right == 1 || up == 1 || down == 1 || left == 1)
-		return (1);
-	if (tmp[x][y] == c)
-		return (1);
-	return (0);
+	(void) game;
+	return(0);
 }
 
 void	ft_cub3d(char *str)
 {
-	// mlx_hook(game.win_ptr, KeyPress, KeyPressMask, ft_keybind, &game);
-	// mlx_hook(game.win_ptr, Expose, ExposureMask, ft_render_map, &game);
-	// mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, ft_close_game, &game);
-	// mlx_loop(game.mlx_ptr);
+	(void) str;
+	t_game game;
+
+	ft_init_mlx(&game);
+	mlx_hook(game.win_ptr, KeyPress, KeyPressMask, ft_keybind, &game);
+	mlx_hook(game.win_ptr, Expose, ExposureMask, ft_rendermap, &game);
+	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, ft_closegame, &game);
+	mlx_loop(game.mlx_ptr);
 }
 
 int	main(int ac, char **av)
@@ -65,3 +53,27 @@ int	main(int ac, char **av)
 		return (1); //error_msg();
 	ft_cub3d(av[1]);
 }
+
+//https://harm-smits.github.io/42docs/projects/cub3d
+
+// int	flood_fill(char **tmp, int x, int y, char c)
+// {
+// 	int	up;
+// 	int	down;
+// 	int	right;
+// 	int	left;
+
+// 	if (tmp[x][y] == 'X' || tmp[x][y] == '1')
+// 		return (0);
+// 	if (tmp[x][y] != '1')
+// 		tmp[x][y] = 'X';
+// 	right = flood_fill(tmp, x, y + 1, c);
+// 	up = flood_fill(tmp, x - 1, y, c);
+// 	down = flood_fill(tmp, x + 1, y, c);
+// 	left = flood_fill(tmp, x, y - 1, c);
+// 	if (right == 1 || up == 1 || down == 1 || left == 1)
+// 		return (1);
+// 	if (tmp[x][y] == c)
+// 		return (1);
+// 	return (0);
+// }

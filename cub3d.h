@@ -20,15 +20,19 @@
 # include "libft/libft.h"
 
 typedef struct s_game {
-    int    config;
-    int no;
-    int so;
-    int ea;
-    int we;
-
+	void		*mlx_ptr;
+	void		*win_ptr;
+    int	config;
+    int	no;
+    int	so;
+    int	ea;
+    int	we;
 }    t_game;
 
 //Map
+typedef struct s_img{
+	void	*xpm_ptr;
+} t_img;
 
 typedef struct s_point {
     char            *c;
@@ -40,10 +44,10 @@ typedef struct s_row {
     struct s_row    *next;
 }    t_row;
 
-void	ft_closegame(t_game *game);
-int	ft_keybind(int keysym, t_game *game);
-void	error_msg(char *str, int flag);
-void	error_per(char *str, int flag);
-
+int		ft_closegame(t_game *game);
+int		ft_keybind(int keysym, t_game *game);
+void	error_msg(char *str, t_game *game, int flag);
+void	error_per(char *str, t_game *game, int flag);
+void	ft_init_mlx(t_game *game);
 
 #endif
