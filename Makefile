@@ -34,8 +34,8 @@ $(MLX_DIR):
 	@echo "$(YELLOW)Downloading minilibx"
 	@mkdir -p mlx_linux
 	@wget https://cdn.intra.42.fr/document/document/30137/minilibx-linux.tgz
-	@tar -xf minilibxlinux.tar.gz -C mlx_linux --strip-components 1
-	@rm -f mlx_linux.tar.gz
+	@tar -xf minilibx-linux.tgz -C mlx_linux --strip-components 1
+	@rm -f minilibx-linux.tgz
 	@echo "$(GREEN)Sucessfully downloaded minilibx"
 
 .PHONY: all clean fclean re prune
