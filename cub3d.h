@@ -19,6 +19,8 @@
 # include "libft/libft.h"
 # include <errno.h>
 # include "libft/libft.h"
+# include "mlx_linux/mlx.h"
+# include "X11/X.h"
 
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
 # define N_TEXTURE "Error\nIt seems that you didn't set up north texture\n"
@@ -41,6 +43,8 @@ typedef struct s_game
 	int				we;
 	int				*ground;
 	int				*sky;
+	void			*mlx_ptr;
+	void			*win_ptr;
 	struct s_row	*first;
 }	t_game;
 
@@ -71,4 +75,8 @@ int		parse_line(t_game *game, char *line);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
 void	destroy_row(t_row *row);
+void	ft_init_mlx(t_game *game);
+int		ft_keybind(int keysym, t_game *game);
+int		ft_closegame(t_game *game);
+
 #endif
