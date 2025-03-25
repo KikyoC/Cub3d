@@ -6,7 +6,7 @@
 #    By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 09:19:46 by togauthi          #+#    #+#              #
-#    Updated: 2024/10/22 13:44:27 by togauthi         ###   ########.fr        #
+#    Updated: 2025/03/24 17:56:43 by togauthi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,22 +65,29 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -I.
 
+GREEN= \e[0;32m
+
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@tput cuu1 && tput el	
+	@echo "Compilation de $<..."
+	@$(CC) $(CFLAGS) -c $< -o $@
+	
 
 $(NAME): $(OBJS)
-	ar -rc $(NAME) $^
+	@ar -rc $(NAME) $^
+	@tput cuu1 && tput el	
+	@echo "$(GREEN)Libft compiled ! $(RESET)"
 
 bonus: $(OBJS) $(B_OBJS)
-	ar rc $(NAME) $(OBJS) $(B_OBJS)
+	@ar rc $(NAME) $(OBJS) $(B_OBJS)
 
 clean:
-	rm -f ${OBJS} $(B_OBJS)
+	@rm -f ${OBJS} $(B_OBJS)
 
 fclean: clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re: fclean all
 
