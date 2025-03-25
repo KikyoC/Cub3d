@@ -32,10 +32,9 @@ static void print_line(t_row *row)
 	point = row->first;
 	while (point)
 	{
-		printf("%c", point->c);
+		ft_putchar_fd(point->c, 2);
 		point = point->next;
 	}
-	printf("\n");
 }
 
 int	is_empty(char c)
@@ -47,7 +46,6 @@ static int is_point_valid(t_point *point)
 {
 	t_point	*tmp;
 
-	printf("	-Actual point is %c %p\n", point->c, point);
 	if (is_empty(point->c))
 	{
 		tmp = get_other_point(point, point->row->prev);
@@ -82,20 +80,19 @@ int	is_map_valid(t_game *game)
 	row = game->first;
 	while (row)
 	{
-		printf("Checking line: ");
-		print_line(row);
 		current = row->first;
 		while (current)
 		{
 			if (!is_point_valid(current))
 			{
-				printf("Map is not valid\n");
+				ft_putstr_fd("Map error on line \"", 2);
+				print_line(row);
+				ft_putstr_fd("\"\n", 2);
 				return (0);
 			}
 			current = current->next;
 		}
 		row = row->next;
 	}
-	printf("Map is valid\n");
 	return (1);
 }
