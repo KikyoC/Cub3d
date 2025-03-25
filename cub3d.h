@@ -32,7 +32,8 @@ typedef struct s_img{
 typedef struct s_game {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_img 		img;
+	t_img 		ceiling;
+	t_img		floor;
     int	config;
     int	no;
     int	so;
@@ -55,5 +56,9 @@ int		ft_keybind(int keysym, t_game *game);
 void	error_msg(char *str, t_game *game, int flag);
 void	error_per(char *str, t_game *game, int flag);
 void	ft_init_mlx(t_game *game);
+void	ceiling_color(t_game *game);
+int		generate_rgb(__uint8_t red, __uint8_t green, __uint8_t blue);
+void	ft_adr(t_img *img, int pixel, int color);
+void	ft_addr(t_img *img, int pixel, int color);
 
 #endif

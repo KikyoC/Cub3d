@@ -27,17 +27,9 @@ int	ft_isitcub(char *str)
 		return (1);
 }
 
-int	generate_rgb(__uint8_t red, __uint8_t green, __uint8_t blue)
-{
-	return (red << 16 | green << 8 | blue);
-}
-
 int	ft_rendermap(t_game *game)
 {
-	__uint8_t red = 210;
-	__uint8_t green = 120;
-	__uint8_t blue = 0;
-	//render(game);
+	ceiling_color(game);
 	return(0);
 }
 

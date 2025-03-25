@@ -1,6 +1,6 @@
 NAME= cub3D
 
-SRCS= cub3d.c close_game.c keybind.c init_game.c
+SRCS= cub3d.c close_game.c keybind.c init_game.c ceiling.c
 OBJS_PATH= objs/
 OBJS= $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 CFLAGS= -Wall -Werror -Wextra -g
