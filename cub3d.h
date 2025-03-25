@@ -21,16 +21,6 @@
 # include "libft/libft.h"
 
 //Map
-typedef struct s_game {
-	void		*mlx_ptr;
-	void		*win_ptr;
-    int	config;
-    int	no;
-    int	so;
-    int	ea;
-    int	we;
-}    t_game;
-
 typedef struct s_img{
 	void	*mlx_img;
 	char 	*adr;
@@ -38,6 +28,17 @@ typedef struct s_img{
 	int line_len;
 	int endian;
 } t_img;
+
+typedef struct s_game {
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img 		img;
+    int	config;
+    int	no;
+    int	so;
+    int	ea;
+    int	we;
+}    t_game;
 
 typedef struct s_point {
     char            *c;

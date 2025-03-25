@@ -32,42 +32,12 @@ int	generate_rgb(__uint8_t red, __uint8_t green, __uint8_t blue)
 	return (red << 16 | green << 8 | blue);
 }
 
-void	paint_window(t_img *img, int x, int y, int color)
-{
-    char    *pixel;
-    int		i;
-
-    i = img->bpp - 8;
-    pixel = img->adr + (y * img->line_len + x * (img->bpp / 8));
-    while (i >= 0)
-    {
-        /* big endian, MSB is the leftmost bit */
-        if (img->endian != 0)
-            *pixel++ = (color >> i) & 0xFF;
-        /* little endian, LSB is the leftmost bit */
-        else
-            *pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-        i -= 8;
-    }
-}
-// #define PATH 
-
 int	ft_rendermap(t_game *game)
 {
-	t_img img;
-	int x = 0; 
-	int y = 0;
-
-	char *str = ft_strdup("wolftext/greystone.xpm");
-	img.mlx_img = mlx_xpm_to_image(game->mlx_ptr, &str, &x, &y);
 	__uint8_t red = 210;
 	__uint8_t green = 120;
 	__uint8_t blue = 0;
-	int color = generate_rgb(red, green , blue);
-	//permet de recuperer une image
-	img.adr = mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len, &img.endian);
-	paint_window(&img, x, y, color);
-	free(str);
+	//render(game);
 	return(0);
 }
 
