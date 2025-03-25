@@ -23,10 +23,10 @@ int	set_number(int *res, char *str)
 	return (i);
 }
 
-static int parse(int *res, char *str, char *line)
+static int	parse(int *res, char *str, char *line)
 {
 	int	i;
-	int count;
+	int	count;
 	int	tmp;
 
 	i = 0;
@@ -35,7 +35,7 @@ static int parse(int *res, char *str, char *line)
 	{
 		tmp = set_number(&res[i], &str[count]);
 		if (tmp <= 0)
-		{	
+		{
 			ft_putstr_fd("Parse error near: \"", 2);
 			ft_putstr_fd(&str[count], 2);
 			ft_putstr_fd("\" on line \"", 2);
@@ -49,7 +49,7 @@ static int parse(int *res, char *str, char *line)
 	return (1);
 }
 
-int parse_color(t_game *game, char *line)
+int	parse_color(t_game *game, char *line)
 {
 	int		i;
 	char	c;

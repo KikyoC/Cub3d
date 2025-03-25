@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-static void print_error(char c, char *line)
+static void	print_error(char c, char *line)
 {
 	ft_putstr_fd("Unknown charater \"", 2);
 	ft_putchar_fd(c, 2);
@@ -15,8 +15,8 @@ int	add_to_row(char c, t_row *row, char *line)
 	t_point	*current;
 
 	if (c != '0' && c != '1' && c != 'N'
-		&& c != 'S' && c != 'E' && c != 'W' &&
-	!ft_isspace(c))
+		&& c != 'S' && c != 'E' && c != 'W'
+		&& !ft_isspace(c))
 	{
 		print_error(c, line);
 		return (1);
@@ -37,7 +37,7 @@ int	add_to_row(char c, t_row *row, char *line)
 	return (0);
 }
 
-int parse_line(t_game *game, char *line)
+int	parse_line(t_game *game, char *line)
 {
 	t_row	*row;
 	t_row	*current;

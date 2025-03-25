@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-static void set_file(t_game *game, int file, char c)
+static void	set_file(t_game *game, int file, char c)
 {
 	if (c == 'N' && game->no == 0)
 		game->no = file;
@@ -12,7 +12,7 @@ static void set_file(t_game *game, int file, char c)
 		game->we = file;
 }
 
-static int print_error(int type, char *line, int to_return)
+static int	print_error(int type, char *line, int to_return)
 {
 	if (type == 1)
 	{
@@ -30,11 +30,10 @@ static int print_error(int type, char *line, int to_return)
 	return (to_return);
 }
 
-
 /*
  * Return 0 on success 1 on failure 2 on duplication
 */
-int open_texture(t_game *game, char *line)
+int	open_texture(t_game *game, char *line)
 {
 	int		file;
 	int		i;

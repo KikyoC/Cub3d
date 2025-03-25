@@ -2,10 +2,7 @@
 #include <fcntl.h>
 #include <string.h>
 
-/*
-* Return type. 1 is wall texture, 2 is sky or ground color, 3 is a map line, 4 is empty line, 0 is unknown
-*/
-int get_line_type(char *line)
+int	get_line_type(char *line)
 {
 	int	i;
 
@@ -13,20 +10,20 @@ int get_line_type(char *line)
 	while (ft_isspace(line[i]))
 		i++;
 	if (((line[i] == 'N' && line[i + 1] == 'O')
-	|| (line[i] == 'S' && line[i + 1] == 'O')
-	|| (line[i] == 'W' && line[i + 1] == 'E')
-	|| (line[i] == 'E' && line[i + 1] == 'A'))
-	&& ft_isspace(line[i + 2]))
+			|| (line[i] == 'S' && line[i + 1] == 'O')
+			|| (line[i] == 'W' && line[i + 1] == 'E')
+			|| (line[i] == 'E' && line[i + 1] == 'A'))
+		&& ft_isspace(line[i + 2]))
 		return (1);
 	else if ((line[i] == 'C' || line[i] == 'F') && ft_isspace(line[i + 1]))
-			return (2);
+		return (2);
 	else if (line[i] == '\0' || line[i] == '\n')
 		return (4);
 	else
 		return (3);
 }
 
-int parse_walls(t_game *game)
+int	parse_walls(t_game *game)
 {
 	char	*line;
 	int		type;
@@ -75,14 +72,14 @@ int	startings_positions(t_game *game)
 	return (res);
 }
 
-static int print_error(char *str, int to_return)
+static int	print_error(char *str, int to_return)
 {
 	ft_putstr_fd(str, 2);
 	ft_putchar_fd('\n', 2);
 	return (to_return);
 }
 
-int parse(t_game *game, char *filename)
+int	parse(t_game *game, char *filename)
 {
 	game->config = open(filename, O_RDONLY);
 	if (game->config < 3)

@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-static t_point *get_other_point(t_point *point, t_row *row)
+static t_point	*get_other_point(t_point *point, t_row *row)
 {
 	t_point	*current;
 	int		i;
@@ -25,7 +25,7 @@ static t_point *get_other_point(t_point *point, t_row *row)
 	return (current);
 }
 
-static void print_line(t_row *row)
+static void	print_line(t_row *row)
 {
 	t_point	*point;
 
@@ -42,32 +42,31 @@ int	is_empty(char c)
 	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-static int is_point_valid(t_point *point)
+static int	is_point_valid(t_point *p)
 {
 	t_point	*tmp;
 
-	if (is_empty(point->c))
+	if (is_empty(p->c))
 	{
-		tmp = get_other_point(point, point->row->prev);
+		tmp = get_other_point(p, p->row->prev);
 		if (!tmp || ft_isspace(tmp->c))
 			return (0);
-		tmp = get_other_point(point, point->row->next);
+		tmp = get_other_point(p, p->row->next);
 		if (!tmp || ft_isspace(tmp->c))
 			return (0);
-		if (!point->next || (!is_empty(point->next->c) && point->next->c != '1'))
+		if (!p->next || (!is_empty(p->next->c) && p->next->c != '1'))
 			return (0);
-		if (!point->prev || (!is_empty(point->prev->c) && point->prev->c != '1'))
+		if (!p->prev || (!is_empty(p->prev->c) && p->prev->c != '1'))
 			return (0);
 	}
-	else if (ft_isspace(point->c))
+	else if (ft_isspace(p->c))
 	{
-		tmp = get_other_point(point, point->row->prev);
+		tmp = get_other_point(p, p->row->prev);
 		if (tmp && tmp->c == 0)
 			return (0);
-		tmp = get_other_point(point, point->row->next);
+		tmp = get_other_point(p, p->row->next);
 		if (tmp && tmp->c == 0)
 			return (0);
-		//Idk if I have to check prev and next point
 	}
 	return (1);
 }
