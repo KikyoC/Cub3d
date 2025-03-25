@@ -36,7 +36,7 @@ static int	parse(int *res, char *str, char *line)
 		tmp = set_number(&res[i], &str[count]);
 		if (tmp <= 0)
 		{
-			ft_putstr_fd("Parse error near: \"", 2);
+			ft_putstr_fd("Error\nParse error near: \"", 2);
 			ft_putstr_fd(&str[count], 2);
 			ft_putstr_fd("\" on line \"", 2);
 			ft_putstr_fd(line, 2);

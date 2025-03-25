@@ -84,7 +84,7 @@ int	is_map_valid(t_game *game)
 		{
 			if (!is_point_valid(current))
 			{
-				ft_putstr_fd("Map error on line \"", 2);
+				ft_putstr_fd("Error\nMap error on line \"", 2);
 				print_line(row);
 				ft_putstr_fd("\"\n", 2);
 				return (0);

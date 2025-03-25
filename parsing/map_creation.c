@@ -2,7 +2,7 @@
 
 static void	print_error(char c, char *line)
 {
-	ft_putstr_fd("Unknown charater \"", 2);
+	ft_putstr_fd("Error\nUnknown charater \"", 2);
 	ft_putchar_fd(c, 2);
 	ft_putstr_fd("\" found on line \"", 2);
 	ft_putstr_fd(line, 2);

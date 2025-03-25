@@ -87,21 +87,21 @@ int	parse(t_game *game, char *filename)
 	if (parse_walls(game) || !is_map_valid(game))
 		return (1);
 	if (game->so < 3)
-		ft_putstr_fd("It seems that you didn't set up south texture\n", 2);
+		ft_putstr_fd(S_TEXTURE, 2);
 	if (game->no < 3)
-		ft_putstr_fd("It seems that you didn't set up north texture\n", 2);
+		ft_putstr_fd(N_TEXTURE, 2);
 	if (game->ea < 3)
-		ft_putstr_fd("It seems that you didn't set up east texture\n", 2);
+		ft_putstr_fd(E_TEXTURE, 2);
 	if (game->we < 3)
-		ft_putstr_fd("It seems that you didn't set up west texture\n", 2);
+		ft_putstr_fd(W_TEXTURE, 2);
 	if (!game->ground)
-		ft_putstr_fd("It seems that you didn't set up ground color\n", 2);
+		ft_putstr_fd(GROUND, 2);
 	if (!game->sky)
-		ft_putstr_fd("It seems that you didn't set up sky color\n", 2);
+		ft_putstr_fd(SKY, 2);
 	if (game->first == NULL)
-		ft_putstr_fd("It seems that you didn't set up map\n", 2);
+		ft_putstr_fd(MAP, 2);
 	if (startings_positions(game) != 1)
-		ft_putstr_fd("I don't know where the player starts\n", 2);
+		ft_putstr_fd(POS, 2);
 	return (game->so < 3 || game->no < 3 || game->ea < 3
 		|| game->we < 3 || !game->ground || !game->sky
 		|| startings_positions(game) != 1 || game->first == NULL);
