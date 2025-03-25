@@ -14,11 +14,13 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "mlx_linux/mlx.h"
 # include "libft/libft.h"
 
+//Map
 typedef struct s_game {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -29,9 +31,12 @@ typedef struct s_game {
     int	we;
 }    t_game;
 
-//Map
 typedef struct s_img{
-	void	*xpm_ptr;
+	void	*mlx_img;
+	char 	*adr;
+	int bpp;
+	int line_len;
+	int endian;
 } t_img;
 
 typedef struct s_point {
