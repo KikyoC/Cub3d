@@ -71,5 +71,6 @@ int	parse_color(t_game *game, char *line)
 			game->ground = res;
 		return (0);
 	}
+	free(res);
 	return (1);
 }

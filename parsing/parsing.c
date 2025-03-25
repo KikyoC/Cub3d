@@ -21,8 +21,8 @@ int	get_line_type(char *line)
 		return (4);
 	else
 		return (3);
-}
 
+}
 int	parse_walls(t_game *game)
 {
 	char	*line;
