@@ -1,12 +1,12 @@
 NAME= cub3D
 
 
-SRCS= main.c parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c cub3d.c close_game.c keybind.c init_game.c
+SRCS= parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c cub3d.c close_game.c keybind.c init_game.c
 OBJS_PATH= objs/ objs/parsing objs/utils
 OBJ_PATH= objs/
 OBJS= $(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
 
-CFLAGS= -Wall -Werror -Wextra -g
+CFLAGS= -Wall -Werror -Wextra -g -I/usr/include  -Imlx_linux 
 
 MLX_DIR=mlx_linux
 MLX=mlx_linux/libmlx.a
@@ -22,7 +22,7 @@ RESET= \e[0m
 all: $(OBJS_PATH) $(MLX_DIR) $(NAME)
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
-	@cc $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
+	@cc $(CFLAGS) -lXext -lX11 -lm -lz -L/usr/lib $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
 	@tput cuu1 && tput el
 	@echo "$(GREEN)Compilation finished !!!!!!"
 
