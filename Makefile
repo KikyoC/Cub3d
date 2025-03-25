@@ -1,9 +1,11 @@
 NAME= cub3D
 
-SRCS= main.c parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c
+
+SRCS= main.c parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c cub3d.c close_game.c keybind.c init_game.c
 OBJS_PATH= objs/ objs/parsing objs/utils
 OBJ_PATH= objs/
 OBJS= $(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
+
 CFLAGS= -Wall -Werror -Wextra -g
 
 MLX_DIR=mlx_linux

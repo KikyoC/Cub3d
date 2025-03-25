@@ -1,6 +1,14 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+# define KEY_ESC  			0xff1b
+# define KEY_LEFT  			0xff51
+# define KEY_RIGHT 			0xff53
+
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -8,9 +16,9 @@
 # include <fcntl.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-//# include "../mlx_linux/mlx.h"
 # include "libft/libft.h"
 # include <errno.h>
+# include "libft/libft.h"
 
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
 # define N_TEXTURE "Error\nIt seems that you didn't set up north texture\n"
