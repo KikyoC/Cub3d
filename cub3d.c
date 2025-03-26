@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <libft/libft.h>
 
 int	ft_isitcub(char *str)
 {
@@ -47,11 +48,18 @@ void	ft_cub3d(char *str)
 
 int	main(int ac, char **av)
 {
+	t_game	*game;
+
 	if(ac != 2)
 		return (1);	//error_msg();
 	if(ft_isitcub(av[1]) == 1)
 		return (1); //error_msg();
+	game = ft_calloc(1, sizeof(t_game));
+	if (!game || parse(game, av[1]))
+		return (1); //error_msg
+	
 	ft_cub3d(av[1]);
+	return (destroy(game, 0));
 }
 
 //https://harm-smits.github.io/42docs/projects/cub3d
