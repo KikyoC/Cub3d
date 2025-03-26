@@ -44,7 +44,7 @@ void	ft_cub3d(char *str)
 	ft_init_mlx(&game);
 	mlx_hook(game.win_ptr, KeyPress, KeyPressMask, ft_keybind, &game);
 	mlx_hook(game.win_ptr, Expose, ExposureMask, ft_rendermap, &game);
-	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, ft_closegame, &game);
+	//mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, ft_closegame, &game);
 	mlx_loop(game.mlx_ptr);
 }
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av)
 	game->mlx_ptr = mlx_init();
 	if (!game || parse(game, av[1]))
 		return (destroy(game, 1));
+	printf("Sucessfully parsed the config\n");
 	//error_msg
 //	ft_cub3d(av[1]);
 	return (destroy(game, 0));

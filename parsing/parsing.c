@@ -19,7 +19,6 @@ int	get_line_type(char *line)
 		return (4);
 	else
 		return (3);
-
 }
 
 int	parse_walls(t_game *game)
@@ -28,15 +27,18 @@ int	parse_walls(t_game *game)
 	int		type;
 	int		error;
 
+	game->images = ft_calloc(1, sizeof(t_images));
+	if (!game->images)
+		return (1);
 	line = get_next_line(game->config);
 	error = 0;
 	while (line)
 	{
 		line[ft_strlen(line) - 1] = '\0';
 		type = get_line_type(line);
-		if (type == 1 && open_texture(game, line))
+		if (type == 1 && open_texture(game->images, game->mlx_ptr, line))
 			error = 1;
-		else if (type == 2 && parse_color(game, line))
+		else if (type == 2 && parse_color(game->images, line))
 			error = 1;
 		else if (type == 3 && parse_line(game, line))
 			error = 1;
@@ -85,23 +87,24 @@ int	parse(t_game *game, char *filename)
 		return (print_error(strerror(errno), 1));
 	if (parse_walls(game) || !is_map_valid(game))
 		return (1);
-	if (!game->so)
+	if (!game->images->so)
 		ft_putstr_fd(S_TEXTURE, 2);
-	if (!game->no)
+	if (!game->images->no)
 		ft_putstr_fd(N_TEXTURE, 2);
-	if (!game->ea)
+	if (!game->images->ea)
 		ft_putstr_fd(E_TEXTURE, 2);
-	if (!game->we)
+	if (!game->images->we)
 		ft_putstr_fd(W_TEXTURE, 2);
-	if (!game->ground)
+	if (!game->images->ground)
 		ft_putstr_fd(GROUND, 2);
-	if (!game->sky)
+	if (!game->images->sky)
 		ft_putstr_fd(SKY, 2);
 	if (game->first == NULL)
 		ft_putstr_fd(MAP, 2);
 	if (startings_positions(game) != 1)
 		ft_putstr_fd(POS, 2);
-	return (game->so || game->no || game->ea
-		|| game->we || !game->ground || !game->sky
-		|| startings_positions(game) != 1 || game->first == NULL);
+	return (!game->images->so || !game->images->no || !game->images->ea
+		|| !game->images->we || !game->images->ground || !game->images->sky
+		|| startings_positions(game) != 1 || game->first == NULL
+		|| setup_player(game));
 }

@@ -49,7 +49,7 @@ int	parse_line(t_game *game, char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if (add_to_row(line[i], row, line))	
+		if (add_to_row(line[i], row, line))
 		{
 			destroy_row(row);
 			return (1);

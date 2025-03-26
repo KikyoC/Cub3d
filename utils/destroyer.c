@@ -36,6 +36,8 @@ void	destroy_map(t_game *game)
 		destroy_row(current);
 		current = next;
 	}
+	if (game->player)
+		free(game->player);
 }
 
 void	end_file(int config)
@@ -58,21 +60,21 @@ int	destroy(t_game *game, int to_return)
 		return (to_return);
 	end_file(game->config);
 	if (game->config > 2)
-	{
 		close(game->config);
-	}
-	if (game->no)
-		mlx_destroy_image(game->mlx_ptr, game->no);
-	if (game->so)
-		mlx_destroy_image( game->mlx_ptr, game->so);
-	if (game->ea)
-		mlx_destroy_image(game->mlx_ptr, game->ea);
-	if (game->we)
-		mlx_destroy_image(game->mlx_ptr, game->we);
-	if (game->sky)
-		free(game->sky);
-	if (game->ground)
-		free(game->ground);
+	if (game->images && game->images->no)
+		mlx_destroy_image(game->mlx_ptr, game->images->no);
+	if (game->images && game->images->so)
+		mlx_destroy_image( game->mlx_ptr, game->images->so);
+	if (game->images && game->images->ea)
+		mlx_destroy_image(game->mlx_ptr, game->images->ea);
+	if (game->images && game->images->we)
+		mlx_destroy_image(game->mlx_ptr, game->images->we);
+	if (game->images && game->images->sky)
+		free(game->images->sky);
+	if (game->images && game->images->ground)
+		free(game->images->ground);
+	if (game->images)
+		free(game->images);
 	if (game->mlx_ptr)
 		ft_closegame(game);
 	destroy_map(game);
