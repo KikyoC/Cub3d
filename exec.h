@@ -18,6 +18,29 @@ typedef struct s_pos{
 	double y;
 } t_pos;
 
+typedef struct s_ray
+{
+	float	incre_angle;
+	float	angle;
+	float	cos;
+	float	sin;
+	float	hfov;
+	float	lim;
+	int		precision;
+}				t_ray;
+
+typedef struct s_player{
+	float	x;
+	float	y;
+	int w_move;
+	int s_move;
+	int a_move;
+	int d_move;
+	int l_move;
+	int r_move;
+	char	dir;
+}	t_player;
+
 typedef struct s_camera{
 	t_pos	pos;
 	t_pos	dir;

@@ -3,34 +3,34 @@
 int	ft_keypress(int keysym, t_game *game)
 {
 	if (keysym == KEY_W)
-		game->move.x = 1;
+		game->play.w_move = 1;
 	if (keysym == KEY_S)
-		game->move.y = 1;
+		game->play.s_move = 1;
 	if (keysym == KEY_A)
-		game->x_move.x = 1;
+		game->play.a_move = 1;
 	if (keysym == KEY_D)
-		game->x_move.y = 1;
+		game->play.d_move = 1;
 	if (keysym == KEY_LEFT)
-		game->rotate.x = 1;
+		game->play.l_move = 1;
 	if (keysym == KEY_RIGHT)
-		game->rotate.y = 1;
+		game->play.r_move = 1;
 	return (0);
 }
 
 int ft_keyrelease(int keysym, t_game *game)
 {
 	if (keysym == KEY_W)
-		game->move.x = 0;
+		game->play.w_move = 0;
 	if (keysym == KEY_S)
-		game->move.y = 0;
+		game->play.s_move = 0;
 	if (keysym == KEY_A)
-		game->x_move.x = 0;
+		game->play.a_move = 0;
 	if (keysym == KEY_D)
-		game->x_move.y = 0;
+		game->play.d_move = 0;
 	if (keysym == KEY_LEFT)
-		game->rotate.x = 0;
+		game->play.l_move = 0;
 	if (keysym == KEY_RIGHT)
-		game->rotate.y = 0;
+		game->play.r_move = 0;
 	if (keysym == KEY_ESC)
 		ft_closegame(game);
 }

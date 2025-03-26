@@ -15,6 +15,8 @@
 
 //Map
 typedef struct s_img{
+	int		height;
+	int		width;
 	void	*img_ptr;
 	char 	*addr;
 	int 	bpp;
@@ -33,12 +35,13 @@ typedef struct s_data{
 }	t_data;
 
 typedef struct s_game {
-	t_data		data;
-	t_camera	cam;
-	t_pos		move;
-	t_pos		x_move;
-	t_pos		rotate;
-
+	int			height;
+	int			width;
+	t_img		win_tex;
+	t_img		win_g;
+	t_img 		win_c;
+	t_ray 		ray;
+	t_player	play;
 }    t_game;
 
 typedef struct s_point
