@@ -1,5 +1,7 @@
 #include "cub3d.h"
 #include <libft/libft.h>
+#include <mlx_linux/mlx.h>
+#include <stdio.h>
 
 int	ft_isitcub(char *str)
 {
@@ -52,13 +54,14 @@ int	main(int ac, char **av)
 
 	if(ac != 2)
 		return (1);	//error_msg();
-	if(ft_isitcub(av[1]) == 1)
-		return (1); //error_msg();
+	//if(ft_isitcub(av[1]) == 1)
+		//return (2); //error_msg();
 	game = ft_calloc(1, sizeof(t_game));
+	game->mlx_ptr = mlx_init();
 	if (!game || parse(game, av[1]))
-		return (1); //error_msg
-	
-	ft_cub3d(av[1]);
+		return (destroy(game, 1));
+	//error_msg
+//	ft_cub3d(av[1]);
 	return (destroy(game, 0));
 }
 

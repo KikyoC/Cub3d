@@ -37,10 +37,10 @@
 typedef struct s_game
 {
 	int				config;
-	int				no;
-	int				so;
-	int				ea;
-	int				we;
+	void			*no;
+	void			*so;
+	void			*ea;
+	void			*we;
 	int				*ground;
 	int				*sky;
 	void			*mlx_ptr;
@@ -77,6 +77,6 @@ int		destroy(t_game *game, int to_return);
 void	destroy_row(t_row *row);
 void	ft_init_mlx(t_game *game);
 int		ft_keybind(int keysym, t_game *game);
-int		ft_closegame(t_game *game);
+void	ft_closegame(t_game *game);
 int		parse(t_game *game, char *filename);
 #endif
