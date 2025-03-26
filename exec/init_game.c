@@ -68,5 +68,5 @@ void	ft_init_add(t_game *game)
 	//ceilling
 	game->win_c.img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
 	game->win_c.addr = mlx_get_data_addr(game->win_c.img_ptr, &game->win_c.bpp, &game->win_c.line_len, &game->win_c.endian);                                                    
-	mlx_area_put(&g->win_r, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), 0xFFFFFF); //blanc remplacer par la bonne valeur
+	mlx_area_put(&game->win_c, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), 0xFFFFFF); //blanc remplacer par la bonne valeur
 }
