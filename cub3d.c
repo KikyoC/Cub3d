@@ -35,11 +35,11 @@ void	ft_cub3d(char *str)
 	ft_init_mlx(&game);
 	ft_init_addr(&game);
 	ft_init_ray(&game);
-	mlx_hook(game.data.win_ptr, KeyPress, KeyPressMask, ft_keypress, &game);
-	mlx_hook(game.data.win_ptr, KeyRelease, KeyReleaseMask, ft_keyrelease, &game);
-	mlx_hook(game.data.win_ptr, DestroyNotify, StructureNotifyMask, ft_closegame, &game);
-	mlx_loop_hook(game.data.win_ptr, ft_rendermap, &game);
-	mlx_loop(game.data.mlx_ptr);
+	mlx_hook(game.win_ptr, KeyPress, KeyPressMask, ft_keypress, &game);
+	mlx_hook(game.win_ptr, KeyRelease, KeyReleaseMask, ft_keyrelease, &game);
+	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, ft_closegame, &game);
+	mlx_loop_hook(game.win_ptr, ft_rendermap, &game);
+	mlx_loop(game.mlx_ptr);
 }
 
 int	main(int ac, char **av)
