@@ -78,5 +78,5 @@ void	destroy_row(t_row *row);
 void	ft_init_mlx(t_game *game);
 int		ft_keybind(int keysym, t_game *game);
 int		ft_closegame(t_game *game);
-
+int		parse(t_game *game, char *filename);
 #endif
