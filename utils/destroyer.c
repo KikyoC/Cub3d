@@ -60,14 +60,14 @@ int	destroy(t_game *game, int to_return)
 	end_file(game->config);
 	if (game->config > 2)
 		close(game->config);
-	if (game->no > 2)
-		close(game->no);
-	if (game->so > 2)
-		close(game->so);
-	if (game->ea > 2)
-		close(game->ea);
-	if (game->we > 2)
-		close(game->we);
+	if (game->no)
+		mlx_destroy_image(game->mlx_ptr, game->no);
+	if (game->so)
+		mlx_destroy_image( game->mlx_ptr, game->so);
+	if (game->ea)
+		mlx_destroy_image(game->mlx_ptr, game->ea);
+	if (game->we)
+		mlx_destroy_image(game->mlx_ptr, game->we);
 	if (game->sky)
 		free(game->sky);
 	if (game->ground)

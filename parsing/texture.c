@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-static void	set_file(t_game *game, int file, char c)
+static void	set_file(t_game *game, void *file, char c)
 {
 	if (c == 'N' && game->no == 0)
 		game->no = file;
@@ -35,9 +35,10 @@ static int	print_error(int type, char *line, int to_return)
 */
 int	open_texture(t_game *game, char *line)
 {
-	int		file;
+	void	*file;
 	int		i;
 	char	c;
+	int		size[2];
 
 	i = 0;
 	while (ft_isspace(line[i]))
@@ -46,14 +47,14 @@ int	open_texture(t_game *game, char *line)
 	i += 2;
 	while (ft_isspace(line[i]))
 		i++;
-	file = open(&line[i], O_RDONLY);
-	if (file < 3)
+	file = mlx_xpm_file_to_image(game->mlx_ptr, &line[i], &size[0], &size[1]);
+	if (!file || size[0] != 64 || size[1] != 64)
 		return (print_error(1, line, 1));
 	set_file(game, file, c);
 	if (game->no != file && game->so != file
 		&& game->ea != file && game->we != file)
 	{
-		close(file);
+		mlx_destroy_image(game->mlx_ptr, file);
 		return (print_error(2, line, -2));
 	}
 	return (0);

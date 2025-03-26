@@ -1,6 +1,4 @@
 #include "../cub3d.h"
-#include <fcntl.h>
-#include <string.h>
 
 int	get_line_type(char *line)
 {
@@ -23,6 +21,7 @@ int	get_line_type(char *line)
 		return (3);
 
 }
+
 int	parse_walls(t_game *game)
 {
 	char	*line;
@@ -86,13 +85,13 @@ int	parse(t_game *game, char *filename)
 		return (print_error(strerror(errno), 1));
 	if (parse_walls(game) || !is_map_valid(game))
 		return (1);
-	if (game->so < 3)
+	if (!game->so)
 		ft_putstr_fd(S_TEXTURE, 2);
-	if (game->no < 3)
+	if (!game->no)
 		ft_putstr_fd(N_TEXTURE, 2);
-	if (game->ea < 3)
+	if (!game->ea)
 		ft_putstr_fd(E_TEXTURE, 2);
-	if (game->we < 3)
+	if (!game->we)
 		ft_putstr_fd(W_TEXTURE, 2);
 	if (!game->ground)
 		ft_putstr_fd(GROUND, 2);
@@ -102,7 +101,7 @@ int	parse(t_game *game, char *filename)
 		ft_putstr_fd(MAP, 2);
 	if (startings_positions(game) != 1)
 		ft_putstr_fd(POS, 2);
-	return (game->so < 3 || game->no < 3 || game->ea < 3
-		|| game->we < 3 || !game->ground || !game->sky
+	return (game->so || game->no || game->ea
+		|| game->we || !game->ground || !game->sky
 		|| startings_positions(game) != 1 || game->first == NULL);
 }
