@@ -1,12 +1,11 @@
 #include "../cub3d.h"
 
-int	ft_closegame(t_game *game)
+void	ft_closegame(t_game *game)
 {
 	//mlx_destroy_image(game->mlx_ptr, game->wall.xpm_ptr); | 4 image au total
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	//mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
-	exit(0);
 }
 
 void	destroy_row(t_row *row)
@@ -59,7 +58,9 @@ int	destroy(t_game *game, int to_return)
 		return (to_return);
 	end_file(game->config);
 	if (game->config > 2)
+	{
 		close(game->config);
+	}
 	if (game->no)
 		mlx_destroy_image(game->mlx_ptr, game->no);
 	if (game->so)
@@ -72,6 +73,8 @@ int	destroy(t_game *game, int to_return)
 		free(game->sky);
 	if (game->ground)
 		free(game->ground);
+	if (game->mlx_ptr)
+		ft_closegame(game);
 	destroy_map(game);
 	free(game);
 	return (to_return);
