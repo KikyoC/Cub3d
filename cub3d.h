@@ -24,17 +24,32 @@ typedef struct s_img{
 	int		endian;
 } t_img;
 
-typedef struct s_data{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		config;
-    int		no;
-    int		so;
-    int		ea;
-    int		we;
-}	t_data;
+typedef struct s_images
+{
+	void			*no;
+	void			*so;
+	void			*ea;
+	void			*we;
+	int				*ground;
+	int				*sky;
+}	t_images;
+
+typedef struct s_player{
+	float	x;
+	float	y;
+	int w_move;
+	int s_move;
+	int a_move;
+	int d_move;
+	int l_move;
+	int r_move;
+	struct s_point	*point; // ici la position
+}	t_player;
+
 
 typedef struct s_game {
+	void			*mlx_ptr;
+	void			*win_ptr;
 	int			height;
 	int			width;
 	t_img		win_tex;
@@ -42,6 +57,8 @@ typedef struct s_game {
 	t_img 		win_c;
 	t_ray 		ray;
 	t_player	play;
+	struct s_row	*first;
+	struct s_images	*images;
 }    t_game;
 
 typedef struct s_point
