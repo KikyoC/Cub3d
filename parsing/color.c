@@ -23,7 +23,7 @@ int	set_number(int *res, char *str)
 	return (i);
 }
 
-static int	parse(int *res, char *str, char *line)
+static int	parse_numbers(int *res, char *str, char *line)
 {
 	int	i;
 	int	count;
@@ -63,7 +63,7 @@ int	parse_color(t_game *game, char *line)
 	i++;
 	while (ft_isspace(line[i]))
 		i++;
-	if (parse(res, &line[i], line))
+	if (parse_numbers(res, &line[i], line))
 	{
 		if (c == 'C')
 			game->sky = res;
