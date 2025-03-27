@@ -87,13 +87,11 @@ int	destroy(t_game *game, int to_return)
 		free(game->images->ground);
 	if (game->images)
 		free(game->images);
-	printf("WOW\n");
 	if (game->mlx_ptr)
 		ft_closegame(game);
 	if (game->player)
 		free(game->player);
 	destroy_map(game);
 	free(game);
-	printf("Sucessfully destroyed everything\n");
 	return (to_return);
 }
