@@ -37,16 +37,22 @@
 typedef struct s_game
 {
 	int				config;
-	int				no;
-	int				so;
-	int				ea;
-	int				we;
-	int				*ground;
-	int				*sky;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	struct s_row	*first;
+	struct s_images	*images;
+	struct s_player	*player;
 }	t_game;
+
+typedef struct s_images
+{
+	void			*no;
+	void			*so;
+	void			*ea;
+	void			*we;
+	int				*ground;
+	int				*sky;
+}	t_images;
 
 //Map
 
@@ -65,18 +71,28 @@ typedef struct s_row
 	struct s_row	*prev;
 }	t_row;
 
+typedef struct s_player
+{
+	struct s_point	*point;
+	float			x;
+	float			y;
+	float			direction;
+}	t_player;
+
 /*
 	* FUNCTIONS
 */
 
-int		parse_color(t_game *game, char *line);
-int		open_texture(t_game *game, char *line);
+int		parse_color(t_images *images, char *line);
+int		open_texture(t_images *images, void *mlx ,char *line);
 int		parse_line(t_game *game, char *line);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
 void	destroy_row(t_row *row);
 void	ft_init_mlx(t_game *game);
 int		ft_keybind(int keysym, t_game *game);
-int		ft_closegame(t_game *game);
+void	ft_closegame(t_game *game);
 int		parse(t_game *game, char *filename);
+int		setup_player(t_game *game);
+
 #endif

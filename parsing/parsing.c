@@ -1,6 +1,4 @@
 #include "../cub3d.h"
-#include <fcntl.h>
-#include <string.h>
 
 int	get_line_type(char *line)
 {
@@ -21,23 +19,26 @@ int	get_line_type(char *line)
 		return (4);
 	else
 		return (3);
-
 }
+
 int	parse_walls(t_game *game)
 {
 	char	*line;
 	int		type;
 	int		error;
 
+	game->images = ft_calloc(1, sizeof(t_images));
+	if (!game->images)
+		return (1);
 	line = get_next_line(game->config);
 	error = 0;
 	while (line)
 	{
 		line[ft_strlen(line) - 1] = '\0';
 		type = get_line_type(line);
-		if (type == 1 && open_texture(game, line))
+		if (type == 1 && open_texture(game->images, game->mlx_ptr, line))
 			error = 1;
-		else if (type == 2 && parse_color(game, line))
+		else if (type == 2 && parse_color(game->images, line))
 			error = 1;
 		else if (type == 3 && parse_line(game, line))
 			error = 1;
@@ -51,23 +52,23 @@ int	parse_walls(t_game *game)
 
 int	startings_positions(t_game *game)
 {
-	t_row	*row;
-	t_point	*point;
-	int		res;
+	int	i;
+	int	j;
+	int res;
 
+	i = 0;
 	res = 0;
-	row = game->first;
-	while (row)
+	while (game->map[i])
 	{
-		point = row->first;
-		while (point)
+		j = 0;
+		while (game->map[i][j])
 		{
-			if (point->c == 'N' || point->c == 'S'
-				|| point->c == 'E' || point->c == 'W')
+			if (game->map[i][j]->c == 'N' || game->map[i][j]->c == 'S'
+				|| game->map[i][j]->c == 'E' || game->map[i][j]->c == 'W')
 				res++;
-			point = point->next;
+			j++;
 		}
-		row = row->next;
+		i++;
 	}
 	return (res);
 }
@@ -86,23 +87,24 @@ int	parse(t_game *game, char *filename)
 		return (print_error(strerror(errno), 1));
 	if (parse_walls(game) || !is_map_valid(game))
 		return (1);
-	if (game->so < 3)
+	if (!game->images->so)
 		ft_putstr_fd(S_TEXTURE, 2);
-	if (game->no < 3)
+	if (!game->images->no)
 		ft_putstr_fd(N_TEXTURE, 2);
-	if (game->ea < 3)
+	if (!game->images->ea)
 		ft_putstr_fd(E_TEXTURE, 2);
-	if (game->we < 3)
+	if (!game->images->we)
 		ft_putstr_fd(W_TEXTURE, 2);
-	if (!game->ground)
+	if (!game->images->ground)
 		ft_putstr_fd(GROUND, 2);
-	if (!game->sky)
+	if (!game->images->sky)
 		ft_putstr_fd(SKY, 2);
-	if (game->first == NULL)
+	if (game->map == NULL)
 		ft_putstr_fd(MAP, 2);
 	if (startings_positions(game) != 1)
 		ft_putstr_fd(POS, 2);
-	return (game->so < 3 || game->no < 3 || game->ea < 3
-		|| game->we < 3 || !game->ground || !game->sky
-		|| startings_positions(game) != 1 || game->first == NULL);
+	return (!game->images->so || !game->images->no || !game->images->ea
+		|| !game->images->we || !game->images->ground || !game->images->sky
+		|| startings_positions(game) != 1 || game->map == NULL
+		|| setup_player(game));
 }

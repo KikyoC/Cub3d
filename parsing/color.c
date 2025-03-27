@@ -49,7 +49,7 @@ static int	parse_numbers(int *res, char *str, char *line)
 	return (1);
 }
 
-int	parse_color(t_game *game, char *line)
+int	parse_color(t_images *images, char *line)
 {
 	int		i;
 	char	c;
@@ -66,9 +66,9 @@ int	parse_color(t_game *game, char *line)
 	if (parse_numbers(res, &line[i], line))
 	{
 		if (c == 'C')
-			game->sky = res;
+			images->sky = res;
 		else if (c == 'F')
-			game->ground = res;
+			images->ground = res;
 		return (0);
 	}
 	free(res);

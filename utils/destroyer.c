@@ -1,42 +1,43 @@
 #include "../cub3d.h"
 
-int	ft_closegame(t_game *game)
+void	ft_closegame(t_game *game)
 {
 	//mlx_destroy_image(game->mlx_ptr, game->wall.xpm_ptr); | 4 image au total
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	//mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
-	exit(0);
 }
 
-void	destroy_row(t_row *row)
+void	destroy_row(t_point **row)
 {
-	t_point	*current;
-	t_point *next;
+	size_t	i;
 
-	current = row->first;
-	while (current)
+	i = 0;
+	while (row[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		free(row[i]);
+		i++;
 	}
-	free(row);
 }
-
 
 void	destroy_map(t_game *game)
 {
-	t_row	*current;
-	t_row	*next;
+	int	x;
+	int	y;
 
-	current = game->first;
-	while (current)
+	y = 0;
+	while (game->map[y])
 	{
-		next = current->next;
-		destroy_row(current);
-		current = next;
+		x = 0;
+		while (game->map[y][x])
+		{
+			free(game->map[y][x]);
+			x++;
+		}
+		free(game->map[y]);
+		y++;
 	}
+	free(game->map);
 }
 
 void	end_file(int config)
@@ -60,18 +61,24 @@ int	destroy(t_game *game, int to_return)
 	end_file(game->config);
 	if (game->config > 2)
 		close(game->config);
-	if (game->no > 2)
-		close(game->no);
-	if (game->so > 2)
-		close(game->so);
-	if (game->ea > 2)
-		close(game->ea);
-	if (game->we > 2)
-		close(game->we);
-	if (game->sky)
-		free(game->sky);
-	if (game->ground)
-		free(game->ground);
+	if (game->images && game->images->no)
+		mlx_destroy_image(game->mlx_ptr, game->images->no);
+	if (game->images && game->images->so)
+		mlx_destroy_image( game->mlx_ptr, game->images->so);
+	if (game->images && game->images->ea)
+		mlx_destroy_image(game->mlx_ptr, game->images->ea);
+	if (game->images && game->images->we)
+		mlx_destroy_image(game->mlx_ptr, game->images->we);
+	if (game->images && game->images->sky)
+		free(game->images->sky);
+	if (game->images && game->images->ground)
+		free(game->images->ground);
+	if (game->images)
+		free(game->images);
+	if (game->mlx_ptr)
+		ft_closegame(game);
+	if (game->player)
+		free(game->player);
 	destroy_map(game);
 	free(game);
 	return (to_return);
