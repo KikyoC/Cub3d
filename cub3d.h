@@ -39,7 +39,7 @@ typedef struct s_game
 	int				config;
 	void			*mlx_ptr;
 	void			*win_ptr;
-	struct s_row	*first;
+	struct s_point	***map;
 	struct s_images	*images;
 	struct s_player	*player;
 }	t_game;
@@ -59,17 +59,17 @@ typedef struct s_images
 typedef struct s_point
 {
 	char			c;
-	struct s_row	*row;
-	struct s_point	*next;
-	struct s_point	*prev;
+	//struct s_row	*row;
+	//struct s_point	*next;
+	//struct s_point	*prev;
 }	t_point;
 
-typedef struct s_row
-{
-	struct s_point	*first;
-	struct s_row	*next;
-	struct s_row	*prev;
-}	t_row;
+//typedef struct s_row
+//{
+//	struct s_point	*first;
+//	struct s_row	*next;
+//	struct s_row	*prev;
+//}	t_row;
 
 typedef struct s_player
 {
@@ -88,11 +88,13 @@ int		open_texture(t_images *images, void *mlx ,char *line);
 int		parse_line(t_game *game, char *line);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
-void	destroy_row(t_row *row);
+void	destroy_row(t_point **row);
 void	ft_init_mlx(t_game *game);
 int		ft_keybind(int keysym, t_game *game);
 void	ft_closegame(t_game *game);
 int		parse(t_game *game, char *filename);
 int		setup_player(t_game *game);
+int		get_line_type(char *line);
+int		get_row_size(char *file_name);
 
 #endif
