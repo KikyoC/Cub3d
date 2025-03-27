@@ -9,6 +9,8 @@
 # define KEY_LEFT  			0xff51
 # define KEY_RIGHT 			0xff53
 
+#define M_PI 3.14159265358979323846
+
 typedef struct s_pos{
 	double x;
 	double y;
@@ -30,26 +32,5 @@ typedef struct s_ray
 	float	lim;
 	int		precision;
 }				t_ray;
-
-int		mlx_pixel_get(t_img *data, int x, int y);
-void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color);
-void	mlx_pixel_put(t_img *img, int x, int y, int color);
-int		get_dist_color(int color, float dist);
-t_color	create_rgb(int color);
-int		generate_color(int red, int green, int blue);
-int		ft_closegame(t_game *game);
-void	ft_init_mlx(t_game *game);
-int		ft_rendermap(t_game *game);
-int		ft_keypress(int keysym, t_game *game);
-int 	ft_keyrelease(int keysym, t_game *game);
-void	ft_init_add(t_game *game);
-void	init_ray(t_game *game);
-void	ft_raycast(t_game *game);
-void	ft_draw(t_game *game, int ray_count, float dist);
-float	distance_to_wall(t_game *game, float ray_angle);
-void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
-t_img	*get_texture(t_game *game);
-int		get_tex_color(t_game *game, t_img *img, int z);
-
 
 #endif
