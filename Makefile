@@ -1,7 +1,8 @@
 NAME= cub3D
 
-
-SRCS= parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c cub3d.c keybind.c init_game.c
+SRCS= parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c cub3d.c
+SRCS+= exec/close_game.c exec/color.c exec/init_game.c exec/init_raycasting.c \
+	exec/keybind.c exec/mlx_utils.c exec/render_map.c exec/texture.c
 OBJS_PATH= objs/ objs/parsing objs/utils
 OBJ_PATH= objs/
 OBJS= $(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
