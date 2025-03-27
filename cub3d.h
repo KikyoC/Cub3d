@@ -43,7 +43,7 @@ typedef struct s_player{
 	int d_move;
 	int l_move;
 	int r_move;
-	struct s_point	*point; // ici la position
+	struct s_point	*point;
 }	t_player;
 
 
@@ -52,6 +52,8 @@ typedef struct s_game {
 	void			*win_ptr;
 	int			height;
 	int			width;
+	float		x;
+	float		y;
 	t_img		win_tex;
 	t_img		win_g;
 	t_img 		win_c;

@@ -14,6 +14,12 @@ typedef struct s_pos{
 	double y;
 } t_pos;
 
+typedef struct s_color{
+	int	red;
+	int	green;
+	int	blue;
+}	t_color;
+
 typedef struct s_ray
 {
 	float	incre_angle;
@@ -24,5 +30,9 @@ typedef struct s_ray
 	float	lim;
 	int		precision;
 }				t_ray;
+
+int		mlx_pixel_get(t_img *data, int x, int y);
+void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color);
+void	mlx_pixel_put(t_img *img, int x, int y, int color);
 
 #endif
