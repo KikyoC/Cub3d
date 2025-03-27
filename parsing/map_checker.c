@@ -14,7 +14,7 @@ t_point *get_other_point(t_point ***map, int x, int y, int rows)
 		return (NULL);
 	while (map[y + rows][i])
 	{
-		printf("Checking on %i %i\n", y, x);
+		//printf("Checking on %i %i\n", y, x);
 		if (i == x)
 			return (map[y + rows][x]);
 		i++;
@@ -31,7 +31,7 @@ static int	is_point_valid(t_point ***map, int x, int y)
 		tmp = get_other_point(map, x , y, -1);
 		if (!tmp || ft_isspace(tmp->c))
 		{
-			printf("COucou\n");
+			//printf("COucou\n");
 			return (0);
 		}
 		tmp = get_other_point(map, x, y, 1);
