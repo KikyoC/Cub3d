@@ -1,7 +1,4 @@
 #include "cub3d.h"
-#include <libft/libft.h>
-#include <mlx_linux/mlx.h>
-#include <stdio.h>
 
 int	ft_isitcub(char *str)
 {
@@ -36,7 +33,7 @@ void	ft_cub3d(char *str)
 	t_game game;
 
 	ft_init_mlx(&game);
-	ft_init_addr(&game);
+	ft_init_add(&game);
 	ft_init_ray(&game);
 	mlx_hook(game.win_ptr, KeyPress, KeyPressMask, ft_keypress, &game);
 	mlx_hook(game.win_ptr, KeyRelease, KeyReleaseMask, ft_keyrelease, &game);

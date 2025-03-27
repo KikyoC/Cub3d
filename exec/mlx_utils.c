@@ -1,8 +1,8 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 //https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx
 
-void	mlx_pixel_put(t_img *img, int x, int y, int color)
+void	mlx_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -20,7 +20,7 @@ void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color)
 	{
 		x = -1;
 		while (++x < dim.x)
-			mlx_pixel_put(d, p.x + x, p.y + y, color);
+			mlx_put_pixel(d, p.x + x, p.y + y, color);
 	}
 }
 

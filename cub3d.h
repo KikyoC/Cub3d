@@ -9,9 +9,9 @@
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <errno.h>
 # include "libft/libft.h"
 # include "exec.h"
-# include <errno.h>
 # include "mlx_linux/mlx.h"
 
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
@@ -50,6 +50,7 @@ typedef struct s_images
 typedef struct s_player{
 	float	x;
 	float	y;
+	float 	direction;
 	int w_move;
 	int s_move;
 	int a_move;
@@ -59,19 +60,20 @@ typedef struct s_player{
 	struct s_point	*point;
 }	t_player;
 
-typedef struct s_game {
+typedef struct s_game{
 	void			*mlx_ptr;
 	void			*win_ptr;
-  int     config;
-	int			height;
-	int			width;
-	float		x;
-	float		y;
-	t_img		win_tex;
-	t_img		win_g;
-	t_img 		win_c;
-	t_ray 		ray;
-	t_player	play;
+  	int				config;
+	int				height;
+	int				width;
+	float			x;
+	float			y;
+	t_img			win_tex;
+	t_img			win_g;
+	t_img 			win_c;
+	t_ray 			ray;
+	t_player		*player;
+	struct s_point ***map;
 	struct s_row	*first;
 	struct s_images	*images;
 }    t_game;
@@ -102,11 +104,31 @@ int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
 void	destroy_row(t_point **row);
 void	ft_init_mlx(t_game *game);
-int		ft_keybind(int keysym, t_game *game);
-void	ft_closegame(t_game *game);
 int		parse(t_game *game, char *filename);
 int		setup_player(t_game *game);
 int		get_line_type(char *line);
 int		get_row_size(char *file_name);
+int		mlx_pixel_get(t_img *data, int x, int y);
+void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color);
+void	mlx_put_pixel(t_img *img, int x, int y, int color);
+int		get_dist_color(int color, float dist);
+t_color	create_rgb(int color);
+int		generate_color(int red, int green, int blue);
+void	check_move(t_game *game);
+int		ft_closegame(t_game *game);
+void	ft_init_mlx(t_game *game);
+int		ft_rendermap(t_game *game);
+int		ft_keypress(int keysym, t_game *game);
+int 	ft_keyrelease(int keysym, t_game *game);
+void	ft_init_add(t_game *game);
+void	ft_init_ray(t_game *game);
+void	ft_raycast(t_game *game);
+void	ft_draw(t_game *game, int ray_count, float dist);
+float	distance_to_wall(t_game *game, float ray_angle);
+void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
+t_img	*get_texture(t_game *game);
+int		get_tex_color(t_game *game, t_img *img, int z);
+float	degree_to_radians(float degree);
+
 
 #endif
