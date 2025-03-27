@@ -78,12 +78,4 @@ typedef struct s_row
 	struct s_row	*prev;
 }	t_row;
 
-int		ft_closegame(t_game *game);
-void	error_msg(char *str, t_game *game, int flag);
-void	error_per(char *str, t_game *game, int flag);
-void	ft_init_mlx(t_game *game);
-int		ft_rendermap(t_game *game);
-int		ft_keypress(int keysym, t_game *game);
-int 	ft_keyrelease(int keysym, t_game *game);
-
 #endif
