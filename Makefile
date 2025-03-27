@@ -1,11 +1,13 @@
 NAME= cub3D
 
-SRCS= cub3d.c close_game.c keybind.c init_game.c ceiling.c
+SRCS= parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c utils/destroyer.c cub3d.c
 SRCS+= exec/close_game.c exec/color.c exec/init_game.c exec/init_raycasting.c \
 	exec/keybind.c exec/mlx_utils.c exec/render_map.c exec/texture.c
-OBJS_PATH= objs/
-OBJS= $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
-CFLAGS= -Wall -Werror -Wextra -g
+OBJS_PATH= objs/ objs/parsing objs/utils
+OBJ_PATH= objs/
+OBJS= $(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
+
+CFLAGS= -Wall -Werror -Wextra -g -I/usr/include  -Imlx_linux 
 
 MLX_DIR=mlx_linux
 MLX=mlx_linux/libmlx.a
@@ -21,7 +23,9 @@ RESET= \e[0m
 all: $(OBJS_PATH) $(MLX_DIR) $(NAME)
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
-	@cc $(CFLAGS) $(OBJS) $(MLX) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT) -o $(NAME)
+	@cc $(CFLAGS) -lXext -lX11 -lm -lz -L/usr/lib $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
+	@tput cuu1 && tput el
+	@echo "$(GREEN)Compilation finished !!!!!!"
 
 objs/%.o: %.c
 	@tput cuu1 && tput el
@@ -29,7 +33,7 @@ objs/%.o: %.c
 	@cc $(CFLAGS) -c $< -o $@
 
 $(OBJS_PATH):
-	mkdir -p $@
+	@mkdir -p $@
 
 $(MLX):
 	@echo "$(YELLOW)Compiling minilibx... $(RESET)"
@@ -45,7 +49,6 @@ $(LIBFT):
 	@echo "$(YELLOW)Compiling libft... $(RESET)" 
 	@make --no-print-directory -C libft
 	@mv libft/libft.a ./
-	@echo "$(GREEN)Libft compiled ! $(RESET)"
 	@echo ""
 
 $(MLX_DIR):
@@ -59,12 +62,15 @@ $(MLX_DIR):
 clean:
 	@echo "$(YELLOW)Cleaning...$(RESET)"
 	@rm -fr $(OBJS_PATH)
+	@make -C libft --no-print-directory clean
 	@echo "$(GREEN)Cleaned !$(RESET)"
 
 fclean:
 	@echo "$(YELLOW)Cleaning...$(RESET)"
 	@rm -fr $(OBJS_PATH)
 	@rm -fr $(NAME)
+	@rm -fr $(LIBFT)
+	@make -C libft --no-print-directory fclean
 	@echo "$(GREEN)Cleaned !$(RESET)"
 
 re: fclean all
@@ -76,6 +82,7 @@ prune:
 	@rm -fr $(NAME)
 	@rm -fr $(MLX)
 	@rm -fr $(MLX_DIR)
+	@make -C libft --no-print-directory fclean
 	@echo "$(GREEN)Cleaned !$(RESET)"
 
 .PHONY: all clean fclean re prune
