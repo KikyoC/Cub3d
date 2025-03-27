@@ -7,9 +7,16 @@ int	is_empty(char c)
 
 t_point *get_other_point(t_point ***map, int x, int y, int rows)
 {
+	int	i;
+
+	i = 0;
 	if (y + rows < 0)
 		return (NULL);
-	return (map[y + rows][x]);
+	while (map[y + rows][i])
+		i++;
+	if (i == x)
+		return (map[y + rows][x]);
+	return (NULL);
 }
 
 static int	is_point_valid(t_point ***map, int x, int y)
