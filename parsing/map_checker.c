@@ -10,12 +10,15 @@ t_point *get_other_point(t_point ***map, int x, int y, int rows)
 	int	i;
 
 	i = 0;
-	if (y + rows < 0)
+	if (y + rows < 0 || !map[y + rows])
 		return (NULL);
 	while (map[y + rows][i])
+	{
+		printf("Checking on %i %i\n", y, x);
+		if (i == x)
+			return (map[y + rows][x]);
 		i++;
-	if (i == x)
-		return (map[y + rows][x]);
+	}
 	return (NULL);
 }
 
@@ -27,22 +30,31 @@ static int	is_point_valid(t_point ***map, int x, int y)
 	{
 		tmp = get_other_point(map, x , y, -1);
 		if (!tmp || ft_isspace(tmp->c))
+		{
+			printf("COucou\n");
 			return (0);
+		}
 		tmp = get_other_point(map, x, y, 1);
 		if (!tmp || ft_isspace(tmp->c))
+		{
 			return (0);
+		}
 		if (!map[y][x] || (!is_empty(map[y][x + 1]->c) && map[y][x + 1]->c != '1'))
+		{
 			return (0);
+		}
 		if (!map[y][x - 1] || (!is_empty(map[y][x - 1]->c) && map[y][x - 1]->c != '1'))
+		{
 			return (0);
+		}
 	}
 	else if (ft_isspace(map[y][x]->c))
 	{
 		tmp = get_other_point(map, x, y, -1);
-		if (tmp && tmp->c == 0)
+		if (tmp && tmp->c == '0')
 			return (0);
 		tmp = get_other_point(map, x, y, 1);
-		if (tmp && tmp->c == 0)
+		if (tmp && tmp->c == '0')
 			return (0);
 	}
 	return (1);
