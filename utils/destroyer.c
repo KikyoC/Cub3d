@@ -8,36 +8,36 @@ void	ft_closegame(t_game *game)
 	free(game->mlx_ptr);
 }
 
-void	destroy_row(t_row *row)
+void	destroy_row(t_point **row)
 {
-	t_point	*current;
-	t_point *next;
+	size_t	i;
 
-	current = row->first;
-	while (current)
+	i = 0;
+	while (row[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		free(row[i]);
+		i++;
 	}
-	free(row);
 }
-
 
 void	destroy_map(t_game *game)
 {
-	t_row	*current;
-	t_row	*next;
+	int	x;
+	int	y;
 
-	current = game->first;
-	while (current)
+	y = 0;
+	while (game->map[y])
 	{
-		next = current->next;
-		destroy_row(current);
-		current = next;
+		x = 0;
+		while (game->map[y][x])
+		{
+			free(game->map[y][x]);
+			x++;
+		}
+		free(game->map[y]);
+		y++;
 	}
-	if (game->player)
-		free(game->player);
+	free(game->map);
 }
 
 void	end_file(int config)
@@ -77,6 +77,8 @@ int	destroy(t_game *game, int to_return)
 		free(game->images);
 	if (game->mlx_ptr)
 		ft_closegame(game);
+	if (game->player)
+		free(game->player);
 	destroy_map(game);
 	free(game);
 	return (to_return);

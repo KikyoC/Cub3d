@@ -1,20 +1,19 @@
 #include "../cub3d.h"
 
-t_point	*get_player_pos(t_row *row)
+t_point	*get_player_pos(t_point ***map, float *x, float *y)
 {
-	t_point	*res;
-
-	while (row)
+	*y = 0;
+	while (map[(int)*y])
 	{
-		res = row->first;
-		while (res)
+		*x = 0;
+		while (map[(int)*y][(int)*x])
 		{
-			if (res->c == 'N' || res->c == 'S'
-				|| res->c == 'E' || res->c == 'W')
-				return (res);
-			res = res->next;
+			if (map[(int)*y][(int)*x]->c == 'N' || map[(int)*y][(int)*x]->c == 'S'
+				|| map[(int)*y][(int)*x]->c == 'E' || map[(int)*y][(int)*x]->c == 'W')
+				return (map[(int)*y][(int)*x]);
+			*x += 1;
 		}
-		row = row->next;
+		*y += 1;
 	}
 	return (NULL);
 }
@@ -26,11 +25,9 @@ int	setup_player(t_game *game)
 	game->player = ft_calloc(1, sizeof(t_player));
 	if (!game->player)
 		return (1);
-	game->player->point = get_player_pos(game->first);
+	game->player->point = get_player_pos(game->map, &game->player->x, &game->player->y);
 	if (!game->player->point)
 		return (1);
-	game->player->x = 0.5;
-	game->player->y = 0.5;
 	if (game->player->point->c == 'N')
 		game->player->direction = 0;
 	else if (game->player->point->c == 'E')

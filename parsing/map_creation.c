@@ -9,10 +9,10 @@ static void	print_error(char c, char *line)
 	ft_putstr_fd("\"\n", 2);
 }
 
-int	add_to_row(char c, t_row *row, char *line)
+int	add_to_row(char c, t_point **row, char *line)
 {
 	t_point	*point;
-	t_point	*current;
+	int		i;
 
 	if (c != '0' && c != '1' && c != 'N'
 		&& c != 'S' && c != 'E' && c != 'W'
@@ -25,43 +25,36 @@ int	add_to_row(char c, t_row *row, char *line)
 	if (!point)
 		return (1);
 	point->c = c;
-	point->row = row;
-	current = row->first;
-	while (current && current->next)
-		current = current->next;
-	if (current)
-		current->next = point;
-	else
-		row->first = point;
-	point->prev = current;
+	i = 0;
+	while (row[i])
+		i++;
+	row[i] = point;
 	return (0);
 }
 
 int	parse_line(t_game *game, char *line)
 {
-	t_row	*row;
-	t_row	*current;
-	int		i;
+	t_point	**row;
+	size_t	len;
+	size_t	i;
 
-	row = ft_calloc(1, sizeof(t_row));
+	i = 0;
+	len = ft_strlen(line);
+	row = ft_calloc(len + 1, sizeof(t_point *));
 	if (!row)
 		return (1);
-	i = -1;
-	while (line[++i])
+	while (i < len)
 	{
 		if (add_to_row(line[i], row, line))
 		{
 			destroy_row(row);
 			return (1);
 		}
+		i++;
 	}
-	current = game->first;
-	while (current && current->next)
-		current = current->next;
-	if (current)
-		current->next = row;
-	else
-		game->first = row;
-	row->prev = current;
+	i = 0;
+	while (game->map[i])
+		i++;
+	game->map[i] = row;
 	return (0);
 }

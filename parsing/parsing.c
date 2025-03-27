@@ -52,23 +52,23 @@ int	parse_walls(t_game *game)
 
 int	startings_positions(t_game *game)
 {
-	t_row	*row;
-	t_point	*point;
-	int		res;
+	int	i;
+	int	j;
+	int res;
 
+	i = 0;
 	res = 0;
-	row = game->first;
-	while (row)
+	while (game->map[i])
 	{
-		point = row->first;
-		while (point)
+		j = 0;
+		while (game->map[i][j])
 		{
-			if (point->c == 'N' || point->c == 'S'
-				|| point->c == 'E' || point->c == 'W')
+			if (game->map[i][j]->c == 'N' || game->map[i][j]->c == 'S'
+				|| game->map[i][j]->c == 'E' || game->map[i][j]->c == 'W')
 				res++;
-			point = point->next;
+			j++;
 		}
-		row = row->next;
+		i++;
 	}
 	return (res);
 }
@@ -99,12 +99,12 @@ int	parse(t_game *game, char *filename)
 		ft_putstr_fd(GROUND, 2);
 	if (!game->images->sky)
 		ft_putstr_fd(SKY, 2);
-	if (game->first == NULL)
+	if (game->map == NULL)
 		ft_putstr_fd(MAP, 2);
 	if (startings_positions(game) != 1)
 		ft_putstr_fd(POS, 2);
 	return (!game->images->so || !game->images->no || !game->images->ea
 		|| !game->images->we || !game->images->ground || !game->images->sky
-		|| startings_positions(game) != 1 || game->first == NULL
+		|| startings_positions(game) != 1 || game->map == NULL
 		|| setup_player(game));
 }
