@@ -25,28 +25,6 @@ void	ft_init_mlx(t_game *game)
 	}
 }
 
-void	mlx_pixel_put(t_img *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < dim.y)
-	{
-		x = -1;
-		while (++x < dim.x)
-			mlx_pixel_put(d, p.x + x, p.y + y, color);
-	}
-}
-
 t_pos ft_init_vector(int x, int y)
 {
 	t_pos vector;
@@ -64,9 +42,9 @@ void	ft_init_add(t_game *game)
 	//ground
 	game->win_g.img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
 	game->win_g.addr = mlx_get_data_addr(game->win_g.img_ptr, &game->win_g.bpp, &game->win_g.line_len, &game->win_g.endian);
-	mlx_area_put(&game->win_g, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), 0xFFFFFF);
+	mlx_area_put(&game->win_g, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), generate_color(game->images->ground[0], game->images->ground[1], game->images->ground[2]));
 	//ceilling
 	game->win_c.img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
 	game->win_c.addr = mlx_get_data_addr(game->win_c.img_ptr, &game->win_c.bpp, &game->win_c.line_len, &game->win_c.endian);                                                    
-	mlx_area_put(&game->win_c, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), 0xFFFFFF); //blanc remplacer par la bonne valeur
+	mlx_area_put(&game->win_c, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), generate_color(game->images->sky[0], game->images->sky[1], game->images->sky[2])); //blanc remplacer par la bonne valeur
 }
