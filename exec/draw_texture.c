@@ -40,15 +40,14 @@ t_img	*get_texture(t_game *game)
 
 void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 {
-	(void) wall_height;
 	float	dy;
 	float	dist;
 	float	cy[2];
 	int		z;
 	int		color;
 
-	dy = ((float)64 * 2) / (float)64;
-	dist = ((float)game->height / 2) - (float)64;
+	dy = ((float)wall_height * 2) / (float)64;
+	dist = ((float)game->height / 2) - (float)wall_height;
 	cy[1] = dist;
 	z = -1;
 	while (++z < 64)
