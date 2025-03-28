@@ -3,11 +3,9 @@
 int	get_tex_color(t_game *game, t_img *img, int z)
 {
 	int	color;
-	char **map;
 	
-	map = (char **)game->map;
 	color = 0x00000000;
-	if (map[(int)game->y][(int)game->x] == '1')
+	if (game->map[(int)game->y][(int)game->x]->c == '1')
 		color = mlx_pixel_get(img, (int)(img->width * (game->x + game->y)) \
 			% img->width, z);
 	return (color);
@@ -15,9 +13,10 @@ int	get_tex_color(t_game *game, t_img *img, int z)
 
 t_img	*get_texture(t_game *game)
 {
-	t_img	*img;
+	void	*img;
 	float	ray_cos;
 	float	ray_sin;
+	t_img	*res;
 
 	img = NULL;
 	ray_cos = game->ray.cos;
@@ -34,9 +33,13 @@ t_img	*get_texture(t_game *game)
 		img = game->images->ea;
 	else if (game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
 		img = game->images->we;
-	return (img);
+	res = ft_calloc(1, sizeof(t_img));
+	if (!res)
+		return (NULL);
+	res->img_ptr = img;
+	res->addr = mlx_get_data_addr(res->img_ptr, &res->bpp, &res->line_len, &res->endian);
+	return (res);
 }
-
 
 void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 {
@@ -46,11 +49,11 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 	int		z;
 	int		color;
 
-	dy = ((float)wall_height * 2) / (float)64;
+	dy = ((float)wall_height * 2) / (float)img->height;
 	dist = ((float)game->height / 2) - (float)wall_height;
 	cy[1] = dist;
 	z = -1;
-	while (++z < 64)
+	while (++z < img->height)
 	{
 		color = get_tex_color(game, img, z);
 		color = get_dist_color(color, dist);
@@ -63,4 +66,5 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 		}
 		cy[1] += dy;
 	}
+	free(img);
 }
