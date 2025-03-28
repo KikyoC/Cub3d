@@ -40,17 +40,18 @@ t_img	*get_texture(t_game *game)
 
 void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 {
+	(void) wall_height;
 	float	dy;
 	float	dist;
 	float	cy[2];
 	int		z;
 	int		color;
 
-	dy = ((float)wall_height * 2) / (float)img->height;
-	dist = ((float)game->height / 2) - (float)wall_height;
+	dy = ((float)64 * 2) / (float)64;
+	dist = ((float)game->height / 2) - (float)64;
 	cy[1] = dist;
 	z = -1;
-	while (++z < img->height)
+	while (++z < 64)
 	{
 		color = get_tex_color(game, img, z);
 		color = get_dist_color(color, dist);
@@ -58,7 +59,7 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 		while (cy[0] < cy[1] + dy)
 		{
 			if (cy[0] >= 0 && cy[0] < (float)game->height)
-				mlx_pixel_put(&game->win_tex, game->win_ptr, ray_count, cy[0], color);
+				mlx_pixel_put(game->mlx_ptr, game->win_ptr, ray_count, cy[0], color);
 			cy[0]++;
 		}
 		cy[1] += dy;
