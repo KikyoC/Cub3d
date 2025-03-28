@@ -13,6 +13,13 @@ float	distance_to_wall(t_game *game, float ray_angle)
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->x = game->player->x + 0.5;
 	game->y = game->player->y + 0.5;
+	while (!ft_strchr("1", game->map[(int)game->y][(int)game->x]->c) && \
+		sqrt(powf(game->x - game->player->x - 0.5, 2.) + \
+		powf(game->y - game->player->y - 0.5, 2.)) < game->ray.lim)
+	{
+		game->x += game->ray.cos;
+		game->y += game->ray.sin;
+	}
 	dir = sqrt(powf(game->x - game->player->x - 0.5, 2.) + powf(game->y - game->player->y - 0.5, 2.));
 	return (dir * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }
@@ -35,7 +42,7 @@ void	ft_draw(t_game *game, int ray_count, float dist)
 			mlx_put_pixel(&game->win_tex, ray_count, j, \
 				get_dist_color(generate_color(game->images->ground[0], game->images->ground[1], game->images->ground[2]), game->height - j));
 	}
-	// draw_texture(game, get_texture(game), ray_count, wall_height);
+	draw_texture(game, get_texture(game), ray_count, wall_height);
 }
 
 
@@ -50,7 +57,7 @@ void	ft_raycast(t_game *game)
 	while (++ray_count < game->width)
 	{
 		dist = distance_to_wall(game, ray_angle);
-		printf("Distance to wall = %f, width = %i/%i\n", dist, ray_count, game->width);
+		//printf("Distance to wall = %f, width = %i/%i\n", dist, ray_count, game->width);
 		ft_draw(game, ray_count, dist);
 		ray_angle += game->ray.incre_angle;
 	}

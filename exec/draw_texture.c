@@ -37,7 +37,7 @@ t_img	*get_texture(t_game *game)
 	if (!res)
 		return (NULL);
 	res->img_ptr = img;
-	res->addr = mlx_get_data_addr(res->img_ptr, &res->bpp, &res->line_len, &res->endian);
+	//res->addr = mlx_get_data_addr(res->img_ptr, &res->bpp, &res->line_len, &res->endian);
 	return (res);
 }
 
@@ -61,7 +61,7 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 		while (cy[0] < cy[1] + dy)
 		{
 			if (cy[0] >= 0 && cy[0] < (float)game->height)
-				mlx_pixel_put(game->mlx_ptr, game->win_ptr, ray_count, cy[0], color);
+				mlx_put_pixel(&game->win_tex, ray_count, cy[0], color);
 			cy[0]++;
 		}
 		cy[1] += dy;
