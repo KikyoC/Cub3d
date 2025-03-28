@@ -16,24 +16,23 @@ int	get_tex_color(t_game *game, t_img *img, int z)
 t_img	*get_texture(t_game *game)
 {
 	t_img	*img;
-	char	**map;
 	float	ray_cos;
 	float	ray_sin;
 
-	map = (char **)game->map;
+	img = NULL;
 	ray_cos = game->ray.cos;
 	if (ray_cos < 0)
 		ray_cos = -ray_cos;
 	ray_sin = game->ray.sin;
 	if (ray_sin < 0)
 		ray_sin = -ray_sin;
-	if (map[(int)(game->y - ray_sin)][(int)game->x] != '1')
+	if (game->map[(int)(game->y - ray_sin)][(int)game->x]->c != '1')
 		img = game->images->no;
-	else if (map[(int)(game->y + ray_sin)][(int)game->x] != '1')
+	else if (game->map[(int)(game->y + ray_sin)][(int)game->x]->c != '1')
 		img = game->images->so;
-	else if (map[(int)game->y][(int)(game->x + ray_cos)] != '1')
+	else if (game->map[(int)game->y][(int)(game->x + ray_cos)]->c != '1')
 		img = game->images->ea;
-	else if (map[(int)game->y][(int)(game->x - ray_cos)] != '1')
+	else if (game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
 		img = game->images->we;
 	return (img);
 }

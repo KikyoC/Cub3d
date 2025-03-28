@@ -74,6 +74,6 @@ int ft_keyrelease(int keysym, t_game *game)
 	if (keysym == KEY_RIGHT)
 		game->player->r_move = 0;
 	if (keysym == KEY_ESC)
-		ft_closegame(game);
+		destroy(game, 0);
 	return (0);
 }
