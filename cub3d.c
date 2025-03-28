@@ -29,7 +29,7 @@ int	ft_isitcub(char *str)
 
 void	ft_cub3d(t_game *game)
 {
-
+	//ft_init(game);
 	ft_init_mlx(game);
 	ft_init_add(game);
 	ft_init_ray(game);
@@ -62,8 +62,8 @@ int	main(int ac, char **av)
 	game->map = ft_calloc(rows + 1, sizeof(t_point **));
 	if (!game->map || parse(game, av[1]))
 		return (destroy(game, 1));
-	printf("Sucessfully parsed the config\n");
+	//printf("Sucessfully parsed the config\n");
 	//error_msg
-	ft_cub3d(game);
-	// return (destroy(game, 0));
+	// ft_cub3d(game);
+	return (destroy(game, 0));
 }

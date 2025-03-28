@@ -129,6 +129,7 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
 t_img	*get_texture(t_game *game);
 int		get_tex_color(t_game *game, t_img *img, int z);
 float	degree_to_radians(float degree);
+//void	ft_init(t_game *game);
 
 
 #endif
