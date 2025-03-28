@@ -65,5 +65,5 @@ int	main(int ac, char **av)
 	printf("Sucessfully parsed the config\n");
 	//error_msg
 	ft_cub3d(game);
-	return (destroy(game, 0));
+	// return (destroy(game, 0));
 }

@@ -10,8 +10,8 @@ int	ft_closegame(t_game *game)
 	// 	mlx_destroy_image(game->mlx_ptr, game->win_g.img_ptr);	
 	// if (game->win_c.img_ptr)
 	// 	mlx_destroy_image(game->mlx_ptr, game->win_c.img_ptr);
-	// if (game->win_ptr)
-		// mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
 	// exit(0);
@@ -36,7 +36,7 @@ void	destroy_map(t_game *game)
 	int	y;
 
 	y = 0;
-	while (game->map[y])
+	while (game && game->map && game->map[y])
 	{
 		x = 0;
 		while (game->map[y][x])
@@ -47,7 +47,8 @@ void	destroy_map(t_game *game)
 		free(game->map[y]);
 		y++;
 	}
-	free(game->map);
+	if (game && game->map)
+		free(game->map);
 }
 
 void	end_file(int config)
@@ -87,11 +88,12 @@ int	destroy(t_game *game, int to_return)
 		free(game->images->ground);
 	if (game->images)
 		free(game->images);
-	if (game->mlx_ptr)
-		ft_closegame(game);
-	if (game->player)
-		free(game->player);
+	// if (game->mlx_ptr)
+		// ft_closegame(game);
+	// if (game->player)
+		// free(game->player);
 	destroy_map(game);
-	free(game);
+	if (game)
+		free(game);
 	return (to_return);
 }

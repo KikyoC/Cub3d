@@ -36,15 +36,27 @@ t_pos ft_init_vector(int x, int y)
 void	ft_init_add(t_game *game)
 {
 	// texture
-	game->win_tex.img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
-	game->win_tex.addr = mlx_get_data_addr(game->win_tex.img_ptr, &game->win_tex.bpp, \
+	game->win_tex.img_ptr = mlx_new_image(game->mlx_ptr,
+		game->width, game->height);
+	game->win_tex.addr = mlx_get_data_addr(game->win_tex.img_ptr,
+		&game->win_tex.bpp,
 		&game->win_tex.line_len, &game->win_tex.endian);
 	//ground
-	game->win_g.img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
-	game->win_g.addr = mlx_get_data_addr(game->win_g.img_ptr, &game->win_g.bpp, &game->win_g.line_len, &game->win_g.endian);
-	mlx_area_put(&game->win_g, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), generate_color(game->images->ground[0], game->images->ground[1], game->images->ground[2]));
+	game->win_g.img_ptr = mlx_new_image(game->mlx_ptr,
+		game->width, game->height);
+	game->win_g.addr = mlx_get_data_addr(game->win_g.img_ptr,
+		&game->win_g.bpp, &game->win_g.line_len, &game->win_g.endian);
+	mlx_area_put(&game->win_g, ft_init_vector(0, 0),
+		ft_init_vector(game->width, game->height),
+		generate_color(game->images->ground[0],
+		game->images->ground[1], game->images->ground[2]));
 	//ceilling
-	game->win_c.img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
-	game->win_c.addr = mlx_get_data_addr(game->win_c.img_ptr, &game->win_c.bpp, &game->win_c.line_len, &game->win_c.endian);                                                    
-	mlx_area_put(&game->win_c, ft_init_vector(0, 0), ft_init_vector(game->width, game->height), generate_color(game->images->sky[0], game->images->sky[1], game->images->sky[2]));
+	game->win_c.img_ptr = mlx_new_image(game->mlx_ptr,
+		game->width, game->height);
+	game->win_c.addr = mlx_get_data_addr(game->win_c.img_ptr,
+		&game->win_c.bpp, &game->win_c.line_len, &game->win_c.endian);
+	mlx_area_put(&game->win_c, ft_init_vector(0, 0),
+		ft_init_vector(game->width, game->height),
+		generate_color(game->images->sky[0], game->images->sky[1],
+			game->images->sky[2]));
 }
