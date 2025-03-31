@@ -19,14 +19,6 @@ void	ft_init_mlx(t_game *game)
 	}
 }
 
-t_pos ft_init_vector(int x, int y)
-{
-	t_pos vector;
-	vector.x = x;
-	vector.y = y;
-	return(vector);
-}
-
 void	ft_init_add(t_game *game)
 {
 	// texture

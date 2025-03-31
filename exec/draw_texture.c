@@ -16,15 +16,16 @@ t_img	*get_texture(t_game *game)
 	t_img	*img;
 	float	ray_cos;
 	float	ray_sin;
-	//t_img	*res;
 
 	img = NULL;
-	ray_cos = game->ray.cos;
-	if (ray_cos < 0)
-		ray_cos = -ray_cos;
-	ray_sin = game->ray.sin;
-	if (ray_sin < 0)
-		ray_sin = -ray_sin;
+	ray_cos = fabs(game->ray.cos);
+	ray_sin = fabs(game->ray.sin);
+	// ray_cos = game->ray.cos;
+	// if (ray_cos < 0)
+	// 	ray_cos = -ray_cos;
+	// ray_sin = game->ray.sin;
+	// if (ray_sin < 0)
+	// 	ray_sin = -ray_sin;
 	if (game->map[(int)(game->y - ray_sin)][(int)game->x]->c != '1')
 		img = game->images->no;
 	else if (game->map[(int)(game->y + ray_sin)][(int)game->x]->c != '1')
@@ -33,11 +34,6 @@ t_img	*get_texture(t_game *game)
 		img = game->images->ea;
 	else if (game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
 		img = game->images->we;
-	//res = ft_calloc(1, sizeof(t_img));
-	//if (!res)
-		//return (NULL);
-	//res->img_ptr = img;
-	//res->addr = mlx_get_data_addr(res->img_ptr, &res->bpp, &res->line_len, &res->endian);
 	return (img);
 }
 
