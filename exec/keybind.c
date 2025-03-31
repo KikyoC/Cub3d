@@ -2,12 +2,10 @@
 
 void	move_player(int keysym, t_game *game)
 {
-	char **map;
 	float	angle;
 	float ray_cos;
 	float ray_sin;
 
-	map = (char **)game->map;
 	if (keysym == KEY_A)
 		angle = game->ray.angle - 90;
 	else if (keysym == KEY_S)
@@ -18,11 +16,11 @@ void	move_player(int keysym, t_game *game)
 		angle = game->ray.angle;
 	ray_cos = cos(degree_to_radians(angle));
 	ray_sin = sin(degree_to_radians(angle));
-	if (!ft_strchr("1", map[(int)(game->player->y + 0.5 + \
-		(3 * ray_sin))][(int)(game->player->x + 0.5)]))
+	if (!ft_strchr("1", game->map[(int)(game->player->y + 0.5 + \
+		(3 * ray_sin))][(int)(game->player->x + 0.5)]->c))
 		game->player->y += ray_sin;
-	if (!ft_strchr("1", map[(int)(game->player->y + 0.5)] \
-		[(int)(game->player->x + 0.5 + (3 * ray_cos))]))
+	if (!ft_strchr("1", game->map[(int)(game->player->y + 0.5)] \
+	[(int)(game->player->x + 0.5 + (3 * ray_cos))]->c))
 		game->player->x += ray_cos;
 }
 
@@ -74,6 +72,6 @@ int ft_keyrelease(int keysym, t_game *game)
 	if (keysym == KEY_RIGHT)
 		game->player->r_move = 0;
 	if (keysym == KEY_ESC)
-		destroy(game, 0);
+		mlx_loop_end(game->mlx_ptr);
 	return (0);
 }

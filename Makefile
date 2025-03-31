@@ -7,7 +7,7 @@ OBJS_PATH= objs/ objs/parsing objs/utils objs/exec
 OBJ_PATH= objs/
 OBJS= $(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
 
-CFLAGS= -Wall -Werror -Wextra -g -I/usr/include  -Imlx_linux 
+CFLAGS= -Wall -Werror -Wextra -g -I/usr/include -Imlx_linux 
 
 MLX_DIR=mlx_linux
 MLX=mlx_linux/libmlx.a
@@ -28,7 +28,7 @@ $(NAME): $(MLX) $(LIBFT) $(OBJS)
 	@echo "$(GREEN)Compilation finished !!!!!!"
 
 objs/%.o: %.c
-	@tput cuu1 && tput el
+	@tput cuu1 && tput el	
 	@echo "Compilation de $<..."
 	@cc $(CFLAGS) -c $< -o $@
 
