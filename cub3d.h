@@ -45,6 +45,7 @@ typedef struct s_images
 	void			*we;
 	int				*ground;
 	int				*sky;
+	struct s_img	*background;
 }	t_images;
 
 typedef struct s_player{
@@ -130,6 +131,6 @@ t_img	*get_texture(t_game *game);
 int		get_tex_color(t_game *game, t_img *img, int z);
 float	degree_to_radians(float degree);
 //void	ft_init(t_game *game);
-
+int		build_background(t_game *game);
 
 #endif
