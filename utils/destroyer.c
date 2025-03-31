@@ -3,13 +3,13 @@
 int	ft_closegame(t_game *game)
 {
 	if (game->images && game->images->no)
-		mlx_destroy_image(game->mlx_ptr, game->images->no);
+		mlx_destroy_image(game->mlx_ptr, game->images->no->img_ptr);
 	if (game->images && game->images->so)
-		mlx_destroy_image( game->mlx_ptr, game->images->so);
+		mlx_destroy_image( game->mlx_ptr, game->images->so->img_ptr);
 	if (game->images && game->images->ea)
-		mlx_destroy_image(game->mlx_ptr, game->images->ea);
+		mlx_destroy_image(game->mlx_ptr, game->images->ea->img_ptr);
 	if (game->images && game->images->we)
-		mlx_destroy_image(game->mlx_ptr, game->images->we);
+		mlx_destroy_image(game->mlx_ptr, game->images->we->img_ptr);
 	if (game->win_tex.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_tex.img_ptr);
 	if (game->win_c.img_ptr)

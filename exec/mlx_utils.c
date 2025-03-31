@@ -24,10 +24,10 @@ void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color)
 	}
 }
 
-int	mlx_pixel_get(t_img *data, int x, int y)
+int	mlx_pixel_get(t_img *img, int x, int y)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	return (*(int *)dst);
 }

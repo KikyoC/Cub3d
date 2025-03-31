@@ -13,7 +13,7 @@ int	get_tex_color(t_game *game, t_img *img, int z)
 
 t_img	*get_texture(t_game *game)
 {
-	void	*img;
+	t_img	*img;
 	float	ray_cos;
 	float	ray_sin;
 	//t_img	*res;
@@ -66,5 +66,4 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 		}
 		cy[1] += dy;
 	}
-	free(img);
 }

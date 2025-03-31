@@ -40,7 +40,7 @@ int	open_texture(t_images *images, void *mlx, char *line)
 	char	c;
 
 	i = 0;
-	img = ft_calloc(1, sizeof(t_img));
+	img = malloc(sizeof(t_img));
 	while (ft_isspace(line[i]))
 		i++;
 	c = line[i];

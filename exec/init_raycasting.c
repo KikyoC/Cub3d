@@ -27,21 +27,21 @@ float	distance_to_wall(t_game *game, float ray_angle)
 void	ft_draw(t_game *game, int ray_count, float dist)
 {
 	int		wall_height;
-	//float	d;
-	//		j;
+	float	d;
+	int		j;
 
 	wall_height = (int)(game->height / (1.5 * dist));
-	//d = ((float)game->height / 2) - (float)wall_height;
-	//j = -1;
-	// while (++j < game->height / 2)
-	// {
-	// 	if (j < d)
-	// 		mlx_put_pixel(&game->win_tex, ray_count, j,
-	// 			get_dist_color(generate_color(game->images->sky[0], game->images->sky[1], game->images->sky[2]), j));
-	// 	else if (j >= (game->height / 2))
-	// 		mlx_put_pixel(&game->win_tex, ray_count, j,
-	// 			get_dist_color(generate_color(game->images->ground[0], game->images->ground[1], game->images->ground[2]), game->height - j));
-	// }
+	d = ((float)game->height / 2) - (float)wall_height;
+	j = -1;
+	while (++j < game->height / 2)
+	{
+		if (j < d)
+			mlx_put_pixel(&game->win_tex, ray_count, j,
+				get_dist_color(generate_color(game->images->sky[0], game->images->sky[1], game->images->sky[2]), j));
+		else if (j >= (game->height / 2))
+			mlx_put_pixel(&game->win_tex, ray_count, j,
+				get_dist_color(generate_color(game->images->ground[0], game->images->ground[1], game->images->ground[2]), game->height - j));
+	}
 	draw_texture(game, get_texture(game), ray_count, wall_height);
 }
 
