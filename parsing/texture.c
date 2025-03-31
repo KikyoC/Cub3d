@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-static void	set_file(t_images *images, void *file, char c)
+static void	set_file(t_images *images, t_img *file, char c)
 {
 	if (c == 'N' && images->no == 0)
 		images->no = file;
@@ -35,27 +35,52 @@ static int	print_error(int type, char *line, int to_return)
 */
 int	open_texture(t_images *images, void *mlx, char *line)
 {
-	void	*file;
+	t_img	*img;
 	int		i;
 	char	c;
-	int		size[2];
 
 	i = 0;
+	img = ft_calloc(1, sizeof(t_img));
 	while (ft_isspace(line[i]))
 		i++;
 	c = line[i];
 	i += 2;
 	while (ft_isspace(line[i]))
 		i++;
-	file = mlx_xpm_file_to_image(mlx, &line[i], &size[0], &size[1]);
-	if (!file || size[0] != 64 || size[1] != 64)
-		return (print_error(1, line, 1));
-	set_file(images, file, c);
-	if (images->no != file && images->so != file
-		&& images->ea != file && images->we != file)
+	img->img_ptr = mlx_xpm_file_to_image(mlx, &line[i], &img->width, &img->height);
+	if (!img->img_ptr || img->width != 64 || img->height != 64)
+	 	return (print_error(1, line, 1));
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->bpp, &img->endian);
+	set_file(images, img, c);
+	if (images->no != img && images->so != img
+	&& images->ea != img && images->we != img)
 	{
-		mlx_destroy_image(mlx, file);
+		mlx_destroy_image(mlx, img->img_ptr);
 		return (print_error(2, line, -2));
 	}
 	return (0);
 }
+
+/*	// void	*file;
+	// int		i;
+	// char	c;
+	// int		size[2];
+
+	// i = 0;
+	// while (ft_isspace(line[i]))
+	// 	i++;
+	// c = line[i];
+	// i += 2;
+	// while (ft_isspace(line[i]))
+	// 	i++;
+	// file = mlx_xpm_file_to_image(mlx, &line[i], &size[0], &size[1]);
+	// if (!file || size[0] != 64 || size[1] != 64)
+	// 	return (print_error(1, line, 1));
+	// set_file(images, file, c);
+	// if (images->no != file && images->so != file
+	// 	&& images->ea != file && images->we != file)
+	// {
+	// 	mlx_destroy_image(mlx, file);
+	// 	return (print_error(2, line, -2));
+	// }
+	// return (0);*/

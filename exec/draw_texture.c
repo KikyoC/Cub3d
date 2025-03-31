@@ -16,7 +16,7 @@ t_img	*get_texture(t_game *game)
 	void	*img;
 	float	ray_cos;
 	float	ray_sin;
-	t_img	*res;
+	//t_img	*res;
 
 	img = NULL;
 	ray_cos = game->ray.cos;
@@ -33,12 +33,12 @@ t_img	*get_texture(t_game *game)
 		img = game->images->ea;
 	else if (game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
 		img = game->images->we;
-	res = ft_calloc(1, sizeof(t_img));
-	if (!res)
-		return (NULL);
-	res->img_ptr = img;
+	//res = ft_calloc(1, sizeof(t_img));
+	//if (!res)
+		//return (NULL);
+	//res->img_ptr = img;
 	//res->addr = mlx_get_data_addr(res->img_ptr, &res->bpp, &res->line_len, &res->endian);
-	return (res);
+	return (img);
 }
 
 void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
