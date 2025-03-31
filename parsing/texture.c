@@ -43,11 +43,6 @@ int	open_texture(t_images *images, void *mlx, char *line)
 	img = malloc(sizeof(t_img));
 	img->addr = NULL;
 	img->img_ptr = NULL;
-	img->endian = 0;
-	img->width = 0;
-	img->height = 0;
-	img->bpp = 0;
-	img->line_len = 0;
 	while (ft_isspace(line[i]))
 		i++;
 	c = line[i];
@@ -57,7 +52,7 @@ int	open_texture(t_images *images, void *mlx, char *line)
 	img->img_ptr = mlx_xpm_file_to_image(mlx, &line[i], &img->width, &img->height);
 	if (!img->img_ptr || img->width != 64 || img->height != 64)
 	 	return (print_error(1, line, 1));
-	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->bpp, &img->endian);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
 	set_file(images, img, c);
 	if (images->no != img && images->so != img
 	&& images->ea != img && images->we != img)

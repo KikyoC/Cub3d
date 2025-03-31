@@ -16,11 +16,11 @@ void	move_player(int keysym, t_game *game)
 		angle = game->ray.angle;
 	ray_cos = cos(degree_to_radians(angle));
 	ray_sin = sin(degree_to_radians(angle));
-	if (game->map[(int)(game->player->y + 0.5 + \
-		(3 * ray_sin))][(int)(game->player->x + 0.5)]->c != '1')
+	if (!ft_strchr("1", game->map[(int)(game->player->y + 0.5 + \
+		(3 * ray_sin))][(int)(game->player->x + 0.5)]->c))
 		game->player->y += ray_sin;
-	if (game->map[(int)(game->player->y + 0.5)] \
-		[(int)(game->player->x + 0.5 + (3 * ray_cos))]->c != '1')
+	if (!ft_strchr("1", game->map[(int)(game->player->y + 0.5)] \
+	[(int)(game->player->x + 0.5 + (3 * ray_cos))]->c))
 		game->player->x += ray_cos;
 }
 
