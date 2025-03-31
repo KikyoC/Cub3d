@@ -106,5 +106,5 @@ int	parse(t_game *game, char *filename)
 	return (!game->images->so || !game->images->no || !game->images->ea
 		|| !game->images->we || !game->images->ground || !game->images->sky
 		|| startings_positions(game) != 1 || game->map == NULL
-		|| setup_player(game));
+		|| setup_player(game) || build_background(game));
 }

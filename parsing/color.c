@@ -74,3 +74,37 @@ int	parse_color(t_images *images, char *line)
 	free(res);
 	return (1);
 }
+
+static int	get_rgb(int *color)
+{
+	return (color[0] << 16 | color[1] << 8 | color[2]);
+}
+
+int build_background(t_game *game)
+{
+	int		x;
+	int		y;
+
+	if (!game || !game->images || !game->images->sky || !game->images->ground)
+		return (1);
+	game->images->background = ft_calloc(1, sizeof(t_img));
+	if (!game->images->background)
+		return (1);
+	game->images->background->img_ptr = mlx_new_image(game->mlx_ptr, game->width, game->height);
+	game->images->background->addr = mlx_get_data_addr(
+		game->images->background->img_ptr, &game->images->background->bpp,
+		&game->images->background->line_len, &game->images->background->endian);
+	y = -1;
+	while (++y < game->height)
+	{
+		x = -1;
+		while (++x < game->width)
+		{
+			if (y < game->height / 2)
+				mlx_put_pixel(game->images->background, x, y, get_rgb(game->images->sky));
+			else
+				mlx_put_pixel(game->images->background, x, y, get_rgb(game->images->ground));
+		}
+	}
+	return (0);
+}

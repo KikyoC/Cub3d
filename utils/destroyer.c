@@ -1,5 +1,14 @@
 #include "../cub3d.h"
 
+void	destroy_image(void *mlx, t_img *pct)
+{
+	if (!pct)
+		return ;
+	if (pct->img_ptr)
+		mlx_destroy_image(mlx, pct->img_ptr);
+	free(pct);
+}
+
 int	ft_closegame(t_game *game)
 {
 	if (game->images && game->images->no)
@@ -10,13 +19,13 @@ int	ft_closegame(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->images->ea);
 	if (game->images && game->images->we)
 		mlx_destroy_image(game->mlx_ptr, game->images->we);
-	if (game->win_tex.img_ptr)
-		mlx_destroy_image(game->mlx_ptr, game->win_tex.img_ptr);
 	if (game->win_c.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_c.img_ptr);
 	if (game->win_g.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_g.img_ptr);
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	destroy_image(game->mlx_ptr, game->images->background);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
 	return (0);
