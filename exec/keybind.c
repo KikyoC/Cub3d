@@ -6,22 +6,20 @@ void	move_player(int keysym, t_game *game)
 	float ray_cos;
 	float ray_sin;
 
-	if (keysym == KEY_A)
-		angle = game->ray.angle - 90;
-	else if (keysym == KEY_S)
+	if (keysym == KEY_S)
 		angle = game->ray.angle - 180;
 	else if (keysym == KEY_D)
 		angle = game->ray.angle + 90;
+	else if (keysym == KEY_A)
+		angle = game->ray.angle - 90;
 	else
 		angle = game->ray.angle;
-	ray_cos = cos(degree_to_radians(angle));
-	ray_sin = sin(degree_to_radians(angle));
-	if (!ft_strchr("1", game->map[(int)(game->player->y + 0.5 + \
-		(3 * ray_sin))][(int)(game->player->x + 0.5)]->c))
-		game->player->y += ray_sin;
-	if (!ft_strchr("1", game->map[(int)(game->player->y + 0.5)] \
-	[(int)(game->player->x + 0.5 + (3 * ray_cos))]->c))
-		game->player->x += ray_cos;
+	angle = angle * (M_PI / 180.0);
+	ray_cos = cos(angle);
+	ray_sin = sin(angle);
+	game->player->x += ray_cos * 0.1;
+	game->player->y += ray_sin * 0.1;
+	printf("Ray_angle = %f. Player position: x = %f ray_cos = %f, y = %f ray_sin = %f\n", angle, game->player->x, ray_cos, game->player->y, ray_cos);
 }
 
 void	check_move(t_game *game)
