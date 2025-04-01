@@ -54,7 +54,7 @@ int	startings_positions(t_game *game)
 {
 	int	i;
 	int	j;
-	int res;
+	int	res;
 
 	i = 0;
 	res = 0;

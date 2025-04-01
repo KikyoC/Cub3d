@@ -49,40 +49,18 @@ int	open_texture(t_images *images, void *mlx, char *line)
 	i += 2;
 	while (ft_isspace(line[i]))
 		i++;
-	img->img_ptr = mlx_xpm_file_to_image(mlx, &line[i], &img->width, &img->height);
+	img->img_ptr = mlx_xpm_file_to_image(mlx, &line[i], \
+		&img->width, &img->height);
 	if (!img->img_ptr || img->width != 64 || img->height != 64)
-	 	return (print_error(1, line, 1));
-	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
+		return (print_error(1, line, 1));
+	img->addr = mlx_get_data_addr(img->img_ptr, \
+		&img->bpp, &img->line_len, &img->endian);
 	set_file(images, img, c);
 	if (images->no != img && images->so != img
-	&& images->ea != img && images->we != img)
+		&& images->ea != img && images->we != img)
 	{
 		mlx_destroy_image(mlx, img->img_ptr);
 		return (print_error(2, line, -2));
 	}
 	return (0);
 }
-
-/*	// void	*file;
-	// int		i;
-	// char	c;
-	// int		size[2];
-
-	// i = 0;
-	// while (ft_isspace(line[i]))
-	// 	i++;
-	// c = line[i];
-	// i += 2;
-	// while (ft_isspace(line[i]))
-	// 	i++;
-	// file = mlx_xpm_file_to_image(mlx, &line[i], &size[0], &size[1]);
-	// if (!file || size[0] != 64 || size[1] != 64)
-	// 	return (print_error(1, line, 1));
-	// set_file(images, file, c);
-	// if (images->no != file && images->so != file
-	// 	&& images->ea != file && images->we != file)
-	// {
-	// 	mlx_destroy_image(mlx, file);
-	// 	return (print_error(2, line, -2));
-	// }
-	// return (0);*/
