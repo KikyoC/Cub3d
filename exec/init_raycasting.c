@@ -49,7 +49,6 @@ void	ft_draw(t_game *game, int ray_count, float dist)
 	draw_texture(game, get_texture(game), ray_count, wall_height);
 }
 
-
 void	ft_raycast(t_game *game)
 {
 	float	dist;
@@ -68,7 +67,7 @@ void	ft_raycast(t_game *game)
 
 void	ft_init_ray(t_game *game)
 {
-	game->ray.angle = game->player->direction;
+	game->ray.angle = 30;
 	game->ray.hfov = 30;
 	game->ray.incre_angle = 2 * game->ray.hfov / game->width;
 	game->ray.precision = 50;

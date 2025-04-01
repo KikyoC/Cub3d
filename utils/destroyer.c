@@ -5,7 +5,7 @@ int	ft_closegame(t_game *game)
 	if (game->images && game->images->no)
 		mlx_destroy_image(game->mlx_ptr, game->images->no->img_ptr);
 	if (game->images && game->images->so)
-		mlx_destroy_image( game->mlx_ptr, game->images->so->img_ptr);
+		mlx_destroy_image(game->mlx_ptr, game->images->so->img_ptr);
 	if (game->images && game->images->ea)
 		mlx_destroy_image(game->mlx_ptr, game->images->ea->img_ptr);
 	if (game->images && game->images->we)
@@ -57,7 +57,7 @@ void	destroy_map(t_game *game)
 
 void	end_file(int config)
 {
-	char *line;
+	char	*line;
 
 	if (config < 3)
 		return ;

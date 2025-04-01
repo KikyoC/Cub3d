@@ -45,6 +45,10 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 	int		z;
 	int		color;
 
+	if (!img)
+	{
+		return ;
+	}
 	dy = ((float)wall_height * 2) / (float)img->height;
 	dist = ((float)game->height / 2) - (float)wall_height;
 	cy[1] = dist;
