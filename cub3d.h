@@ -40,10 +40,10 @@ typedef struct s_img
 
 typedef struct s_images
 {
-	void			*no;
-	void			*so;
-	void			*ea;
-	void			*we;
+	t_img			*no;
+	t_img			*so;
+	t_img			*ea;
+	t_img			*we;
 	int				*ground;
 	int				*sky;
 	struct s_img	*background;
