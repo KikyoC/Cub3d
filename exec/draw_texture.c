@@ -32,7 +32,7 @@ t_img	*get_texture(t_game *game)
 		img = game->images->so;
 	else if (can_access(game->x + ray_cos, game->y, game->map) &&game->map[(int)game->y][(int)(game->x + ray_cos)]->c != '1')
 		img = game->images->ea;
-	else if (can_access(game->x, game->y - ray_sin, game->map) &&game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
+	else if (can_access(game->x - ray_cos, game->y, game->map) &&game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
 		img = game->images->we;
 	return (img);
 }
