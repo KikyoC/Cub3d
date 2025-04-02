@@ -27,13 +27,14 @@
 	* STRUCTURE
 */
 
-typedef struct s_img{
+typedef struct s_img
+{
 	int		height;
 	int		width;
 	void	*img_ptr;
-	char 	*addr;
-	int 	bpp;
-	int 	line_len;
+	char	*addr;
+	int		bpp;
+	int		line_len;
 	int		endian;
 }	t_img;
 
@@ -48,58 +49,50 @@ typedef struct s_images
 	struct s_img	*background;
 }	t_images;
 
-typedef struct s_player{
-	float	x;
-	float	y;
-	float 	direction;
-	int w_move;
-	int s_move;
-	int a_move;
-	int d_move;
-	int l_move;
-	int r_move;
+typedef struct s_player
+{
+	float			x;
+	float			y;
+	float			direction;
+	int				w_move;
+	int				s_move;
+	int				a_move;
+	int				d_move;
+	int				l_move;
+	int				r_move;
 	struct s_point	*point;
 }	t_player;
 
-typedef struct s_game{
+typedef struct s_game
+{
 	void			*mlx_ptr;
 	void			*win_ptr;
-  	int				config;
+	int				config;
 	int				height;
 	int				width;
 	float			x;
 	float			y;
 	t_img			win_tex;
 	t_img			win_g;
-	t_img 			win_c;
-	t_ray 			ray;
+	t_img			win_c;
+	t_ray			ray;
 	t_player		*player;
-	struct s_point ***map;
+	struct s_point	***map;
 	struct s_row	*first;
 	struct s_images	*images;
-}    t_game;
+}	t_game;
 
 typedef struct s_point
 {
 	char			c;
-	//struct s_row	*row;
-	//struct s_point	*next;
-	//struct s_point	*prev;
 }	t_point;
-
-//typedef struct s_row
-//{
-//	struct s_point	*first;
-//	struct s_row	*next;
-//	struct s_row	*prev;
-//}	t_row;
 
 /*
 	* FUNCTIONS
 */
 
 int		parse_color(t_images *images, char *line);
-int		open_texture(t_images *images, void *mlx ,char *line);
+int		open_texture(t_images *images, void *mlx, char *line);
 int		parse_line(t_game *game, char *line);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
@@ -110,7 +103,6 @@ int		setup_player(t_game *game);
 int		get_line_type(char *line);
 int		get_row_size(char *file_name);
 int		mlx_pixel_get(t_img *data, int x, int y);
-void	mlx_area_put(t_img *d, t_pos p, t_pos dim, int color);
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
 int		get_dist_color(int color, float dist);
 t_color	create_rgb(int color);
@@ -120,7 +112,7 @@ int		ft_closegame(t_game *game);
 void	ft_init_mlx(t_game *game);
 int		ft_rendermap(t_game *game);
 int		ft_keypress(int keysym, t_game *game);
-int 	ft_keyrelease(int keysym, t_game *game);
+int		ft_keyrelease(int keysym, t_game *game);
 void	ft_init_add(t_game *game);
 void	ft_init_ray(t_game *game);
 void	ft_raycast(t_game *game);
@@ -130,7 +122,6 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
 t_img	*get_texture(t_game *game);
 int		get_tex_color(t_game *game, t_img *img, int z);
 float	degree_to_radians(float degree);
-//void	ft_init(t_game *game);
 int		build_background(t_game *game);
 
 #endif
