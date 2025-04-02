@@ -13,7 +13,7 @@ int new_render()
 		tv = current;
 		return (1);
 	}
-	if ((current.tv_sec * 1000 + current.tv_usec / 1000) > (tv.tv_sec * 1000 + tv.tv_usec / 1000) + 17)
+	if ((current.tv_sec * 1000 + current.tv_usec / 1000) > (tv.tv_sec * 1000 + tv.tv_usec / 1000) + 34)
 	{
 		res = 1;
 		tv = current;

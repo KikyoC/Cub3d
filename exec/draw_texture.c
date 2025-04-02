@@ -18,14 +18,14 @@ t_img	*get_texture(t_game *game)
 	float	ray_sin;
 
 	img = NULL;
-	// ray_cos = fabs(game->ray.cos);
-	// ray_sin = fabs(game->ray.sin);
-	ray_cos = game->ray.cos;
-	if (ray_cos < 0)
-		ray_cos = -ray_cos;
-	ray_sin = game->ray.sin;
-	if (ray_sin < 0)
-		ray_sin = -ray_sin;
+	ray_cos = fabs(game->ray.cos);
+	ray_sin = fabs(game->ray.sin);
+	//ray_cos = game->ray.cos;
+	//if (ray_cos < 0)
+//		ray_cos = -ray_cos;
+//	ray_sin = game->ray.sin;
+//	if (ray_sin < 0)
+//		ray_sin = -ray_sin;
 	if (can_access(game->x, game->y - ray_sin, game->map) && game->map[(int)(game->y - ray_sin)][(int)game->x]->c != '1')
 		img = game->images->no;
 	else if (can_access(game->x, game->y + ray_sin, game->map) &&game->map[(int)(game->y + ray_sin)][(int)game->x]->c != '1')
