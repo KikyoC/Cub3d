@@ -13,7 +13,8 @@ float	distance_to_wall(t_game *game, float ray_angle)
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->x = game->player->x + 0.5;
 	game->y = game->player->y + 0.5;
-	while (!ft_strchr("1", game->map[(int)game->y][(int)game->x]->c) && \
+	while (can_access(game->x, game->y, game->map) && \
+		!ft_strchr("1", game->map[(int)game->y][(int)game->x]->c) && \
 		sqrt(powf(game->x - game->player->x - 0.5, 2.) + \
 		powf(game->y - game->player->y - 0.5, 2.)) < game->ray.lim)
 	{
@@ -67,7 +68,7 @@ void	ft_raycast(t_game *game)
 
 void	ft_init_ray(t_game *game)
 {
-	game->ray.angle = 30;
+	game->ray.angle = game->player->direction;
 	game->ray.hfov = 30;
 	game->ray.incre_angle = 2 * game->ray.hfov / game->width;
 	game->ray.precision = 50;

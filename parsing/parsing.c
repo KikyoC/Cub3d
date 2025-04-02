@@ -21,29 +21,40 @@ int	get_line_type(char *line)
 		return (3);
 }
 
+int	handle_line(t_game *game, char *line)
+{
+	int			type;
+	int 		error;
+	static int	map;
+
+	line[ft_strlen(line) - 1] = '\0';
+	type = get_line_type(line);
+	error = 0;
+	if ((type == 1 || type == 2) && map > 0)
+		map = -1;
+	if (type == 1 && open_texture(game->images, game->mlx_ptr, line))
+		error = 1;
+	else if (type == 2 && parse_color(game->images, line))
+		error = 1;
+	else if (type == 3 && (map == -1 || parse_line(game, line, &map)))
+		error = 1 + (map == -1);
+	free(line);
+	if (error == 2)
+		ft_putstr_fd("Error\nCannot make 2 maps\n", 2);
+	return (error);
+}
+
 int	parse_walls(t_game *game)
 {
 	char	*line;
-	int		type;
-	int		error;
 
 	game->images = ft_calloc(1, sizeof(t_images));
 	if (!game->images)
 		return (1);
 	line = get_next_line(game->config);
-	error = 0;
 	while (line)
 	{
-		line[ft_strlen(line) - 1] = '\0';
-		type = get_line_type(line);
-		if (type == 1 && open_texture(game->images, game->mlx_ptr, line))
-			error = 1;
-		else if (type == 2 && parse_color(game->images, line))
-			error = 1;
-		else if (type == 3 && parse_line(game, line))
-			error = 1;
-		free(line);
-		if (error)
+		if (handle_line(game, line))
 			return (1);
 		line = get_next_line(game->config);
 	}

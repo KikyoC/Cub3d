@@ -32,12 +32,12 @@ int	setup_player(t_game *game)
 	if (!game->player->point)
 		return (1);
 	if (game->player->point->c == 'N')
-		game->player->direction = 0;
-	else if (game->player->point->c == 'E')
-		game->player->direction = 90;
-	else if (game->player->point->c == 'S')
-		game->player->direction = 180;
-	else if (game->player->point->c == 'W')
 		game->player->direction = 270;
+	else if (game->player->point->c == 'E')
+		game->player->direction = 0;
+	else if (game->player->point->c == 'S')
+		game->player->direction = 90;
+	else if (game->player->point->c == 'W')
+		game->player->direction = 180;
 	return (0);
 }

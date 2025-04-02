@@ -22,7 +22,8 @@ int	ft_closegame(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->win_c.img_ptr);
 	if (game->win_g.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_g.img_ptr);
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
 	return (0);

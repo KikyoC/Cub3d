@@ -26,13 +26,13 @@ t_img	*get_texture(t_game *game)
 	ray_sin = game->ray.sin;
 	if (ray_sin < 0)
 		ray_sin = -ray_sin;
-	if (game->map[(int)(game->y - ray_sin)][(int)game->x]->c != '1')
+	if (can_access(game->x, game->y - ray_sin, game->map) && game->map[(int)(game->y - ray_sin)][(int)game->x]->c != '1')
 		img = game->images->no;
-	else if (game->map[(int)(game->y + ray_sin)][(int)game->x]->c != '1')
+	else if (can_access(game->x, game->y + ray_sin, game->map) &&game->map[(int)(game->y + ray_sin)][(int)game->x]->c != '1')
 		img = game->images->so;
-	else if (game->map[(int)game->y][(int)(game->x + ray_cos)]->c != '1')
+	else if (can_access(game->x + ray_cos, game->y, game->map) &&game->map[(int)game->y][(int)(game->x + ray_cos)]->c != '1')
 		img = game->images->ea;
-	else if (game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
+	else if (can_access(game->x - ray_cos, game->y, game->map) &&game->map[(int)game->y][(int)(game->x - ray_cos)]->c != '1')
 		img = game->images->we;
 	return (img);
 }
@@ -58,6 +58,9 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height)
 		color = get_tex_color(game, img, z);
 		color = get_dist_color(color, dist);
 		cy[0] = cy[1];
+		//printf("cy[0] = %f cy[1] = %f dy %f\n", cy[0], cy[1], dy);
+		if (cy[0] >= cy[1] + dy)
+			return ;
 		while (cy[0] < cy[1] + dy)
 		{
 			if (cy[0] >= 0 && cy[0] < (float)game->height)
