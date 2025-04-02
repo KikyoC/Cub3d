@@ -8,8 +8,10 @@ t_point	*get_player_pos(t_point ***map, float *x, float *y)
 		*x = 0;
 		while (map[(int)*y][(int)*x])
 		{
-			if (map[(int)*y][(int)*x]->c == 'N' || map[(int)*y][(int)*x]->c == 'S'
-				|| map[(int)*y][(int)*x]->c == 'E' || map[(int)*y][(int)*x]->c == 'W')
+			if (map[(int)*y][(int)*x]->c == 'N' ||
+				map[(int)*y][(int)*x]->c == 'S' \
+				|| map[(int)*y][(int)*x]->c == 'E' || \
+				map[(int)*y][(int)*x]->c == 'W')
 				return (map[(int)*y][(int)*x]);
 			*x += 1;
 		}
@@ -25,7 +27,8 @@ int	setup_player(t_game *game)
 	game->player = ft_calloc(1, sizeof(t_player));
 	if (!game->player)
 		return (1);
-	game->player->point = get_player_pos(game->map, &game->player->x, &game->player->y);
+	game->player->point = get_player_pos(game->map, \
+		&game->player->x, &game->player->y);
 	if (!game->player->point)
 		return (1);
 	if (game->player->point->c == 'N')
