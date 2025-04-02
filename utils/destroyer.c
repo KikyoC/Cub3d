@@ -1,15 +1,21 @@
 #include "../cub3d.h"
 
+void	free_images(void *mlx, t_img *img)
+{
+	mlx_destroy_image(mlx, img->img_ptr);
+	free(img);
+}
+
 int	ft_closegame(t_game *game)
 {
 	if (game->images && game->images->no)
-		mlx_destroy_image(game->mlx_ptr, game->images->no->img_ptr);
+		free_images(game->mlx_ptr, game->images->no);
 	if (game->images && game->images->so)
-		mlx_destroy_image( game->mlx_ptr, game->images->so->img_ptr);
+		free_images(game->mlx_ptr, game->images->so);
 	if (game->images && game->images->ea)
-		mlx_destroy_image(game->mlx_ptr, game->images->ea->img_ptr);
+		free_images(game->mlx_ptr, game->images->ea);
 	if (game->images && game->images->we)
-		mlx_destroy_image(game->mlx_ptr, game->images->we->img_ptr);
+		free_images(game->mlx_ptr, game->images->we);
 	if (game->win_tex.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_tex.img_ptr);
 	if (game->win_c.img_ptr)
@@ -58,7 +64,7 @@ void	destroy_map(t_game *game)
 
 void	end_file(int config)
 {
-	char *line;
+	char	*line;
 
 	if (config < 3)
 		return ;
