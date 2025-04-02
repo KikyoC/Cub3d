@@ -9,14 +9,16 @@
 # define KEY_LEFT  			0xff51
 # define KEY_RIGHT 			0xff53
 
-#define M_PI 3.14159265358979323846
+# define M_PI 3.14159265358979323846
 
-typedef struct s_pos{
-	double x;
-	double y;
-} t_pos;
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}	t_pos;
 
-typedef struct s_color{
+typedef struct s_color
+{
 	int	red;
 	int	green;
 	int	blue;
