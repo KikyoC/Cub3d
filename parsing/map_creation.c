@@ -32,13 +32,14 @@ int	add_to_row(char c, t_point **row, char *line)
 	return (0);
 }
 
-int	parse_line(t_game *game, char *line)
+int	parse_line(t_game *game, char *line, int *map)
 {
 	t_point	**row;
 	size_t	len;
 	size_t	i;
 
 	i = 0;
+	*map = 1;
 	len = ft_strlen(line);
 	row = ft_calloc(len + 1, sizeof(t_point *));
 	if (!row)

@@ -101,7 +101,7 @@ typedef struct s_point
 
 int		parse_color(t_images *images, char *line);
 int		open_texture(t_images *images, void *mlx ,char *line);
-int		parse_line(t_game *game, char *line);
+int		parse_line(t_game *game, char *line, int *map);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
 void	destroy_row(t_point **row);
