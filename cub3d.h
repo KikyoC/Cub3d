@@ -10,9 +10,11 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
+# include <sys/time.h>
 # include "libft/libft.h"
 # include "exec.h"
 # include "mlx_linux/mlx.h"
+
 
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
 # define N_TEXTURE "Error\nIt seems that you didn't set up north texture\n"
@@ -129,6 +131,7 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
 t_img	*get_texture(t_game *game);
 int		get_tex_color(t_game *game, t_img *img, int z);
 float	degree_to_radians(float degree);
+int		can_access(int x, int y, t_point ***map);
 //void	ft_init(t_game *game);
 
 
