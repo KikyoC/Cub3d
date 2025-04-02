@@ -39,7 +39,7 @@ void	move_player(int keysym, t_game *game)
 	ray_sin = sin(angle);
 		game->player->x += ray_cos * 0.1;
 		game->player->y += ray_sin * 0.1;
-	//printf("Ray_angle = %f. Player position: x = %f ray_cos = %f, y = %f ray_sin = %f\n", angle, game->player->x, ray_cos, game->player->y, ray_cos);
+	printf("Ray_angle = %f. Player position: x = %f ray_cos = %f, y = %f ray_sin = %f\n", angle, game->player->x, ray_cos, game->player->y, ray_cos);
 }
 
 void	check_move(t_game *game)
