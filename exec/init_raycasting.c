@@ -21,7 +21,8 @@ float	distance_to_wall(t_game *game, float ray_angle)
 		game->x += game->ray.cos;
 		game->y += game->ray.sin;
 	}
-	dir = sqrt(powf(game->x - game->player->x - 0.5, 2.) + powf(game->y - game->player->y - 0.5, 2.));
+	dir = sqrt(powf(game->x - game->player->x - 0.5, 2.) + \
+		powf(game->y - game->player->y - 0.5, 2.));
 	return (dir * cos(degree_to_radians(ray_angle - game->ray.angle)));
 }
 
@@ -30,14 +31,16 @@ void	ft_draw(t_game *game, int ray_count, float dist)
 	int		wall_height;
 	float	d;
 	int		j;
-	int ground;
-	int sky;
+	int		ground;
+	int		sky;
 
 	wall_height = (int)(game->height / (1.5 * dist));
 	d = ((float)game->height / 2) - (float)wall_height;
 	j = -1;
-	sky = generate_color(game->images->sky[0], game->images->sky[1], game->images->sky[2]);
-	ground = generate_color(game->images->ground[0], game->images->ground[1], game->images->ground[2]);
+	sky = generate_color(game->images->sky[0], \
+		game->images->sky[1], game->images->sky[2]);
+	ground = generate_color(game->images->ground[0], \
+		game->images->ground[1], game->images->ground[2]);
 	while (++j < game->height)
 	{
 		if (j < d)

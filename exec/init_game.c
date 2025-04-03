@@ -2,8 +2,8 @@
 
 void	ft_init_mlx(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	x = 0;
@@ -21,9 +21,8 @@ void	ft_init_mlx(t_game *game)
 
 void	ft_init_add(t_game *game)
 {
-	// texture
-	game->win_tex.img_ptr = mlx_new_image(game->mlx_ptr,
+	game->win_tex.img_ptr = mlx_new_image(game->mlx_ptr, \
 		game->width, game->height);
-	game->win_tex.addr = mlx_get_data_addr(game->win_tex.img_ptr,
+	game->win_tex.addr = mlx_get_data_addr(game->win_tex.img_ptr, \
 		&game->win_tex.bpp, &game->win_tex.line_len, &game->win_tex.endian);
 }
