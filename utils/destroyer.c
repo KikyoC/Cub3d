@@ -16,8 +16,8 @@ int	ft_closegame(t_game *game)
 		free_images(game->mlx_ptr, game->images->ea);
 	if (game->images && game->images->we)
 		free_images(game->mlx_ptr, game->images->we);
-	if (game->win_tex.img_ptr)
-		mlx_destroy_image(game->mlx_ptr, game->win_tex.img_ptr);
+	if (game->win_tex->img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
 	if (game->win_c.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_c.img_ptr);
 	if (game->win_g.img_ptr)

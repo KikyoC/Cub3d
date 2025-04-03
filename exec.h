@@ -26,13 +26,10 @@ typedef struct s_color
 
 typedef struct s_ray
 {
-	float	incre_angle;
-	float	angle;
-	float	cos;
-	float	sin;
-	float	hfov;
-	float	lim;
-	int		precision;
-}				t_ray;
+	float	x_s;
+	float	y_s;
+	float	x_e;
+	float	y_e;
+}	t_ray;
 
 #endif

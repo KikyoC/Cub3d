@@ -21,7 +21,7 @@ void	ft_init_mlx(t_game *game)
 
 void	ft_init_add(t_game *game)
 {
-	// texture
+	game->win_tex = ft_calloc(1, sizeof(t_img));
 	game->win_tex->img_ptr = mlx_new_image(game->mlx_ptr,
 		game->width, game->height);
 	game->win_tex->addr = mlx_get_data_addr(game->win_tex->img_ptr,
