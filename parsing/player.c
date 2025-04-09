@@ -1,11 +1,11 @@
 #include "../cub3d.h"
 
-t_point	*get_player_pos(t_point ***map, float *x, float *y)
+t_point	*get_player_pos(t_point ***map, double *x, double *y)
 {
-	*y = 0;
+	*y = 0.5;
 	while (map[(int)*y])
 	{
-		*x = 0;
+		*x = 0.5;
 		while (map[(int)*y][(int)*x])
 		{
 			if (map[(int)*y][(int)*x]->c == 'N' ||
@@ -39,5 +39,8 @@ int	setup_player(t_game *game)
 		game->player->direction = 90;
 	else if (game->player->point->c == 'W')
 		game->player->direction = 180;
+	game->player->direction = M_PI / 2;
+	game->player->x = 640;
+	game->player->y = 516;
 	return (0);
 }
