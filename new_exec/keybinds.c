@@ -1,35 +1,5 @@
 #include "../cub3d.h"
 
-void	move_player(int keysym, t_player *player)
-{
-	float	angle;
-	float	ray_cos;
-	float	ray_sin;
-
-	if (keysym == KEY_S)
-		angle = player->direction - 180;
-	else if (keysym == KEY_D)
-		angle = player->direction + 90;
-	else if (keysym == KEY_A)
-		angle = player->direction - 90;
-	else if (keysym == KEY_W)
-		angle = player->direction;
-	else
-	 	return ;
-	while (angle > 360)
-		angle -= 360;
-	while (angle < 0)
-		angle += 360;
-	angle = angle * (M_PI / 180.0);
-	ray_cos = cos(angle);
-	ray_sin = sin(angle);
-	player->x += ray_cos * 0.1;
-	player->y += ray_sin * 0.1;
-	printf("Ray_angle = %f. Player position: x = %f ray_cos = %f, \
-y = %f ray_sin = %f\n", \
-		angle, player->x, ray_cos, player->y, ray_cos);
-}
-
 int	ft_press(int keycode, t_game *game)
 {
 	if(keycode == KEY_W)
@@ -46,7 +16,6 @@ int	ft_press(int keycode, t_game *game)
 		game->player->r_move = 1;
 	else if (keycode == KEY_ESC)
 		mlx_loop_end(game->mlx_ptr);
-	move_player(keycode, game->player);
 	return (0);
 }
 

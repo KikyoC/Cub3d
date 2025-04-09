@@ -1,7 +1,7 @@
 #include "../cub3d.h"
 #include <math.h>
 
-float	to_radians(float degree)
+double	to_radianss(double degree)
 {
 	return (degree * M_PI / 180);
 }
@@ -11,72 +11,138 @@ int	generate_color(int red, int green, int blue)
 	return (red << 16 | green << 8 | blue);
 }
 
-t_ray distance_to_wall(t_game *game, float ray_angle)
+void	increment_ray(t_ray *ray, t_point ***map)
 {
-	t_ray	ray;
-	float	r_cos;
-	float	r_sin;
-
-	ray.x_s = game->player->x;
-	ray.x_e = game->player->x;
-	ray.y_s = game->player->y;
-	ray.y_e = game->player->y;
-	r_cos = cos(to_radians(ray_angle));
-	r_sin = sin(to_radians(ray_angle));
-	while (can_access(ray.x_e, ray.y_e, game->map) && game->map[(int)ray.y_e][(int)ray.x_e]->c != '1')
+	while (can_access(ray->ray_x, ray->ray_y, map) && map[(int)ray->ray_y][(int)ray->ray_x]->c != '1')
 	{
-		ray.x_e += r_cos;
-		ray.y_e += r_sin;
-		//mlx_put_pixel(game->win_tex, ray.x_e + 100, ray.y_e + 100, generate_color(0, 0, 255));
+		ray->ray_x += ray->cos;
+		ray->ray_y += ray->sin;
 	}
+}
+
+int	is_wall(t_point ***map, double p_x, double p_y)
+{
+	int	x;
+	int	y;
+
+	x = p_x / 64;
+	y = p_y / 64;
+	if (!can_access(x, y, map))
+		return (1);
+	if (map[y][x]->c == '1')
+		return (1);
+	return (0);
+}
+
+double	get_distance(t_game *game, t_ray ray)
+{
+    double	res;
+	double	angle;
+	double	diff;
+
+    if (ray.side == 0)
+        res = (ray.map_x - ray.ray_x / 64 + (1.0 - ray.step_x) / 2) / ray.cos;
+    else
+        res = (ray.map_y - ray.ray_y / 64 + (1.0 - ray.step_y) / 2) / ray.sin;
+    
+    angle = atan2(ray.sin, ray.cos);
+    diff = angle - game->player->direction;
+    while (diff > M_PI)
+        diff -= 2 * M_PI;
+    while (diff < -M_PI)
+        diff += 2 * M_PI;
+    return (res * 64 * cos(diff));
+}
+
+t_ray	create_ray(t_game *game, double start_x)
+{
+    t_ray	ray;
+        
+    ray.ray_x = game->player->x;
+    ray.ray_y = game->player->y;
+    ray.cos = cos(start_x);
+    ray.sin = sin(start_x);
+    ray.map_x = (int)(ray.ray_x / 64);
+    ray.map_y = (int)(ray.ray_y / 64);
+    ray.delta_dist_x = (ray.cos == 0) ? 1e30 : fabs(1 / ray.cos);
+    ray.delta_dist_y = (ray.sin == 0) ? 1e30 : fabs(1 / ray.sin);
+    ray.step_x = (ray.cos < 0) ? -1 : 1;
+    ray.step_y = (ray.sin < 0) ? -1 : 1;
+    if (ray.cos < 0)
+        ray.side_dist_x = (ray.ray_x / 64 - ray.map_x) * ray.delta_dist_x;
+    else
+        ray.side_dist_x = (ray.map_x + 1.0 - ray.ray_x / 64) * ray.delta_dist_x;
+
+    if (ray.sin < 0)
+        ray.side_dist_y = (ray.ray_y / 64 - ray.map_y) * ray.delta_dist_y;
+    else
+        ray.side_dist_y = (ray.map_y + 1.0 - ray.ray_y / 64) * ray.delta_dist_y;
+    return (ray);
+}
+
+t_ray	perform_dda(t_game *game, t_ray ray)
+{
+    int	hit;
+
+	hit = 0;
+    while (hit == 0)
+    {
+        if (ray.side_dist_x < ray.side_dist_y)
+        {
+            ray.side_dist_x += ray.delta_dist_x;
+            ray.map_x += ray.step_x;
+            ray.side = 0;
+        }
+        else
+        {
+            ray.side_dist_y += ray.delta_dist_y;
+            ray.map_y += ray.step_y;
+            ray.side = 1;
+        }
+        if (!can_access(ray.map_x, ray.map_y, game->map) || game->map[(int)ray.map_y][(int)ray.map_x]->c == '1')
+            hit = 1;
+    }
 	return (ray);
 }
 
-void ft_draw(t_game *game, t_ray ray, int count)
+void draw(t_game *game, t_ray ray, int count)
 {
-    int 	distance;
-	int		wall_height;
-	float	d;
-    int		z;
+    // Calculate perpendicular distance to avoid fisheye
+    double	distance;
+    double	height;
+    int		start_y;
+    int		end;
 
-	distance = sqrtf(powf(ray.x_e - ray.x_s, 2) + powf(ray.y_e - ray.y_s, 2));
-	wall_height = game->height / (1.5 * distance);
-	d = ((float)game->height / 2) - wall_height;
-	//Draw the height wall
-	z = 0;
-	while (z < game->height)
+	distance = get_distance(game, ray);
+	height = (64 / distance) * ((double)game->width / 2);
+	start_y = (game->height - height) / 2;
+	end = start_y + height;
+	while (start_y < end)
 	{
-		if (z < d)
-			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 0, 255));
-		else if (z >= d && z < d + wall_height)
-			mlx_put_pixel(game->win_tex, count, z, generate_color(255, 0, 0));
-		else
-			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 0, 0));
-		z++;
-	}
-}
-
-//void	ft_ray_draw(t_game *game, t_ray ray, float angle)
-//{
-//	int	distance;
-
-//	distance = sqrtf(powf(ray.x_e - ray.x_s, 2) + powf(ray.y_e - ray.y_s, 2));
-	
-//}
+		if (start_y >= 0 && start_y < game->height)
+            mlx_put_pixel(game->win_tex, count, start_y, generate_color(255, 0, 0));
+        start_y++;
+    }
+}    
 
 void	ft_raycast(t_game *game)
 {
 	t_ray	ray;
-	float	angle;
 	int		count;
-	
+	double	start_x;
+	double	fraction;
+	static int	print;
+
 	count = 0;
-	angle = game->player->direction - 30;
-	while (count <= game->width)
+	fraction = M_PI / 3 / game->width;
+	start_x = game->player->direction - M_PI / 6;
+	while (count < game->width)
 	{
-		ray = distance_to_wall(game, angle);
-		ft_draw(game, ray, count);
-		angle += 120.0 / game->width;
+		ray = create_ray(game, start_x);
+		ray = perform_dda(game, ray);
+		draw(game, ray, count);
+		start_x += fraction;
 		count ++;
 	}
+	print = 1;
 }
