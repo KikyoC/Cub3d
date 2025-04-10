@@ -1,7 +1,7 @@
 NAME= cub3D
 
-SRCS = parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c parsing/player.c utils/destroyer.c utils/row_size.c cub3d.c utils/access.c utils/map.c
-SRCS += new_exec/raycast.c new_exec/render.c new_exec/init_game.c new_exec/mlx_utils.c new_exec/keybinds.c new_exec/draw_texture.c
+SRCS = parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c parsing/player.c utils/destroyer.c utils/row.c cub3d.c utils/access.c utils/map.c parsing/point_checker.c utils/parsing.c
+SRCS += new_exec/raycast.c new_exec/render.c new_exec/init_game.c new_exec/mlx_utils.c new_exec/keybinds.c
 
 OBJS_PATH= objs/ objs/parsing objs/utils objs/new_exec
 OBJ_PATH= objs/
@@ -85,4 +85,6 @@ prune:
 	@make -C libft --no-print-directory fclean
 	@echo "$(GREEN)Cleaned !$(RESET)"
 
-.PHONY: all clean fclean re prune
+mlx: $(MLX_DIR) $(MLX)
+
+.PHONY: all clean fclean re prune mlx
