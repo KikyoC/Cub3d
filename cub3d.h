@@ -124,7 +124,7 @@ void	ft_raycast(t_game *game);
 void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
 t_img	*get_texture(t_game *game);
 int		get_tex_color(t_game *game, t_img *img, int z);
-float	degree_to_radians(float degree);
 int		can_access(int x, int y, t_point ***map);
+int	is_wall(t_point ***map, double p_x, double p_y);
 
 #endif
