@@ -16,29 +16,15 @@ int	ft_closegame(t_game *game)
 		free_images(game->mlx_ptr, game->images->ea);
 	if (game->images && game->images->we)
 		free_images(game->mlx_ptr, game->images->we);
-	if (game->win_tex->img_ptr)
+	if (game->win_tex && game->win_tex->img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
-	if (game->win_c.img_ptr)
-		mlx_destroy_image(game->mlx_ptr, game->win_c.img_ptr);
-	if (game->win_g.img_ptr)
-		mlx_destroy_image(game->mlx_ptr, game->win_g.img_ptr);
+	if (game->win_tex)
+		free(game->win_tex);
 	if (game->win_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
 	return (0);
-}
-
-void	destroy_row(t_point **row)
-{
-	size_t	i;
-
-	i = 0;
-	while (row[i])
-	{
-		free(row[i]);
-		i++;
-	}
 }
 
 void	destroy_map(t_game *game)

@@ -2,7 +2,7 @@
 
 int	ft_press(int keycode, t_game *game)
 {
-	if(keycode == KEY_W)
+	if (keycode == KEY_W)
 		game->player->w_move = 1;
 	else if (keycode == KEY_A)
 		game->player->a_move = 1;
@@ -21,7 +21,7 @@ int	ft_press(int keycode, t_game *game)
 
 int	ft_release(int keycode, t_player *player)
 {
-	if(keycode == KEY_W)
+	if (keycode == KEY_W)
 		player->w_move = 0;
 	else if (keycode == KEY_A)
 		player->a_move = 0;

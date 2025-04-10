@@ -1,7 +1,5 @@
 #include "../cub3d.h"
 
-//https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx
-
 void	mlx_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
@@ -16,4 +14,9 @@ int	mlx_pixel_get(t_img *data, int x, int y)
 
 	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
 	return (*(int *)dst);
+}
+
+int	generate_color(int red, int green, int blue)
+{
+	return (red << 16 | green << 8 | blue);
 }

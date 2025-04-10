@@ -34,9 +34,10 @@ int	add_to_row(char c, t_point **row, char *line)
 
 int	parse_line(t_game *game, char *line, int *map)
 {
-	t_point	**row;
-	size_t	len;
-	size_t	i;
+	t_point		**row;
+	size_t		len;
+	size_t		i;
+	static int	to_add;
 
 	i = 0;
 	*map = 1;
@@ -54,8 +55,7 @@ int	parse_line(t_game *game, char *line, int *map)
 		i++;
 	}
 	i = 0;
-	while (game->map[i])
-		i++;
-	game->map[i] = row;
+	game->map[to_add] = row;
+	to_add ++;
 	return (0);
 }
