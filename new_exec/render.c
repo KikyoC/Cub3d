@@ -1,4 +1,5 @@
 #include "../cub3d.h"
+#include <sys/time.h>
 
 void	edit_direction(t_player *player)
 {
@@ -39,33 +40,36 @@ void	move_player(t_game *game)
 	}
 }
 
-void ft_black(t_game *game)
+int	new_render()
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < game->height)
+	static struct timeval	old;
+	struct timeval			current;
+	if (old.tv_sec == 0)
 	{
-		x = 0;
-		while (x < game->width)
-		{
-			mlx_put_pixel(game->win_tex, x, y, generate_color(0, 255, 0));
-			x++;
-		}
-		y++;
+		printf("Here\n");
+		gettimeofday(&old, NULL);
+		return (1);
 	}
+	gettimeofday(&current, NULL);
+	if (current.tv_sec * 1000 + current.tv_usec / 1000 > old.tv_sec * 1000 + old.tv_usec / 1000 + 37)
+	{
+		old = current;
+		return (1);
+	}
+	return (0);
 }
 
 int	ft_render(t_game *game)
 {
-	edit_direction(game->player);
-	
-	ft_raycast(game);
-	move_player(game);
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->win_tex->img_ptr, 0, 0);
-	mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
-	free(game->win_tex);
-	ft_init_add(game);
+	if (new_render())
+	{
+		edit_direction(game->player);
+		ft_raycast(game);
+		move_player(game);
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->win_tex->img_ptr, 0, 0);
+		mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
+		free(game->win_tex);
+		ft_init_add(game);
+	}
 	return (0);
 }
