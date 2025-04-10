@@ -87,21 +87,26 @@ t_ray	perform_dda(t_game *game, t_ray ray)
 
 void draw(t_game *game, t_ray ray, int count)
 {
-    // Calculate perpendicular distance to avoid fisheye
     double	distance;
     double	height;
     int		start_y;
+	int		z;
     int		end;
 
+	z = 0;
 	distance = get_distance(game, ray);
 	height = (64 / distance) * ((double)game->width / 2);
 	start_y = (game->height - height) / 2;
 	end = start_y + height;
-	while (start_y < end)
+	while (z < game->height)
 	{
-		if (start_y >= 0 && start_y < game->height)
-            mlx_put_pixel(game->win_tex, count, start_y, generate_color(255, 0, 0));
-        start_y++;
+		if (z < start_y)
+			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 0, 255));
+		else if (z >= start_y && z < end)
+			mlx_put_pixel(game->win_tex, count, z, generate_color(255, 0, 0));
+		else
+			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 255, 0));
+		z++;
     }
 }    
 
