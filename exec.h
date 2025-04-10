@@ -26,10 +26,25 @@ typedef struct s_color
 
 typedef struct s_ray
 {
-	float	x_s;
-	float	y_s;
-	float	x_e;
-	float	y_e;
+	double	map_x;
+	double	map_y;
+	double	x_e;
+	double	y_e;
+	double	cos;
+	double	sin;
+	int		step_x;
+	int		step_y;
+	double	delta_x;
+	double	delta_y;
+	int		side;
+	//float	side_x;
+	//float	side_y;
+	float	ray_x;
+	float	ray_y;
+	double	side_dist_x; 
+	double	side_dist_y;
+	double	delta_dist_x; 
+	double	delta_dist_y;
 }	t_ray;
 
 #endif

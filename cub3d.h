@@ -53,9 +53,9 @@ typedef struct s_images
 
 typedef struct s_player
 {
-	float			x;
-	float			y;
-	float			direction;
+	double			x;
+	double			y;
+	double			direction;
 	int				w_move;
 	int				s_move;
 	int				a_move;
@@ -72,8 +72,8 @@ typedef struct s_game
 	int				config;
 	int				height;
 	int				width;
-	float			x;
-	float			y;
+	double			x;
+	double			y;
 	t_img			*win_tex;
 	t_img			win_g;
 	t_img			win_c;
