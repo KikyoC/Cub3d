@@ -25,7 +25,6 @@ t_point *get_player_pos(t_point ***map, double *x, double *y)
 			break ;
 		*y += 1;
 	}
-	printf("Player pos is (%i,%i)\n", (int)*x, (int)*y);
 	res = map[(int)*y][(int)*x];
 	*x *= 64;
 	*y *= 64;
