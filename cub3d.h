@@ -12,8 +12,11 @@
 # include <errno.h>
 # include <sys/time.h>
 # include "libft/libft.h"
-# include "exec.h"
 # include "mlx_linux/mlx.h"
+
+/*
+	* Errors
+*/
 
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
 # define N_TEXTURE "Error\nIt seems that you didn't set up north texture\n"
@@ -24,6 +27,20 @@
 # define MAP "Error\nIt seems that you didn't set up map\n"
 # define POS "Error\nI don't know where the player starts\n"
 # define EXTENSION "cub"
+
+/*
+	* MLX keys
+ * */
+
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+# define KEY_ESC  			0xff1b
+# define KEY_LEFT  			0xff51
+# define KEY_RIGHT 			0xff53
+
+# define M_PI 3.14159265358979323846
 
 /*
 	* STRUCTURE
@@ -48,7 +65,6 @@ typedef struct s_images
 	t_img			*we;
 	int				*ground;
 	int				*sky;
-	struct s_img	*background;
 }	t_images;
 
 typedef struct s_player
@@ -72,15 +88,9 @@ typedef struct s_game
 	int				config;
 	int				height;
 	int				width;
-	double			x;
-	double			y;
 	t_img			*win_tex;
-	t_img			win_g;
-	t_img			win_c;
-	t_ray			ray;
 	t_player		*player;
 	struct s_point	***map;
-	struct s_row	*first;
 	struct s_images	*images;
 }	t_game;
 
@@ -88,6 +98,27 @@ typedef struct s_point
 {
 	char			c;
 }	t_point;
+
+typedef struct s_ray
+{
+	double	map_x;
+	double	map_y;
+	double	x_e;
+	double	y_e;
+	double	cos;
+	double	sin;
+	int		step_x;
+	int		step_y;
+	double	delta_x;
+	double	delta_y;
+	int		side;
+	double	ray_x;
+	double	ray_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+}	t_ray;
 
 /*
 	* FUNCTIONS
@@ -99,32 +130,23 @@ int		parse_line(t_game *game, char *line, int *map);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
 void	destroy_row(t_point **row);
-void	ft_init_mlx(t_game *game);
 int		parse(t_game *game, char *filename);
 int		setup_player(t_game *game);
 int		get_line_type(char *line);
 int		get_row_size(char *file_name);
-int		mlx_pixel_get(t_img *data, int x, int y);
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
-int		get_dist_color(int color, float dist);
-t_color	create_rgb(int color);
 int		generate_color(int red, int green, int blue);
-void	check_move(t_game *game);
 int		ft_closegame(t_game *game);
 void	ft_init_mlx(t_game *game);
 int		ft_render(t_game *game);
 int		ft_press(int keysym, t_game *game);
 int		ft_release(int keysym, t_player *player);
-int		ft_exit(int keysym, void *mlxptr);
 void	ft_init_add(t_game *game);
-void	ft_init_ray(t_game *game);
 void	ft_raycast(t_game *game);
-//void	ft_draw(t_game *game, t_ray ray);
-//float	distance_to_wall(t_game *game, double ray_angle);
-void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
-t_img	*get_texture(t_game *game);
-int		get_tex_color(t_game *game, t_img *img, int z);
 int		can_access(int x, int y, t_point ***map);
 int		is_wall(t_point ***map, double p_x, double p_y);
-
+double	get_distance(t_game *game, t_ray ray);
+int		is_point_valid(t_point ***map, int x, int y);
+int		get_line_type(char *line);
+void	destroy_row(t_point **row);
 #endif
