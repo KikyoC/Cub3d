@@ -15,7 +15,6 @@
 # include "exec.h"
 # include "mlx_linux/mlx.h"
 
-
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
 # define N_TEXTURE "Error\nIt seems that you didn't set up north texture\n"
 # define E_TEXTURE "Error\nIt seems that you didn't set up east texture\n"
@@ -24,6 +23,7 @@
 # define SKY "Error\nIt seems that you didn't set up sky color\n"
 # define MAP "Error\nIt seems that you didn't set up map\n"
 # define POS "Error\nI don't know where the player starts\n"
+# define EXTENSION "cub"
 
 /*
 	* STRUCTURE
@@ -94,7 +94,7 @@ typedef struct s_point
 */
 
 int		parse_color(t_images *images, char *line);
-int		open_texture(t_images *images, void *mlx ,char *line);
+int		open_texture(t_images *images, void *mlx, char *line);
 int		parse_line(t_game *game, char *line, int *map);
 int		is_map_valid(t_game *game);
 int		destroy(t_game *game, int to_return);
@@ -125,6 +125,6 @@ void	draw_texture(t_game *game, t_img *img, int ray_count, int wall_height);
 t_img	*get_texture(t_game *game);
 int		get_tex_color(t_game *game, t_img *img, int z);
 int		can_access(int x, int y, t_point ***map);
-int	is_wall(t_point ***map, double p_x, double p_y);
+int		is_wall(t_point ***map, double p_x, double p_y);
 
 #endif

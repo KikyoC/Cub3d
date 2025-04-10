@@ -37,13 +37,11 @@ typedef struct s_ray
 	double	delta_x;
 	double	delta_y;
 	int		side;
-	//float	side_x;
-	//float	side_y;
 	float	ray_x;
 	float	ray_y;
-	double	side_dist_x; 
+	double	side_dist_x;
 	double	side_dist_y;
-	double	delta_dist_x; 
+	double	delta_dist_x;
 	double	delta_dist_y;
 }	t_ray;
 
