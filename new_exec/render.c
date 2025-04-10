@@ -17,7 +17,7 @@ void	move_player(t_game *game)
 	
 	p_cos = cos(game->player->direction);
 	p_sin = sin(game->player->direction);
-	mult = 3;
+	mult = 6;
 	if (game->player->w_move)
 	{
 		game->player->x += p_cos * mult;
@@ -38,6 +38,9 @@ void	move_player(t_game *game)
 		game->player->x += p_cos * mult;
 		game->player->y -= p_sin * mult;
 	}
+	//printf("Player coords (%f,%f) %c\n", game->player->x / 64, game->player->y / 64, can_access(game->player->x / 64, game->player->y / 64, game->map) ? game->map[(int)game->player->y / 64][(int)game->player->x / 64]->c : '4');
+	//printf("Player coords (%f,%f)\n", game->player->x / 64, game->player->y / 64);
+	//printf(" %c\n", game->map[(int)game->player->y / 64][(int)game->player->x / 64]->c);
 }
 
 int	new_render()
@@ -46,7 +49,6 @@ int	new_render()
 	struct timeval			current;
 	if (old.tv_sec == 0)
 	{
-		printf("Here\n");
 		gettimeofday(&old, NULL);
 		return (1);
 	}
@@ -64,7 +66,9 @@ int	ft_render(t_game *game)
 	if (new_render())
 	{
 		edit_direction(game->player);
-		ft_raycast(game);
+		if (can_access(game->player->x / 64, game->player->y / 64, game->map)
+			&& !is_wall(game->map, game->player->x, game->player->y))
+			ft_raycast(game);
 		move_player(game);
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->win_tex->img_ptr, 0, 0);
 		mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
