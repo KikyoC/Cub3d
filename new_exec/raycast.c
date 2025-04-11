@@ -90,8 +90,8 @@ void	draw(t_game *game, t_ray ray, int count)
 		else if (z >= start_y && z < end)
 			mlx_put_pixel(game->win_tex, count, z, 
 				get_good_pixel(game->images->no,
-				ray.p_wall,
-				height - (z - start_y + 1),
+				1 - ray.p_wall,
+				(z - start_y),
 				height));
 		else
 			mlx_put_pixel(game->win_tex, count, z, game->images->ground);
