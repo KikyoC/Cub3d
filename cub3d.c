@@ -1,4 +1,6 @@
 #include "cub3d.h"
+#include <X11/X.h>
+#include <mlx_linux/mlx.h>
 
 int	ft_isitcub(char *str)
 {
@@ -33,6 +35,7 @@ void	ft_cub3d(t_game *game)
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_press, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask,
 		ft_release, game->player);
+	mlx_hook(game->win_ptr, DestroyNotify, 0, mlx_loop_end, game->mlx_ptr);
 	mlx_loop_hook(game->mlx_ptr, ft_render, game);
 	mlx_loop(game->mlx_ptr);
 }

@@ -3,9 +3,9 @@
 void	edit_direction(t_player *player)
 {
 	if (player->l_move)
-		player->direction -= 0.03;
+		player->direction -= 0.06;
 	if (player->r_move)
-		player->direction += 0.03;
+		player->direction += 0.06;
 }
 
 void	move_player(double *x, double *y, double direction, int key)
