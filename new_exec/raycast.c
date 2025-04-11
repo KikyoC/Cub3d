@@ -184,28 +184,27 @@ void	draw(t_game *game, t_ray ray, int count)
 	double	height;
 	int		start_y;
 	int		z;
-	int		end;
+	//int		end;
 
 	z = 0;
 	distance = get_distance(game, ray);
 	height = (64 / distance) * ((double)game->width / 2);
 	start_y = (game->height - height) / 2;
-	end = start_y + height;
+//	end = start_y + height;
 	while (z < game->height)
 	{
 		if (z < start_y)
 			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 0, 255));
-		else if (z >= start_y && z < end)
-			draw_texture(game, ray, count, height);
 		else
 			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 255, 0));
 		z++;
 	}
+	draw_texture(game, ray, count, height);
 }
 
 void	ft_raycast(t_game *game)
 {
-	t_ray		ray;
+	t_ray		ray;		
 	int			count;
 	double		start_x;
 	double		fraction;
