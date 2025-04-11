@@ -1,4 +1,5 @@
 #include "../cub3d.h"
+#include <math.h>
 
 void	cos_sin_handler(t_ray *ray)
 {
@@ -65,6 +66,7 @@ t_ray	perform_dda(t_game *game, t_ray ray)
 			|| game->map[(int)ray.map_y][(int)ray.map_x]->c == '1')
 			hit = 1;
 	}
+	ray.distance = get_distance(game, ray);
 	return (ray);
 }
 
@@ -86,7 +88,11 @@ void	draw(t_game *game, t_ray ray, int count)
 		if (z < start_y)
 			mlx_put_pixel(game->win_tex, count, z, game->images->sky);
 		else if (z >= start_y && z < end)
-			mlx_put_pixel(game->win_tex, count, z, generate_color(255, 0, 0));
+			mlx_put_pixel(game->win_tex, count, z, 
+				get_good_pixel(game->images->no,
+				ray.p_wall,
+				height - (z - start_y + 1),
+				height));
 		else
 			mlx_put_pixel(game->win_tex, count, z, game->images->ground);
 		z++;
@@ -101,6 +107,7 @@ void	ft_raycast(t_game *game)
 	double		fraction;
 	static int	print;
 
+	memset(&ray, 0, sizeof(t_ray));
 	count = 0;
 	fraction = M_PI / 3 / game->width;
 	start_x = game->player->direction - M_PI / 6;
@@ -108,6 +115,11 @@ void	ft_raycast(t_game *game)
 	{
 		ray = create_ray(game, start_x);
 		ray = perform_dda(game, ray);
+		if (ray.side == 0)
+			ray.p_wall = game->player->x + (ray.distance / 64) * ray.sin;
+		else
+			ray.p_wall = game->player->y + (ray.distance / 64) * ray.cos;
+		ray.p_wall -= floor(ray.p_wall);
 		draw(game, ray, count);
 		start_x += fraction;
 		count ++;

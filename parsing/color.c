@@ -16,9 +16,7 @@ int	set_number(int *res, char *str)
 		*res *= 10;
 		*res += str[i] - '0';
 		if (*res > 255)
-		{
 			return (-1);
-		}
 	}
 	return (i);
 }
