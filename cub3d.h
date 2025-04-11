@@ -63,8 +63,8 @@ typedef struct s_images
 	t_img			*so;
 	t_img			*ea;
 	t_img			*we;
-	int				*ground;
-	int				*sky;
+	int				ground;
+	int				sky;
 }	t_images;
 
 typedef struct s_player

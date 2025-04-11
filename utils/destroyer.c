@@ -69,10 +69,6 @@ int	destroy(t_game *game, int to_return)
 	end_file(game->config);
 	if (game->config > 2)
 		close(game->config);
-	if (game->images && game->images->sky)
-		free(game->images->sky);
-	if (game->images && game->images->ground)
-		free(game->images->ground);
 	ft_closegame(game);
 	if (game->images)
 		free(game->images);

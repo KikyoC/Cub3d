@@ -84,11 +84,11 @@ void	draw(t_game *game, t_ray ray, int count)
 	while (z < game->height)
 	{
 		if (z < start_y)
-			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 0, 255));
+			mlx_put_pixel(game->win_tex, count, z, game->images->sky);
 		else if (z >= start_y && z < end)
 			mlx_put_pixel(game->win_tex, count, z, generate_color(255, 0, 0));
 		else
-			mlx_put_pixel(game->win_tex, count, z, generate_color(0, 255, 0));
+			mlx_put_pixel(game->win_tex, count, z, game->images->ground);
 		z++;
 	}
 }

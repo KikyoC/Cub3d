@@ -57,6 +57,8 @@ int	parse_color(t_images *images, char *line)
 
 	i = 0;
 	res = ft_calloc(3, sizeof(int));
+	if (!res)
+		return (1);
 	while (ft_isspace(line[i]))
 		i++;
 	c = line[i];
@@ -66,9 +68,10 @@ int	parse_color(t_images *images, char *line)
 	if (parse_numbers(res, &line[i], line))
 	{
 		if (c == 'C')
-			images->sky = res;
+			images->sky = generate_color(res[0], res[1], res[2]);
 		else if (c == 'F')
-			images->ground = res;
+			images->ground = generate_color(res[0], res[1], res[2]);
+		free(res);
 		return (0);
 	}
 	free(res);
