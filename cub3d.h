@@ -103,8 +103,6 @@ typedef struct s_ray
 {
 	int		map_x;
 	int		map_y;
-	//double	x_e;
-	//double	y_e;
 	double	cos;
 	double	sin;
 	int		step_x;
@@ -151,6 +149,7 @@ double	get_distance(t_game *game, t_ray ray);
 int		is_point_valid(t_point ***map, int x, int y);
 int		get_line_type(char *line);
 void	destroy_row(t_point **row);
-int		get_good_pixel(t_img *img, double x, double z, int wall_height, int print);
-//int		get_good_pixel(t_game *game, t_img *img, t_ray ray, int z);
+int		get_good_pixel(t_img *img, double x, double z, int wall_height);
+t_img	*get_good_img(t_ray ray, t_game *game);
+
 #endif
