@@ -38,15 +38,24 @@ void	ft_cub3d(t_game *game)
 	mlx_loop(game->mlx_ptr);
 }
 
+static void	ft_error_main(int flag)
+{
+	ft_putendl_fd("ERROR", 2);
+	if (flag == 1)
+		ft_putendl_fd("Not enough or too many arguments", 2);
+	else if (flag == 2)
+		ft_putendl_fd("Is it *.cub", 2);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
 	int		rows;
 
 	if (ac != 2)
-		return (1);
+		ft_error_main(1);
 	if (ft_isitcub(av[1]) == 1)
-		return (2);
+		ft_error_main(2);
 	rows = get_row_size(av[1]);
 	if (rows < 0)
 	{

@@ -17,7 +17,6 @@
 /*
 	* Errors
 */
-
 # define S_TEXTURE "Error\nIt seems that you didn't set up south texture\n"
 # define N_TEXTURE "Error\nIt seems that you didn't set up north texture\n"
 # define E_TEXTURE "Error\nIt seems that you didn't set up east texture\n"
