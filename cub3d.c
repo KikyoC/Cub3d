@@ -1,6 +1,4 @@
 #include "cub3d.h"
-#include <X11/X.h>
-#include <mlx_linux/mlx.h>
 
 int	ft_isitcub(char *str)
 {

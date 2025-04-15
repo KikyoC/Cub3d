@@ -69,6 +69,7 @@ int	ft_render(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
 		free(game->win_tex);
 		ft_init_add(game);
+		printf("----------------------------------------\n");
 	}
 	return (0);
 }
