@@ -8,45 +8,13 @@ int	get_pixel_color(t_img *img, int x, int y)
 	return (*(int *)dst);
 }
 
-int	get_good_pixelll(t_img *img, double x, double z, int wall_height, int print)
-{
-	if (print)
-		printf("Double %f\n", x);
-	x = x - (int)x;
-	x *= 64;
-	if (wall_height > 0)
-		z = z / wall_height * 64;
-	else
-	{
-		z = 0;
-		//printf("Here\n");
-	}
-	//printf("Searching in (%f,%f) with height %i\n", x, z, wall_height);
-	//if (x >= 64
-	//	|| z >= 64)
-	return (get_pixel_color(img, x, z));
-}
-
-int get_good_pixel(t_img *img, double x, double z, int wall_height, int print)
-{
-    if (print)
-        printf("Double %f\n", x);
-    
-    // Don't do this additional normalization - it's already normalized!
-    // x = x - (int)x;
-    
-    // Scale to texture dimensions
-    int tex_x = (int)(x * 64) % 64;
-    
-    // Handle wall height scaling for z coordinate
+int get_good_pixel(t_img *img, double x, double z, int wall_height)
+{    
     if (wall_height > 0)
         z = z / wall_height * 64;
     else
         z = 0;
-    
-    int tex_y = (int)z % 64;
-    
-    return (get_pixel_color(img, tex_x, tex_y));
+    return (get_pixel_color(img, (int)(x * 64) % 64, (int)z % 64));
 }
 
 static int	mlx_pixel_get(t_img *data, int x, int y)
@@ -66,4 +34,33 @@ int	get_good_pixell(t_game *game, t_img *img, t_ray ray, int z)
 		color = mlx_pixel_get(img, (int)(img->width * (ray.map_x + ray.map_y)) \
 			% img->width, z);
 	return (color);
+}
+
+t_img	*get_good_mg(t_ray ray, t_game *game)
+{
+	if (ray.side == 1 && ray.sin > 0)
+		return (game->images->ea);
+	if (ray.side == 1 && ray.sin <= 0)
+		return (game->images->we);
+	if (ray.side == 0 && ray.cos > 0)
+		return (game->images->so);
+	return (game->images->no);
+}
+
+t_img    *get_good_img(t_ray ray, t_game *game)
+{
+    if (ray.side == 0) // Vertical wall hit
+    {
+        if (ray.step_x > 0)
+            return (game->images->ea);
+        else
+            return (game->images->we);
+    }
+    else // Horizontal wall hit
+    {
+        if (ray.step_y > 0)
+            return (game->images->so);
+        else
+            return (game->images->no);
+    }
 }

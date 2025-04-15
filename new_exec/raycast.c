@@ -88,11 +88,10 @@ void	draw(t_game *game, t_ray ray, int count)
 			mlx_put_pixel(game->win_tex, count, z, game->images->sky);
 		else if (z >= start_y && z < end)
 			mlx_put_pixel(game->win_tex, count, z, 
-				get_good_pixel(game->images->no,
+				get_good_pixel(get_good_img(ray, game),
 				ray.p_wall,
 				(z - start_y),
-				height, 0));
-				//ray.side == 0 ? generate_color(255, 255, 0) : generate_color(255, 0, 255));
+				height));
 		else
 			mlx_put_pixel(game->win_tex, count, z, game->images->ground);
 		z++;
@@ -109,9 +108,7 @@ void	set_touch(t_game *game, t_ray *ray)
 	if (ray->side == 1 && ray->sin > 0)
 		ray->p_wall = 1 - ray->p_wall;
 	else if (ray->side == 0 && ray->cos < 0)
-	{
 		ray->p_wall = 1 - ray->p_wall;
-	}
 }
 
 void	ft_raycast(t_game *game)
@@ -130,9 +127,6 @@ void	ft_raycast(t_game *game)
 		ray = create_ray(game, start_x);
 		ray = perform_dda(game, ray);
 		set_touch(game, &ray);
-
-		if (count == 0)
-			printf("Distance is %f %f, player is (%f,%f) map is (%i %i) cos is %f, sin is %f, start_x %f side = %i\n", ray.distance, ray.distance / 64.0, game->player->x / 64, game->player->y / 64, ray.map_x, ray.map_y, ray.cos, ray.sin, start_x, ray.side);
 		draw(game, ray, count);
 		start_x += fraction;
 		count ++;
