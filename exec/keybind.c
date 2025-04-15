@@ -3,7 +3,7 @@
 int	is_in_wall(float x, float y, float ray_angle, t_point ***map)
 {
 	int	a_x;
-	int a_y;
+	int	a_y;
 
 	a_x = x;
 	a_y = y;
@@ -12,15 +12,14 @@ int	is_in_wall(float x, float y, float ray_angle, t_point ***map)
 		a_x += 1;
 		a_y += 1;
 	}
-
 	return (map[a_y][a_x]->c == '1' || map[a_y][a_x]->c == '\0');
 }
 
 void	move_player(int keysym, t_game *game)
 {
 	float	angle;
-	float ray_cos;
-	float ray_sin;
+	float	ray_cos;
+	float	ray_sin;
 
 	if (keysym == KEY_S)
 		angle = game->ray.angle - 180;
@@ -37,9 +36,11 @@ void	move_player(int keysym, t_game *game)
 	angle = angle * (M_PI / 180.0);
 	ray_cos = cos(angle);
 	ray_sin = sin(angle);
-		game->player->x += ray_cos * 0.1;
-		game->player->y += ray_sin * 0.1;
-	printf("Ray_angle = %f. Player position: x = %f ray_cos = %f, y = %f ray_sin = %f\n", angle, game->player->x, ray_cos, game->player->y, ray_cos);
+	game->player->x += ray_cos * 0.1;
+	game->player->y += ray_sin * 0.1;
+	printf("Ray_angle = %f. Player position: x = %f ray_cos = %f, \
+y = %f ray_sin = %f\n", \
+		angle, game->player->x, ray_cos, game->player->y, ray_cos);
 }
 
 void	check_move(t_game *game)
@@ -79,7 +80,7 @@ int	ft_keypress(int keysym, t_game *game)
 	return (0);
 }
 
-int ft_keyrelease(int keysym, t_game *game)
+int	ft_keyrelease(int keysym, t_game *game)
 {
 	if (keysym == KEY_W)
 		game->player->w_move = 0;
