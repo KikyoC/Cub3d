@@ -1,25 +1,5 @@
 #include "../cub3d.h"
 
-void	cos_sin_handler(t_ray *ray)
-{
-	if (ray->cos == 0)
-		ray->delta_dist_x = 1e30;
-	else
-		ray->delta_dist_x = fabs(1 / ray->cos);
-	if (ray->sin == 0)
-		ray->delta_dist_y = 1e30;
-	else
-		ray->delta_dist_y = fabs(1 / ray->sin);
-	if (ray->cos < 0)
-		ray->step_x = -1;
-	else
-		ray->step_x = 1;
-	if (ray->sin < 0)
-		ray->step_y = -1;
-	else
-		ray->step_y = 1;
-}
-
 t_ray	create_ray(t_game *game, double start_x)
 {
 	t_ray	ray;
@@ -87,11 +67,9 @@ void	draw(t_game *game, t_ray ray, int count)
 		if (z < start_y)
 			mlx_put_pixel(game->win_tex, count, z, game->images->sky);
 		else if (z >= start_y && z < end)
-			mlx_put_pixel(game->win_tex, count, z, 
-				get_good_pixel(get_good_img(ray, game),
-				ray.p_wall,
-				(z - start_y),
-				height));
+			mlx_put_pixel(game->win_tex, count, z,
+				get_good_pixel(get_good_img(ray, game), ray.p_wall,
+					(z - start_y), height));
 		else
 			mlx_put_pixel(game->win_tex, count, z, game->images->ground);
 		z++;
@@ -101,9 +79,11 @@ void	draw(t_game *game, t_ray ray, int count)
 void	set_touch(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0)
-		ray->p_wall = game->player->y / 64 + (ray->side_dist_x - ray->delta_dist_x) * ray->sin;
+		ray->p_wall = game->player->y / 64 + \
+			(ray->side_dist_x - ray->delta_dist_x) * ray->sin;
 	else
-		ray->p_wall = game->player->x / 64 + (ray->side_dist_y - ray->delta_dist_y) * ray->cos;
+		ray->p_wall = game->player->x / 64 + \
+		(ray->side_dist_y - ray->delta_dist_y) * ray->cos;
 	ray->p_wall -= (int)ray->p_wall;
 	if (ray->side == 1 && ray->sin > 0)
 		ray->p_wall = 1 - ray->p_wall;

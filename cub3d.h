@@ -134,6 +134,7 @@ int		setup_player(t_game *game);
 int		get_line_type(char *line);
 int		get_row_size(char *file_name);
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
+int		mlx_pixel_get(t_img *data, int x, int y);
 int		generate_color(int red, int green, int blue);
 int		ft_closegame(t_game *game);
 void	ft_init_mlx(t_game *game);
