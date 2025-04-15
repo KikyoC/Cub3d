@@ -79,14 +79,14 @@ void	draw(t_game *game, t_ray ray, int count)
 
 	z = 0;
 	distance = get_distance(game, ray);
-	height = (64 / distance) * ((double)game->width / 2);
+	height = (64 / distance) * ((double)game->width / 1.1);
 	start_y = (game->height - height) / 2;
 	end = start_y + height;
 	while (z < game->height)
 	{
 		if (z < start_y)
 			mlx_put_pixel(game->win_tex, count, z, game->images->sky);
-		else if (z > start_y && z < end)
+		else if (z >= start_y && z < end)
 			mlx_put_pixel(game->win_tex, count, z, 
 				get_good_pixel(game->images->no,
 				ray.p_wall,
@@ -105,9 +105,13 @@ void	set_touch(t_game *game, t_ray *ray)
 		ray->p_wall = game->player->y / 64 + (ray->side_dist_x - ray->delta_dist_x) * ray->sin;
 	else
 		ray->p_wall = game->player->x / 64 + (ray->side_dist_y - ray->delta_dist_y) * ray->cos;
-	if (ray->side == 1 && cos > 0)
-		ray->p_wall = 1 - ray->p_wall;
 	ray->p_wall -= (int)ray->p_wall;
+	if (ray->side == 1 && ray->sin > 0)
+		ray->p_wall = 1 - ray->p_wall;
+	else if (ray->side == 0 && ray->cos < 0)
+	{
+		ray->p_wall = 1 - ray->p_wall;
+	}
 }
 
 void	ft_raycast(t_game *game)
