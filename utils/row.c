@@ -21,3 +21,15 @@ int	get_row_size(char *file_name)
 	close(config);
 	return (res);
 }
+
+void	destroy_row(t_point **row)
+{
+	size_t	i;
+
+	i = 0;
+	while (row[i])
+	{
+		free(row[i]);
+		i++;
+	}
+}

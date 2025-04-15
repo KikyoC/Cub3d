@@ -10,7 +10,7 @@ int	max_x(t_point **row)
 	return (x);
 }
 
-int max_y(t_point ***map)
+int	max_y(t_point ***map)
 {
 	int	y;
 
