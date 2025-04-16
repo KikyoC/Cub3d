@@ -17,28 +17,6 @@ int	get_good_pixel(t_img *img, double x, double z, int wall_height)
 	return (get_pixel_color(img, (int)(x * 64) % 64, (int)z % 64));
 }
 
-int	get_good_pixell(t_game *game, t_img *img, t_ray ray, int z)
-{
-	int	color;
-
-	color = 0x00000000;
-	if (game->map[(int)ray.map_y][(int)ray.map_x]->c == '1')
-		color = mlx_pixel_get(img, (int)(img->width * (ray.map_x + ray.map_y)) \
-			% img->width, z);
-	return (color);
-}
-
-t_img	*get_good_mg(t_ray ray, t_game *game)
-{
-	if (ray.side == 1 && ray.sin > 0)
-		return (game->images->ea);
-	if (ray.side == 1 && ray.sin <= 0)
-		return (game->images->we);
-	if (ray.side == 0 && ray.cos > 0)
-		return (game->images->so);
-	return (game->images->no);
-}
-
 t_img	*get_good_img(t_ray ray, t_game *game)
 {
 	if (ray.side == 0)

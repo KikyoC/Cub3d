@@ -17,13 +17,15 @@ int	handle_line(t_game *game, char *line)
 		error = 1;
 	else if (type == 3 && (map == -1 || parse_line(game, line, &map)))
 		error = 1 + (map == -1);
+	else if (type == 4 && map == 1)
+		error = 2;
 	free(line);
 	if (error == 2)
 		ft_putstr_fd("Error\nCannot make 2 maps\n", 2);
 	return (error);
 }
 
-int	parse_walls(t_game *game)
+int	parse_file(t_game *game)
 {
 	char	*line;
 
@@ -75,7 +77,7 @@ int	parse(t_game *game, char *filename)
 	game->config = open(filename, O_RDONLY);
 	if (game->config < 3)
 		return (print_error(strerror(errno), 1));
-	if (parse_walls(game) || !is_map_valid(game))
+	if (parse_file(game) || !is_map_valid(game))
 		return (1);
 	if (!game->images->so)
 		ft_putstr_fd(S_TEXTURE, 2);

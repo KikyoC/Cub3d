@@ -15,7 +15,7 @@ int	get_line_type(char *line)
 		return (1);
 	else if ((line[i] == 'C' || line[i] == 'F') && ft_isspace(line[i + 1]))
 		return (2);
-	else if (line[i] == '\0' || line[i] == '\n')
+	else if ((line[i] == '\0' || line[i] == '\n') && i == 0)
 		return (4);
 	else
 		return (3);

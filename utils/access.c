@@ -28,5 +28,5 @@ int	can_access(int x, int y, t_point ***map)
 		return (0);
 	if (max_x(map[y]) <= x)
 		return (0);
-	return (1);
+	return (!ft_isspace(map[y][x]->c));
 }
