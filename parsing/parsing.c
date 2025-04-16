@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:42 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 11:28:39 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:40:03 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	handle_line(t_game *game, char *line)
 
 	line[ft_strlen(line) - 1] = '\0';
 	type = get_line_type(line);
-	//printf("Type is %i\n", type);
 	error = 0;
 	if ((type == 1 || type == 2) && map > 0)
 		map = -1;

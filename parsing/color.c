@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:39 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 11:22:14 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:39:55 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static void	init(char *line, int *i, char *c)
 	(*i)++;
 	while (ft_isspace(line[*i]))
 		(*i)++;
-
 }
 
 int	parse_color(t_images *images, char *line)
@@ -77,7 +76,7 @@ int	parse_color(t_images *images, char *line)
 	int		i;
 	char	c;
 	int		*res;
-	
+
 	res = ft_calloc(4, sizeof(int));
 	if (!res)
 		return (1);
