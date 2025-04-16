@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   access.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/16 10:05:13 by togauthi          #+#    #+#             */
+/*   Updated: 2025/04/16 10:16:54 by togauthi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-int	max_x(t_point **row)
+static int	max_x(t_point **row)
 {
 	int	x;
 
@@ -10,7 +22,7 @@ int	max_x(t_point **row)
 	return (x);
 }
 
-int	max_y(t_point ***map)
+static int	max_y(t_point ***map)
 {
 	int	y;
 

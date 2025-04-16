@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/16 10:04:11 by togauthi          #+#    #+#             */
+/*   Updated: 2025/04/16 10:06:05 by togauthi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	edit_direction(t_player *player)
@@ -71,25 +83,4 @@ int	ft_render(t_game *game)
 		ft_init_add(game);
 	}
 	return (0);
-}
-
-void	put_ray(t_ray ray, int x, int y, t_game *game)
-{
-	int	i;
-	int	j;
-
-	mlx_put_pixel(game->win_tex, x, y, generate_color(255, 255, 255));
-	return;
-	(void)ray;
-	i = y - 1;
-	while (i < y + 2)
-	{
-		j = x - 1;
-		while (j < x + 2)
-		{
-			mlx_put_pixel(game->win_tex, j, i, generate_color(255, 0, 0));
-			j++;
-		}
-		i++;
-	}
 }

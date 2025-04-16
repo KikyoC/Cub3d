@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
+/*   Updated: 2025/04/16 10:19:19 by togauthi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	ft_isitcub(char *str)
@@ -44,7 +56,7 @@ static void	ft_error_main(int flag)
 	if (flag == 1)
 		ft_putendl_fd("Not enough or too many arguments", 2);
 	else if (flag == 2)
-		ft_putendl_fd("Is it *.cub", 2);
+		ft_putendl_fd("Is it *.cub ?", 2);
 	exit(EXIT_SUCCESS);
 }
 
