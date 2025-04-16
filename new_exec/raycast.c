@@ -78,21 +78,6 @@ void	draw(t_game *game, t_ray ray, int count)
 	}
 }
 
-void	set_touch(t_game *game, t_ray *ray)
-{
-	if (ray->side == 0)
-		ray->p_wall = game->player->y / 64 + \
-			(ray->side_dist_x - ray->delta_dist_x) * ray->sin;
-	else
-		ray->p_wall = game->player->x / 64 + \
-		(ray->side_dist_y - ray->delta_dist_y) * ray->cos;
-	ray->p_wall -= (int)ray->p_wall;
-	if (ray->side == 1 && ray->sin > 0)
-		ray->p_wall = 1 - ray->p_wall;
-	else if (ray->side == 0 && ray->cos < 0)
-		ray->p_wall = 1 - ray->p_wall;
-}
-
 void	ft_raycast(t_game *game)
 {
 	t_ray		ray;
