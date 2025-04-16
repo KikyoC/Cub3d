@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:14 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:05:54 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:04:36 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int	ft_closegame(t_game *game)
 		free(game->win_tex);
 	if (game->win_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->images && game->images->ground)
+		free(game->images->ground);
+	if (game->images && game->images->sky)
+		free(game->images->sky);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:25:21 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:58:23 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_images
 	t_img			*so;
 	t_img			*ea;
 	t_img			*we;
-	int				ground;
-	int				sky;
+	int				*ground;
+	int				*sky;
 }	t_images;
 
 typedef struct s_player
@@ -145,7 +145,7 @@ int		get_line_type(char *line);
 int		get_row_size(char *file_name);
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
 void	cos_sin_handler(t_ray *ray);
-int		generate_color(int red, int green, int blue);
+int		*generate_color(int red, int green, int blue);
 void	ft_init_mlx(t_game *game);
 int		ft_render(t_game *game);
 int		ft_press(int keysym, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:29 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:06:04 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:58:44 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	draw(t_game *game, t_ray ray, int count)
 	while (z < game->height)
 	{
 		if (z < start_y)
-			mlx_put_pixel(game->win_tex, count, z, game->images->sky);
+			mlx_put_pixel(game->win_tex, count, z, *game->images->sky);
 		else if (z >= start_y && z < end)
 			mlx_put_pixel(game->win_tex, count, z,
 				get_good_pixel(get_good_img(ray, game),
@@ -85,7 +85,7 @@ void	draw(t_game *game, t_ray ray, int count)
 					(z - start_y),
 					height));
 		else
-			mlx_put_pixel(game->win_tex, count, z, game->images->ground);
+			mlx_put_pixel(game->win_tex, count, z, *game->images->ground);
 		z++;
 	}
 }
