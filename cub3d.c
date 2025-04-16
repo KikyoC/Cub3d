@@ -45,6 +45,7 @@ static void	ft_error_main(int flag)
 		ft_putendl_fd("Not enough or too many arguments", 2);
 	else if (flag == 2)
 		ft_putendl_fd("Is it *.cub", 2);
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int ac, char **av)
