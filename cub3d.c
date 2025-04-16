@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:19:19 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:39:59 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_cub3d(t_game *game)
 
 static void	ft_error_main(int flag)
 {
-	ft_putendl_fd("ERROR", 2);
+	ft_putendl_fd("Error", 2);
 	if (flag == 1)
 		ft_putendl_fd("Not enough or too many arguments", 2);
 	else if (flag == 2)

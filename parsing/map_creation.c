@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:41 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:06:07 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:39:29 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	parse_line(t_game *game, char *line, int *map)
 		if (add_to_row(line[i], row, line))
 		{
 			destroy_row(row);
+			free(row);
 			return (1);
 		}
 		i++;
