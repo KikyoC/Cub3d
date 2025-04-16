@@ -72,3 +72,24 @@ int	ft_render(t_game *game)
 	}
 	return (0);
 }
+
+void	put_ray(t_ray ray, int x, int y, t_game *game)
+{
+	int	i;
+	int	j;
+
+	mlx_put_pixel(game->win_tex, x, y, generate_color(255, 255, 255));
+	return;
+	(void)ray;
+	i = y - 1;
+	while (i < y + 2)
+	{
+		j = x - 1;
+		while (j < x + 2)
+		{
+			mlx_put_pixel(game->win_tex, j, i, generate_color(255, 0, 0));
+			j++;
+		}
+		i++;
+	}
+}
