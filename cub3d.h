@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
+/*   Updated: 2025/04/16 10:25:21 by togauthi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -106,8 +118,6 @@ typedef struct s_ray
 	double	sin;
 	int		step_x;
 	int		step_y;
-	double	delta_x;
-	double	delta_y;
 	int		side;
 	double	ray_x;
 	double	ray_y;
@@ -135,9 +145,7 @@ int		get_line_type(char *line);
 int		get_row_size(char *file_name);
 void	mlx_put_pixel(t_img *img, int x, int y, int color);
 void	cos_sin_handler(t_ray *ray);
-int		mlx_pixel_get(t_img *data, int x, int y);
 int		generate_color(int red, int green, int blue);
-int		ft_closegame(t_game *game);
 void	ft_init_mlx(t_game *game);
 int		ft_render(t_game *game);
 int		ft_press(int keysym, t_game *game);
@@ -153,5 +161,4 @@ void	destroy_row(t_point **row);
 int		get_good_pixel(t_img *img, double x, double z, int wall_height);
 t_img	*get_good_img(t_ray ray, t_game *game);
 void	set_touch(t_game *game, t_ray *ray);
-void	put_ray(t_ray ray, int x, int y, t_game *game);
 #endif
