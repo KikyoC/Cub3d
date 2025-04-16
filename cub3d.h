@@ -150,5 +150,6 @@ int		get_line_type(char *line);
 void	destroy_row(t_point **row);
 int		get_good_pixel(t_img *img, double x, double z, int wall_height);
 t_img	*get_good_img(t_ray ray, t_game *game);
-
+void	set_touch(t_game *game, t_ray *ray);
+void	put_ray(t_ray ray, int x, int y, t_game *game);
 #endif
