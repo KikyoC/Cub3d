@@ -1,7 +1,7 @@
 NAME= cub3D
 
 SRCS = parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c parsing/player.c utils/destroyer.c utils/row.c cub3d.c utils/access.c utils/map.c parsing/point_checker.c utils/parsing.c utils/get_color.c
-SRCS += new_exec/raycast.c new_exec/render.c new_exec/init_game.c new_exec/mlx_utils.c new_exec/keybinds.c
+SRCS += new_exec/raycast.c new_exec/raycast_utils.c new_exec/render.c new_exec/init_game.c new_exec/mlx_utils.c new_exec/keybinds.c
 
 OBJS_PATH= objs/ objs/parsing objs/utils objs/new_exec
 OBJ_PATH= objs/
