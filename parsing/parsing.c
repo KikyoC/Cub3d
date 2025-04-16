@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:42 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:06:11 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/16 11:28:39 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	handle_line(t_game *game, char *line)
 
 	line[ft_strlen(line) - 1] = '\0';
 	type = get_line_type(line);
+	//printf("Type is %i\n", type);
 	error = 0;
 	if ((type == 1 || type == 2) && map > 0)
 		map = -1;
@@ -30,7 +31,7 @@ int	handle_line(t_game *game, char *line)
 	else if (type == 3 && (map == -1 || parse_line(game, line, &map)))
 		error = 1 + (map == -1);
 	else if (type == 4 && map == 1)
-		error = 2;
+		map = -1;
 	free(line);
 	if (error == 2)
 		ft_putstr_fd("Error\nCannot make 2 maps\n", 2);
