@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:11 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:05:52 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:01:11 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	set_file(t_images *images, t_img *file, char c)
+static void	set_file(t_images *images, t_texture *file, char c)
 {
 	if (c == 'N' && images->no == 0)
 		images->no = file;
@@ -51,7 +51,7 @@ static int	print_error(int type, char *line, int to_return, void *free_me)
 	return (to_return);
 }
 
-int	open_file(t_img *img, int i, char *line, void *mlx)
+int	open_file(t_texture *img, int i, char *line, void *mlx)
 {
 	img->img_ptr = mlx_xpm_file_to_image(mlx, &line[i], &img->width,
 			&img->height);
@@ -69,12 +69,12 @@ int	open_file(t_img *img, int i, char *line, void *mlx)
 
 int	open_texture(t_images *images, void *mlx, char *line)
 {
-	t_img	*img;
+	t_texture	*img;
 	int		i;
 	char	c;
 
 	i = 0;
-	img = ft_calloc(1, sizeof(t_img));
+	img = ft_calloc(1, sizeof(t_texture));
 	while (ft_isspace(line[i]))
 		i++;
 	c = line[i];

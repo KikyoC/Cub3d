@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:34 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:28:42 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:01:11 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	mlx_put_pixel(t_img *img, int x, int y, int color)
+void	mlx_put_pixel(t_texture *img, int x, int y, int color)
 {
 	char	*dst;
 

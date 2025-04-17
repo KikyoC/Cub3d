@@ -6,31 +6,35 @@
 /*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:36 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 15:06:00 by huvillat         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:24:33 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
+
 void	ft_windsize(t_game *game, int size)
 {
-	mlx_loop_end(game->mlx_ptr);
-	
+	t_win_list *win;
+	t_xvar	*xvar;
+
+	win = game->win_ptr;
+	xvar = game->mlx_ptr;
 	if(size == 1)
 	{
-		game->win_ptr = mlx_new_window(game->mlx_ptr, game->width * 1.5, game->height * 1.5, "Cub3D");
+		mlx_int_anti_resize_win(xvar, win->window, game->width - 100, game->height + 100);
 		game->inc--;
 		game->dec++;
-		game->width *= 1.5;
-		game->height *= 1.5;
+		game->width -= 100;
+		game->height += 100;
 	}
 	else if (size == -1)
 	{
-		game->win_ptr = mlx_new_window(game->mlx_ptr, game->width / 1.5, game->height / 1.5, "Cub3D");
+		mlx_int_anti_resize_win(xvar, win->window, game->width - 100, game->height - 100);
 		game->dec--;
 		game->inc++;
-		game->width /= 1.5;
-		game->height /= 1.5;
+		game->width -= 100;
+		game->height -= 100;
 	}
 }
 

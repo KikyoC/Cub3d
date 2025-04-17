@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   destroyer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:14 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 13:04:36 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:01:11 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_images(void *mlx, t_img *img)
+void	free_images(void *mlx, t_texture *img)
 {
 	mlx_destroy_image(mlx, img->img_ptr);
 	free(img);

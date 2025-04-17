@@ -6,7 +6,7 @@
 /*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 14:54:03 by huvillat         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:02:47 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/time.h>
 # include "libft/libft.h"
 # include "mlx_linux/mlx.h"
-
+# include "mlx_linux/mlx_int.h"
 /*
 	* Errors
 */
@@ -60,7 +60,7 @@
 	* STRUCTURE
 */
 
-typedef struct s_img
+typedef struct s_texture
 {
 	int		height;
 	int		width;
@@ -69,14 +69,14 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-}	t_img;
+}	t_texture;
 
 typedef struct s_images
 {
-	t_img			*no;
-	t_img			*so;
-	t_img			*ea;
-	t_img			*we;
+	t_texture			*no;
+	t_texture			*so;
+	t_texture			*ea;
+	t_texture			*we;
 	int				*ground;
 	int				*sky;
 }	t_images;
@@ -104,7 +104,7 @@ typedef struct s_game
 	int				width;
 	int				inc;
 	int				dec;
-	t_img			*win_tex;
+	t_texture			*win_tex;
 	t_player		*player;
 	struct s_point	***map;
 	struct s_images	*images;
@@ -148,7 +148,7 @@ int		parse(t_game *game, char *filename);
 int		setup_player(t_game *game);
 int		get_line_type(char *line);
 int		get_row_size(char *file_name);
-void	mlx_put_pixel(t_img *img, int x, int y, int color);
+void	mlx_put_pixel(t_texture *img, int x, int y, int color);
 void	cos_sin_handler(t_ray *ray);
 int		*generate_color(int red, int green, int blue);
 void	ft_init_mlx(t_game *game);
@@ -163,8 +163,8 @@ double	get_distance(t_game *game, t_ray ray);
 int		is_point_valid(t_point ***map, int x, int y);
 int		get_line_type(char *line);
 void	destroy_row(t_point **row);
-int		get_good_pixel(t_img *img, double x, double z, int wall_height);
-t_img	*get_good_img(t_ray ray, t_game *game);
+int		get_good_pixel(t_texture *img, double x, double z, int wall_height);
+t_texture	*get_good_img(t_ray ray, t_game *game);
 void	set_touch(t_game *game, t_ray *ray);
 t_ray	create_ray(t_game *game, double start_x);
 t_ray	perform_dda(t_game *game, t_ray ray);

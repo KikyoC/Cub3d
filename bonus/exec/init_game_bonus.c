@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:37 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:29:16 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:01:11 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_init_mlx(t_game *game)
 
 void	ft_init_add(t_game *game)
 {
-	game->win_tex = ft_calloc(1, sizeof(t_img));
+	game->win_tex = ft_calloc(1, sizeof(t_texture));
 	game->win_tex->img_ptr = mlx_new_image(game->mlx_ptr,
 			game->width, game->height);
 	game->win_tex->addr = mlx_get_data_addr(game->win_tex->img_ptr,

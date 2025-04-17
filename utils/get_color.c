@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:16 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:06:02 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:01:11 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	get_pixel_color(t_img *img, int x, int y)
+int	get_pixel_color(t_texture *img, int x, int y)
 {
 	char	*dst;
 
@@ -20,7 +20,7 @@ int	get_pixel_color(t_img *img, int x, int y)
 	return (*(int *)dst);
 }
 
-int	get_good_pixel(t_img *img, double x, double z, int wall_height)
+int	get_good_pixel(t_texture *img, double x, double z, int wall_height)
 {
 	if (wall_height > 0)
 		z = z / wall_height * 64;
@@ -29,7 +29,7 @@ int	get_good_pixel(t_img *img, double x, double z, int wall_height)
 	return (get_pixel_color(img, (int)(x * 64) % 64, (int)z % 64));
 }
 
-t_img	*get_good_img(t_ray ray, t_game *game)
+t_texture	*get_good_img(t_ray ray, t_game *game)
 {
 	if (ray.side == 0)
 	{

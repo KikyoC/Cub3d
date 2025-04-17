@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:29 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:29:44 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:26:59 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ void	ft_raycast(t_game *game)
 		set_touch(game, &ray);
 		draw(game, ray, count);
 		start_x += fraction;
-		count ++;
+		count++;
 	}
 }
