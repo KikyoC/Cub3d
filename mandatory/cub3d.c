@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:29:25 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:03:28 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,16 @@ int	ft_isitcub(char *str)
 		return (1);
 }
 
-void	ft_cub3d(t_game *game)
+int	ft_resize(t_game *game)
 {
-	ft_init_mlx(game);
+	mlx_get_screen_size(game->win_ptr, &game->height, &game->width);
+	return(0);
+}
+
+void	ft_cub3d(t_game *game, int flag)
+{
+	if(flag == 0)
+		ft_init_mlx(game);
 	ft_init_add(game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_press, game);
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask,
@@ -82,6 +89,6 @@ int	main(int ac, char **av)
 	game->map = ft_calloc(rows + 1, sizeof(t_point **));
 	if (!game->map || parse(game, av[1]))
 		return (destroy(game, 1));
-	ft_cub3d(game);
+	ft_cub3d(game, 0);
 	return (destroy(game, 0));
 }

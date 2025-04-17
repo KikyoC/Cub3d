@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 14:01:00 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:54:03 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@
 # define KEY_ESC  			0xff1b
 # define KEY_LEFT  			0xff51
 # define KEY_RIGHT 			0xff53
+
+# define KEY_UP  			0xff52
+# define KEY_DOWN  			0xff54
 
 # define M_PI 3.14159265358979323846
 
@@ -99,6 +102,8 @@ typedef struct s_game
 	int				config;
 	int				height;
 	int				width;
+	int				inc;
+	int				dec;
 	t_img			*win_tex;
 	t_player		*player;
 	struct s_point	***map;
@@ -163,6 +168,7 @@ t_img	*get_good_img(t_ray ray, t_game *game);
 void	set_touch(t_game *game, t_ray *ray);
 t_ray	create_ray(t_game *game, double start_x);
 t_ray	perform_dda(t_game *game, t_ray ray);
+void	ft_cub3d(t_game *game, int flag);
 double	get_angle(double direction, int key);
 
 #endif

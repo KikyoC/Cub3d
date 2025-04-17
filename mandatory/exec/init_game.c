@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:37 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:30:00 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:47:29 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_init_mlx(t_game *game)
 
 	y = 0;
 	x = 0;
+	game->inc = 1;
+	game->dec = 1;
 	mlx_get_screen_size(game->mlx_ptr, &x, &y);
 	game->win_ptr = mlx_new_window(game->mlx_ptr, \
 	x / 2, y / 2, "Cub3D");
