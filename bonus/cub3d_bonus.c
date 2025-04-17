@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:28:11 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 11:13:44 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	main(int ac, char **av)
 	if (ft_isitcub(av[1]) == 1)
 		ft_error_main(2);
 	rows = get_row_size(av[1]);
-	printf("Coucou c moi tchoupi\n");
 	if (rows < 0)
 	{
 		ft_putstr_fd("Error\nCannot open the config\n", 2);

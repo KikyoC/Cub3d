@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 12:58:23 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:01:00 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,4 +161,8 @@ void	destroy_row(t_point **row);
 int		get_good_pixel(t_img *img, double x, double z, int wall_height);
 t_img	*get_good_img(t_ray ray, t_game *game);
 void	set_touch(t_game *game, t_ray *ray);
+t_ray	create_ray(t_game *game, double start_x);
+t_ray	perform_dda(t_game *game, t_ray ray);
+double	get_angle(double direction, int key);
+
 #endif
