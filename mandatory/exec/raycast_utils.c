@@ -6,11 +6,11 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:25 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 10:05:38 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:29:37 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	cos_sin_handler(t_ray *ray)
 {

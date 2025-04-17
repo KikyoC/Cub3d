@@ -6,11 +6,11 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:34 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/16 13:07:39 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:29:49 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	mlx_put_pixel(t_img *img, int x, int y, int color)
 {
