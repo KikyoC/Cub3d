@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:37 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:30:00 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:13:28 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_init_mlx(t_game *game)
 	if (game->win_ptr == NULL)
 	{
 		free(game->win_ptr);
-		printf("ERROR\nCannot open window");
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Cannot open window", 2);
 	}
 }
 
