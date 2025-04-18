@@ -6,13 +6,13 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:36 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 19:08:03 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:30:09 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void	speacial_key(int keycode, t_game *game)
+static void	special_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_M && game->handle_mouse)
 		game->handle_mouse = 0;
@@ -26,8 +26,11 @@ static void	speacial_key(int keycode, t_game *game)
 		game->mini_map = 0;
 	else if (keycode == KEY_TAB && !game->mini_map)
 		game->mini_map = 1;
+	else if (keycode == KEY_C && game->collisions)
+		game->collisions = 0;
+	else if (keycode == KEY_C && !game->collisions)
+		game->collisions = 1;
 }
-
 
 int	ft_press(int keycode, t_game *game)
 {
@@ -45,7 +48,7 @@ int	ft_press(int keycode, t_game *game)
 		game->player->r_move = 1;
 	else if (keycode == KEY_ESC)
 		mlx_loop_end(game->mlx_ptr);
-	speacial_key(keycode, game);		
+	special_key(keycode, game);		
 	return (0);
 }
 

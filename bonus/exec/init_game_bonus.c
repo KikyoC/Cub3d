@@ -6,7 +6,7 @@
 /*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:37 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 15:14:44 by huvillat         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:10:35 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_init_mlx(t_game *game)
 		ft_putendl_fd("Cannot open window", 2);
 	}
 	game->handle_mouse = 1;
+	game->collisions = 1;
 }
 
 void	ft_init_add(t_game *game)

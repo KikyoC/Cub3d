@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:11 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 17:10:33 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:29:12 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	move_player(int key, t_game *game)
 	angle = get_angle(game->player->direction, key);
 	tmp_x = game->player->x + cos(angle) * 6;
 	tmp_y = game->player->y + sin(angle) * 6;
+	if (!game->collisions)
+	{
+		game->player->x = tmp_x;
+		game->player->y = tmp_y;
+		return ;
+	}
 	if (!is_wall(game->map, tmp_x, game->player->y))
 		game->player->x = tmp_x;
 	else if (roundf(game->player->x / 64 - (int)game->player->x / 64))
@@ -101,6 +107,7 @@ int	ft_render(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->win_tex->img_ptr);
 		free(game->win_tex);
 		ft_init_add(game);
+		mlx_put_infos(game);
 	}
 	return (0);
 }
