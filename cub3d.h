@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 15:59:43 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:50:17 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,6 @@ void	draw_square(t_img *img, int pos[2], int color);
 void	init_minimap(t_game *game);
 int		max_x(t_point **row);
 int		max_y(t_point ***row);
-
+int		ft_mouse_leave(t_game *game);
+int		ft_mouse_enter(t_game *game);
 #endif

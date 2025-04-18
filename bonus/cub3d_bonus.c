@@ -6,11 +6,12 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 16:36:32 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:53:13 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <X11/X.h>
 
 int	ft_isitcub(char *str)
 {
@@ -46,6 +47,8 @@ void	ft_cub3d(t_game *game)
 	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask,
 		ft_release, game->player);
 	mlx_hook(game->win_ptr, DestroyNotify, 0, mlx_loop_end, game->mlx_ptr);
+	mlx_hook(game->win_ptr, FocusIn, FocusChangeMask, ft_mouse_enter, game);
+	mlx_hook(game->win_ptr, FocusOut, FocusChangeMask, ft_mouse_leave, game);
 	mlx_loop_hook(game->mlx_ptr, ft_render, game);
 	mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->width / 2, game->height / 2);
 	mlx_loop(game->mlx_ptr);
