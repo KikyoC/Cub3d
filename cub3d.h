@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 16:15:28 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:59:43 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@
 # define KEY_A				97
 # define KEY_S				115
 # define KEY_D				100
+# define KEY_M				109
 # define KEY_ESC  			0xff1b
 # define KEY_LEFT  			0xff51
 # define KEY_RIGHT 			0xff53
+# define LEFT_CLICK			1
+# define RIGHT_CLICK		3
 
 # define M_PI 3.14159265358979323846
 
@@ -62,11 +65,11 @@ typedef struct s_img
 {
 	int		height;
 	int		width;
-	void	*img_ptr;
-	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	void	*img_ptr;
+	char	*addr;
 }	t_img;
 
 typedef struct s_images
@@ -81,25 +84,26 @@ typedef struct s_images
 
 typedef struct s_player
 {
-	double			x;
-	double			y;
-	double			direction;
 	int				w_move;
 	int				s_move;
 	int				a_move;
 	int				d_move;
 	int				l_move;
 	int				r_move;
+	double			x;
+	double			y;
+	double			direction;
 	struct s_point	*point;
 }	t_player;
 
 typedef struct s_game
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
 	int				config;
 	int				height;
 	int				width;
+	int				handle_mouse;
+	void			*mlx_ptr;
+	void			*win_ptr;
 	t_img			*win_tex;
 	t_player		*player;
 	struct s_point	***map;
@@ -115,11 +119,11 @@ typedef struct s_ray
 {
 	int		map_x;
 	int		map_y;
-	double	cos;
-	double	sin;
 	int		step_x;
 	int		step_y;
 	int		side;
+	double	sin;
+	double	cos;
 	double	ray_x;
 	double	ray_y;
 	double	side_dist_x;

@@ -12,7 +12,7 @@ M_OBJS = $(addprefix $(OBJ_PATH), $(SRC_EXEC:.c=.o))
 B_OBJS = $(addprefix $(OBJ_PATH), $(SRC_BONUS:.c=.o))
 
 
-CFLAGS= -Wall -Werror -Wextra -g -I/usr/include -Imlx_linux 
+CFLAGS= -Wall -Werror -Wextra -g -I/usr/include -Imlx_linux
 
 MLX_DIR=mlx_linux
 MLX=mlx_linux/libmlx.a

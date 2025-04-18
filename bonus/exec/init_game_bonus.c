@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:37 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:29:16 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:04:44 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	ft_init_mlx(t_game *game)
 	if (game->win_ptr == NULL)
 	{
 		free(game->win_ptr);
-		printf("ERROR\nCannot open window");
+		printf("Error\nCannot open window");
 	}
+	game->handle_mouse = 1;
 }
 
 void	ft_init_add(t_game *game)

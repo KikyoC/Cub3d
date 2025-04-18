@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:36 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 10:28:47 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:30:08 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	ft_press(int keycode, t_game *game)
 		game->player->r_move = 1;
 	else if (keycode == KEY_ESC)
 		mlx_loop_end(game->mlx_ptr);
+	else if (keycode == KEY_M && game->handle_mouse)
+		game->handle_mouse = 0;
+	else if (keycode == KEY_M && !game->handle_mouse)
+		game->handle_mouse = 1;
 	return (0);
 }
 
