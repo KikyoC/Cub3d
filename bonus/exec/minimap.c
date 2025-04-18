@@ -6,63 +6,58 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:42:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 18:11:16 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:50:33 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void draw(t_game *game, int pos[2], int max[2])
+static void	pxl(t_game *game, int pos[2], int map_x, int map_y)
 {
-	int	*color;
-	int	x;
-	int	y;
-
-	x = (int)game->player->x / 64 - 3 + pos[0] / SQUARE;
-	y = (int)game->player->y / 64 - 3 + pos[1] / SQUARE;
-	color = generate_color(255, 0, 0);
-	if (x < 0 || y < 0 || x >= max[0] || y >= max[1])
-		return ;
-	printf("Trying to access (%i,%i) with max (%i,%i)\n", x, y, max[x], max[y]);
-	if (game->map
-		[y]
-		[x] && game->map
-		[y]
-		[x]->c == '1')
-		draw_square(game->win_tex, pos, *color);
+	if (game->map[map_y][map_x]->c == '1')
+		draw_square(game->win_tex, pos, 255 * 256 * 256);
 	else
 		draw_square(game->win_tex, pos, 0);
-	free(color);
 }
 
-void	draw_map(t_game *game, int max[2])
+void	draw_map_line(t_game *game, int map_y, int win_y)
 {
-	int	x;
-	int	y;
+	int	win_x;
+	int	map_x;
 	int	pos[2];
 
-	y = -1;
-	while (++y < max[1] && y < 7)
+	win_x = -1;
+	while (++win_x < 11)
 	{
-		x = -1;
-		max[0] = max_x(game->map[y]);
-		while (++x < max[0] && x < 7)
-		{
-			pos[0] = x * SQUARE;
-			pos[1] = y * SQUARE;
-			draw(game, pos, max);
-		}
-	}
+		map_x = (int)game->player->x / 64 - 5 + win_x;
+		if (map_x < 0)
+			continue ;
+		if (!game->map[map_y][map_x])
+			break;
+		pos[0] = win_x * SQUARE;
+		pos[1] = win_y * SQUARE;
+		pxl(game, pos, map_x, map_y);
+	}	
 }
 
 void	init_minimap(t_game *game)
 {
+	int	win_y;
+	int	map_y;
 	int	pos[2];
-	int	max[2];
 
-	max[1] = max_y(game->map);
-	draw_map(game, max);
-	pos[0] = 3 * SQUARE;
-	pos[1] = 3 * SQUARE;
-	draw_square(game->win_tex, pos, *generate_color(0, 255, 0));
+	win_y = -1;
+	map_y = -1;
+	while (++win_y < 11)
+	{
+		map_y = (int)game->player->y / 64 - 5 + win_y;
+		if (map_y < 0)
+			continue ;
+		if (!game->map[map_y])
+			break ;
+		draw_map_line(game, map_y, win_y);
+	}
+	pos[0] = 5 * SQUARE;
+	pos[1] = 5 * SQUARE;
+	draw_square(game->win_tex, pos, 255 * 256);
 }

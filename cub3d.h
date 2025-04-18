@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 14:01:00 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:15:28 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 # define MAP "Error\nIt seems that you didn't set up map\n"
 # define POS "Error\nI don't know where the player starts\n"
 # define EXTENSION "cub"
-
+# define SQUARE 15
+# define IMG_SIZE 64
 /*
 	* MLX keys
  * */
@@ -164,5 +165,9 @@ void	set_touch(t_game *game, t_ray *ray);
 t_ray	create_ray(t_game *game, double start_x);
 t_ray	perform_dda(t_game *game, t_ray ray);
 double	get_angle(double direction, int key);
+void	draw_square(t_img *img, int pos[2], int color);
+void	init_minimap(t_game *game);
+int		max_x(t_point **row);
+int		max_y(t_point ***row);
 
 #endif
