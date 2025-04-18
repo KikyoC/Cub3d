@@ -6,12 +6,11 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 17:10:16 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:04:49 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-#include <X11/X.h>
 
 int	ft_isitcub(char *str)
 {

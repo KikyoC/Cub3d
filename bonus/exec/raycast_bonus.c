@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:29 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 16:22:23 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:06:23 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ void	ft_raycast(t_game *game)
 		start_x += fraction;
 		count ++;
 	}
-	init_minimap(game);
+	if (game->mini_map)
+		init_minimap(game);
 }

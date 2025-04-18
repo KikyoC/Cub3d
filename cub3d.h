@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 16:50:17 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:07:36 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define KEY_S				115
 # define KEY_D				100
 # define KEY_M				109
+# define KEY_TAB			65289
 # define KEY_ESC  			0xff1b
 # define KEY_LEFT  			0xff51
 # define KEY_RIGHT 			0xff53
@@ -102,6 +103,7 @@ typedef struct s_game
 	int				height;
 	int				width;
 	int				handle_mouse;
+	int				mini_map;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_img			*win_tex;
