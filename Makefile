@@ -3,7 +3,7 @@ NAME= cub3D
 SRCS = parsing/color.c parsing/parsing.c parsing/texture.c parsing/map_creation.c parsing/map_checker.c parsing/player.c utils/destroyer.c utils/row.c utils/access.c utils/map.c parsing/point_checker.c utils/parsing.c utils/get_color.c
 
 SRC_EXEC = exec/raycast.c exec/raycast_utils.c exec/render.c exec/init_game.c exec/mlx_utils.c exec/keybinds.c cub3d.c
-SRC_BONUS = $(addsuffix _bonus.c, $(SRC_EXEC:.c=)) utils/player_bonus.c exec/minimap.c utils/draw.c
+SRC_BONUS = $(addsuffix _bonus.c, $(SRC_EXEC:.c=)) utils/player_bonus.c exec/minimap.c utils/draw.c exec/mouse_bonus.c
 
 OBJS_PATH= objs/ objs/parsing objs/utils objs/exec
 OBJ_PATH= objs/
@@ -12,7 +12,7 @@ M_OBJS = $(addprefix $(OBJ_PATH), $(SRC_EXEC:.c=.o))
 B_OBJS = $(addprefix $(OBJ_PATH), $(SRC_BONUS:.c=.o))
 
 
-CFLAGS= -Wall -Werror -Wextra -g -I/usr/include -Imlx_linux 
+CFLAGS= -Wall -Werror -Wextra -g -I/usr/include -Imlx_linux
 
 MLX_DIR=mlx_linux
 MLX=mlx_linux/libmlx.a

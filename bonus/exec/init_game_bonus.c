@@ -30,6 +30,7 @@ void	ft_init_mlx(t_game *game)
 		ft_putendl_fd("Error", 2);
 		ft_putendl_fd("Cannot open window", 2);
 	}
+	game->handle_mouse = 1;
 }
 
 void	ft_init_add(t_game *game)
