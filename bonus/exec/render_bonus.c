@@ -6,18 +6,27 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:11 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 11:49:30 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:56:44 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	edit_direction(t_player *player)
+void	edit_direction(t_game *game)
 {
-	if (player->l_move)
-		player->direction -= 0.06;
-	if (player->r_move)
-		player->direction += 0.06;
+	int	x;
+	int	y;
+
+	if (game->player->l_move)
+		game->player->direction -= 0.06;
+	if (game->player->r_move)
+		game->player->direction += 0.06;
+	mlx_mouse_get_pos(game->mlx_ptr, game->win_ptr, &x, &y);
+	if (x != game->width / 2 || y != game->height / 2)
+	{
+		mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->width / 2, game->height / 2);
+		game->player->direction -= ((double)game->width / 2 - x) * 0.001;
+	}
 }
 
 void	move_player(int key, t_game *game)
@@ -79,7 +88,7 @@ int	ft_render(t_game *game)
 {
 	if (new_render())
 	{
-		edit_direction(game->player);
+		edit_direction(game);
 		if (can_access(game->player->x / 64, game->player->y / 64, game->map)
 			&& !is_wall(game->map, game->player->x, game->player->y))
 			ft_raycast(game);

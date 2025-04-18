@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 11:13:44 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:05:04 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_cub3d(t_game *game)
 		ft_release, game->player);
 	mlx_hook(game->win_ptr, DestroyNotify, 0, mlx_loop_end, game->mlx_ptr);
 	mlx_loop_hook(game->mlx_ptr, ft_render, game);
+	mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
 	mlx_loop(game->mlx_ptr);
 }
 
