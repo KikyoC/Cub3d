@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:11 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 15:49:01 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:10:33 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	edit_direction(t_game *game)
 	mlx_mouse_get_pos(game->mlx_ptr, game->win_ptr, &x, &y);
 	if (x != game->width / 2 || y != game->height / 2)
 	{
-		mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->width / 2, game->height / 2);
+		mlx_mouse_move(game->mlx_ptr, game->win_ptr,
+			game->width / 2, game->height / 2);
 		game->player->direction -= ((double)game->width / 2 - x) * 0.001;
 	}
 }

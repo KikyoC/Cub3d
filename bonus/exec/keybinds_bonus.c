@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:36 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 17:07:57 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:09:55 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_press(int keycode, t_game *game)
 	else if (keycode == KEY_M && !game->handle_mouse)
 	{
 		game->handle_mouse = 1;
-		mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->width / 2, game->height / 2);	
+		mlx_mouse_move(game->mlx_ptr, game->win_ptr,
+			game->width / 2, game->height / 2);
 	}
 	return (0);
 }

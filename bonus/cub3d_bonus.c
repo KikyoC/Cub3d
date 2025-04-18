@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:05:23 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 16:53:13 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:10:16 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ft_cub3d(t_game *game)
 	mlx_hook(game->win_ptr, FocusIn, FocusChangeMask, ft_mouse_enter, game);
 	mlx_hook(game->win_ptr, FocusOut, FocusChangeMask, ft_mouse_leave, game);
 	mlx_loop_hook(game->mlx_ptr, ft_render, game);
-	mlx_mouse_move(game->mlx_ptr, game->win_ptr, game->width / 2, game->height / 2);
+	mlx_mouse_move(game->mlx_ptr, game->win_ptr,
+		game->width / 2, game->height / 2);
 	mlx_loop(game->mlx_ptr);
 }
 
