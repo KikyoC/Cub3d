@@ -6,7 +6,7 @@
 /*   By: huvillat <huvillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:36 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 16:24:33 by huvillat         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:30:16 by huvillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_windsize(t_game *game, int size)
 		mlx_int_anti_resize_win(xvar, win->window, game->width - 100, game->height + 100);
 		game->inc--;
 		game->dec++;
-		game->width -= 100;
-		game->height += 100;
+		game->width = game->width - 100;
+		game->height = game->height + 100;
 	}
 	else if (size == -1)
 	{
