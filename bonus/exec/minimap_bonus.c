@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:42:21 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 13:51:57 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:24:49 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_map_line(t_game *game, int map_y, int win_y)
 	while (++win_x < 11)
 	{
 		map_x = (int)game->player->x / 64 - 5 + win_x;
-		if (map_x < 0)
+		if (map_x < 0 || max_x(game->map[map_y]) < map_x)
 			continue ;
 		if (!game->map[map_y][map_x])
 			break ;
