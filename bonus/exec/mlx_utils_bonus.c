@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:34 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/18 19:37:20 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/21 10:07:24 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,22 @@ void	mlx_put_infos(t_game *game)
 	if (game->mini_map)
 	{
 		x = 200;
-		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 30, 0, "Mini map [TAB]: enabled");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 30, 0,
+			"Mini map [TAB]: enabled");
 	}
 	else
-		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 30, 0, "Mini map [TAB]: disabled");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 30, 0,
+			"Mini map [TAB]: disabled");
 	if (game->collisions)
-		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 50, 0, "Collisions [C]: enabled");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 50, 0,
+			"Collisions [C]: enabled");
 	else
-		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 50, 0, "Collisions [C]: disabled");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 50, 0,
+			"Collisions [C]: disabled");
 	if (game->handle_mouse)
-		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 70, 0, "Mouse [M]: enabled");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 70, 0,
+			"Mouse [M]: enabled");
 	else
-		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 70, 0, "Mouse [M]: disabled");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, x, 70, 0,
+			"Mouse [M]: disabled");
 }
