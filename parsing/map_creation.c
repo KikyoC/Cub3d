@@ -6,12 +6,11 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:41 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/21 11:38:12 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:35:46 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-#include <string.h>
 
 static void	print_error(char c, char *line)
 {
@@ -57,6 +56,8 @@ static int	error(t_point **row, t_game *game)
 		|| !game->images->so || !game->images->ground
 		|| !game->images->sky)
 	{
+		if (row)
+			free(row);
 		ft_putstr_fd("Cannot parse map while all textures not genrated\n", 2);
 		return (1);
 	}
