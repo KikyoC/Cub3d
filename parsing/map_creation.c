@@ -6,11 +6,12 @@
 /*   By: togauthi <togauthi@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 10:04:41 by togauthi          #+#    #+#             */
-/*   Updated: 2025/04/17 15:57:18 by togauthi         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:38:12 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <string.h>
 
 static void	print_error(char c, char *line)
 {
@@ -44,6 +45,24 @@ int	add_to_row(char c, t_point **row, char *line)
 	return (0);
 }
 
+static int	error(t_point **row, t_game *game)
+{
+	if (!row)
+	{
+		ft_putstr_fd(strerror(errno), 2);
+		return (1);
+	}
+	if (!game->images || !game->images->ea
+		|| !game->images->we || !game->images->no
+		|| !game->images->so || !game->images->ground
+		|| !game->images->sky)
+	{
+		ft_putstr_fd("Cannot parse map while all textures not genrated\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 int	parse_line(t_game *game, char *line, int *map)
 {
 	t_point		**row;
@@ -55,7 +74,7 @@ int	parse_line(t_game *game, char *line, int *map)
 	*map = 1;
 	len = ft_strlen(line);
 	row = ft_calloc(len + 1, sizeof(t_point *));
-	if (!row)
+	if (error(row, game))
 		return (1);
 	while (i < len)
 	{
